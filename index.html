@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GrandPay Vault — Powered by Arc</title>
+  <meta name="description" content="The first cross-chain USDC family vault built on Arc. Gift. Split. Save. Across Chains. Built by @YoungestGrandad." />
+  <meta property="og:title" content="GrandPay Vault — Powered by Arc" />
+  <meta property="og:description" content="Lock USDC as a gift. Split bills instantly. Works across 6 chains." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ═══════════════ NAVBAR ═══════════════ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo" aria-label="GrandPay Vault home">
+        <span class="logo-icon" aria-hidden="true">🏦</span>
+        <div class="logo-text">
+          <span class="logo-main">GrandPay Vault</span>
+          <span class="logo-badge">Powered by Arc</span>
+        </div>
+      </a>
+
+      <div class="nav-right">
+        <label for="chainSelector" class="sr-only">Select blockchain network</label>
+        <select id="chainSelector" class="chain-selector" aria-label="Select network">
+          <option value="arc">🔵 Arc Testnet</option>
+          <option value="ethereum">⟠ Ethereum</option>
+          <option value="base">🔵 Base</option>
+          <option value="polygon">💜 Polygon</option>
+          <option value="arbitrum">🔵 Arbitrum</option>
+          <option value="optimism">🔴 Optimism</option>
+        </select>
+        <div id="chainBadge" class="chain-badge" aria-live="polite">Arc Testnet</div>
+        <button id="connectBtn" class="btn-connect" type="button">Connect Wallet</button>
+      </div>
+
+      <button class="hamburger" id="hamburger" type="button" aria-label="Open mobile menu" aria-expanded="false">☰</button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu" role="menu">
+      <label for="chainSelectorMobile" class="sr-only">Select network</label>
+      <select id="chainSelectorMobile" class="chain-selector" aria-label="Select network (mobile)">
+        <option value="arc">🔵 Arc Testnet</option>
+        <option value="ethereum">⟠ Ethereum</option>
+        <option value="base">🔵 Base</option>
+        <option value="polygon">💜 Polygon</option>
+        <option value="arbitrum">🔵 Arbitrum</option>
+        <option value="optimism">🔴 Optimism</option>
+      </select>
+      <button id="connectBtnMobile" class="btn-connect" type="button">Connect Wallet</button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="hero" id="home" aria-label="Hero section">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-tag">🚀 Live on Arc Testnet &nbsp;·&nbsp; USDC-Native &nbsp;·&nbsp; 6 Chains</div>
+      <h1 class="hero-title">
+        Gift. Split. Save.<br />
+        <span class="gradient-text">Across Chains.</span>
+      </h1>
+      <p class="hero-sub">The first cross-chain USDC family vault built on Arc — by the Youngest Grandad in Web3.</p>
+      <div class="hero-ctas">
+        <a href="#vault" class="btn-primary">Create Gift Vault 🎁</a>
+        <a href="#chainsplit" class="btn-secondary">Split a Bill 💸</a>
+      </div>
+      <div class="hero-stats" aria-label="Key statistics">
+        <div class="stat">
+          <span class="stat-num">6</span>
+          <span class="stat-label">Chains</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat">
+          <span class="stat-num">USDC</span>
+          <span class="stat-label">Native Currency</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat">
+          <span class="stat-num">&lt;1s</span>
+          <span class="stat-label">Arc Finality</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ GRANDPAY VAULT ═══════════════ -->
+  <section class="section" id="vault" aria-labelledby="vault-heading">
+    <div class="section-inner">
+      <header class="section-header">
+        <div class="section-tag">🎁 GrandPay Vault</div>
+        <h2 class="section-title" id="vault-heading">Send a Gift That Waits</h2>
+        <p class="section-sub">Lock USDC for someone you love. They receive it on the date you choose — birthday, graduation, or any milestone that matters.</p>
+      </header>
+
+      <div class="two-col">
+        <!-- CREATE VAULT FORM -->
+        <div class="glass-card">
+          <div class="card-header">
+            <span class="card-icon" aria-hidden="true">🔐</span>
+            <h3>Create Gift Vault</h3>
+          </div>
+
+          <div class="form-group">
+            <label for="vaultRecipient">Recipient Wallet Address</label>
+            <input
+              type="text"
+              id="vaultRecipient"
+              class="input-field"
+              placeholder="0x..."
+              autocomplete="off"
+              spellcheck="false"
+              aria-describedby="vaultRecipientHint"
+            />
+            <span id="vaultRecipientHint" class="sr-only">Enter the wallet address of the person who will receive the gift</span>
+          </div>
+
+          <div class="form-group">
+            <label for="vaultAmount">USDC Amount</label>
+            <div class="input-with-badge">
+              <input
+                type="number"
+                id="vaultAmount"
+                class="input-field"
+                placeholder="0.00"
+                min="0.01"
+                step="0.01"
+                aria-label="USDC amount"
+              />
+              <span class="input-badge" aria-hidden="true">USDC</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="vaultUnlockDate">Unlock Date</label>
+            <input
+              type="date"
+              id="vaultUnlockDate"
+              class="input-field"
+              aria-describedby="vaultDateHint"
+            />
+            <span id="vaultDateHint" class="sr-only">The recipient can withdraw on or after this date</span>
+          </div>
+
+          <div class="form-group">
+            <label for="vaultMessage">
+              Personal Message
+              <span class="optional">(optional, stored on-chain)</span>
+            </label>
+            <textarea
+              id="vaultMessage"
+              class="input-field textarea"
+              placeholder="Happy Birthday! Love you to the moon and back 🌙"
+              rows="3"
+              maxlength="280"
+            ></textarea>
+          </div>
+
+          <button class="btn-primary full-width" id="createVaultBtn" type="button">
+            Create Gift Vault 🎁
+          </button>
+          <p class="form-note">Contracts must be deployed first. See the deployment guide.</p>
+        </div>
+
+        <!-- VAULT LIST -->
+        <div class="glass-card">
+          <div class="card-header">
+            <span class="card-icon" aria-hidden="true">📦</span>
+            <h3>Your Active Vaults</h3>
+          </div>
+          <div id="vaultList" class="vault-list" aria-live="polite" aria-label="Your gift vaults">
+            <div class="empty-state">
+              <div class="empty-icon" aria-hidden="true">🔐</div>
+              <p>Connect your wallet to see your gift vaults</p>
+            </div>
+          </div>
+          <button class="btn-secondary full-width" id="loadVaultsBtn" type="button" style="margin-top:16px">
+            ↻ Refresh Vaults
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CHAINSPLIT ═══════════════ -->
+  <section class="section section-alt" id="chainsplit" aria-labelledby="split-heading">
+    <div class="section-inner">
+      <header class="section-header">
+        <div class="section-tag">💸 ChainSplit</div>
+        <h2 class="section-title" id="split-heading">Split Any Bill. Instantly.</h2>
+        <p class="section-sub">Dinner with friends, rent with roommates, trips with family — settle it in USDC on any chain in seconds.</p>
+      </header>
+
+      <div class="two-col">
+        <!-- SPLIT FORM -->
+        <div class="glass-card">
+          <div class="card-header">
+            <span class="card-icon" aria-hidden="true">✂️</span>
+            <h3>Create Bill Split</h3>
+          </div>
+
+          <div class="form-group">
+            <label for="billAmount">Total Bill Amount</label>
+            <div class="input-with-badge">
+              <input
+                type="number"
+                id="billAmount"
+                class="input-field"
+                placeholder="0.00"
+                min="0.01"
+                step="0.01"
+                aria-label="Total bill amount in USDC"
+              />
+              <span class="input-badge" aria-hidden="true">USDC</span>
+            </div>
+          </div>
+
+          <div class="split-type-toggle" role="group" aria-label="Split type">
+            <button class="toggle-btn active" id="equalBtn" type="button" aria-pressed="true">Equal Split</button>
+            <button class="toggle-btn" id="customBtn" type="button" aria-pressed="false">Custom Split</button>
+          </div>
+
+          <div id="recipientList" class="recipient-list" aria-label="Recipients">
+            <div class="recipient-row">
+              <input
+                type="text"
+                class="input-field recipient-addr"
+                placeholder="Wallet address 0x…"
+                autocomplete="off"
+                spellcheck="false"
+                aria-label="Recipient wallet address"
+              />
+              <input
+                type="number"
+                class="input-field recipient-amount"
+                placeholder="0.00"
+                min="0.01"
+                step="0.01"
+                readonly
+                aria-label="Amount for this recipient"
+              />
+              <button class="remove-btn" type="button" title="Remove this recipient" aria-label="Remove recipient">✕</button>
+            </div>
+          </div>
+
+          <button class="btn-ghost full-width" id="addRecipientBtn" type="button">+ Add Recipient</button>
+
+          <div class="split-summary" id="splitSummary" style="display:none" aria-live="polite">
+            <div class="summary-row"><span>Total:</span><span id="summaryTotal">$0.00</span></div>
+            <div class="summary-row"><span>Recipients:</span><span id="summaryCount">0</span></div>
+            <div class="summary-row"><span>Each Pays:</span><span id="summaryEach">$0.00</span></div>
+          </div>
+
+          <button class="btn-primary full-width" id="splitBtn" type="button" style="margin-top:16px">
+            Split Bill 💸
+          </button>
+          <p class="form-note">Contracts must be deployed first. See the deployment guide.</p>
+        </div>
+
+        <!-- HOW IT WORKS -->
+        <div class="glass-card">
+          <div class="card-header">
+            <span class="card-icon" aria-hidden="true">⚡</span>
+            <h3>How ChainSplit Works</h3>
+          </div>
+          <ol class="steps" aria-label="How ChainSplit works">
+            <li class="step">
+              <div class="step-num" aria-hidden="true">01</div>
+              <div class="step-content">
+                <h4>Enter Bill Amount</h4>
+                <p>Type in the total in USDC. Dollar-stable. No price guessing.</p>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step-num" aria-hidden="true">02</div>
+              <div class="step-content">
+                <h4>Add Wallet Addresses</h4>
+                <p>Paste in your friends' wallet addresses. Equal or custom split — your call.</p>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step-num" aria-hidden="true">03</div>
+              <div class="step-content">
+                <h4>Split in One Click</h4>
+                <p>One transaction. Everyone gets paid instantly. Arc finality in under a second.</p>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step-num" aria-hidden="true">04</div>
+              <div class="step-content">
+                <h4>Works on 6 Chains</h4>
+                <p>Switch chains using the dropdown. Arc, Ethereum, Base, Polygon, Arbitrum, Optimism.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ ABOUT ARC ═══════════════ -->
+  <section class="section" id="about" aria-labelledby="about-heading">
+    <div class="section-inner">
+      <header class="section-header">
+        <div class="section-tag">🔵 About Arc</div>
+        <h2 class="section-title" id="about-heading">Built on Arc Testnet</h2>
+        <p class="section-sub">Arc is Circle's Layer-1 blockchain — the home of USDC-native finance for the internet economy.</p>
+      </header>
+
+      <div class="arc-grid">
+        <article class="arc-card">
+          <div class="arc-card-icon" aria-hidden="true">⚡</div>
+          <h4>Sub-Second Finality</h4>
+          <p>Arc delivers deterministic finality in under 1 second. Your gift arrives before the moment ends.</p>
+        </article>
+        <article class="arc-card">
+          <div class="arc-card-icon" aria-hidden="true">💵</div>
+          <h4>USDC for Gas</h4>
+          <p>No volatile native token for fees. Arc uses USDC — so you always know exactly what you're paying.</p>
+        </article>
+        <article class="arc-card">
+          <div class="arc-card-icon" aria-hidden="true">🏛️</div>
+          <h4>Institutional Grade</h4>
+          <p>Backed by Apollo, BNY Mellon, Deutsche Bank, Visa, and Mastercard. The chain is serious.</p>
+        </article>
+        <article class="arc-card">
+          <div class="arc-card-icon" aria-hidden="true">🔗</div>
+          <h4>EVM Compatible</h4>
+          <p>Full Solidity support. Deploy with Remix, Hardhat, or Foundry. Familiar tooling, new chain.</p>
+        </article>
+        <article class="arc-card">
+          <div class="arc-card-icon" aria-hidden="true">🌐</div>
+          <h4>244M+ Transactions</h4>
+          <p>Arc testnet has processed over 244 million transactions with near-perfect uptime.</p>
+        </article>
+        <article class="arc-card">
+          <div class="arc-card-icon" aria-hidden="true">🚀</div>
+          <h4>Mainnet Summer 2026</h4>
+          <p>Testnet is live now. Mainnet launches Summer 2026. You're early. That's the point.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <span class="logo-icon" aria-hidden="true">🏦</span>
+        <div>
+          <div class="logo-main">GrandPay Vault</div>
+          <div class="logo-badge">Powered by Arc</div>
+        </div>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#vault">Gift Vault</a>
+        <a href="#chainsplit">ChainSplit</a>
+        <a href="#about">About Arc</a>
+        <a href="https://arc.io" target="_blank" rel="noopener noreferrer">arc.io ↗</a>
+        <a href="https://x.com/YoungestGrandad" target="_blank" rel="noopener noreferrer">@YoungestGrandad ↗</a>
+      </nav>
+      <p class="footer-credit">Built by the Youngest Grandad in Web3 · USDC-Native · Multi-Chain · Powered by Arc</p>
+    </div>
+  </footer>
+
+  <!-- ═══════════════ SUCCESS MODAL ═══════════════ -->
+  <div
+    class="modal-overlay"
+    id="successModal"
+    style="display:none"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+    aria-describedby="modalMessage"
+  >
+    <div class="modal glass-card">
+      <div class="modal-success-icon" aria-hidden="true">✅</div>
+      <h3 id="modalTitle">Transaction Successful!</h3>
+      <p id="modalMessage">Your transaction has been confirmed.</p>
+      <div class="modal-tx">
+        <span>Transaction Hash:</span>
+        <a
+          id="modalTxLink"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="tx-hash"
+          aria-label="View transaction on block explorer"
+        >—</a>
+      </div>
+      <button class="btn-primary" id="modalCloseBtn" type="button">Done 🎉</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════ NOTIFICATION TOAST ═══════════════ -->
+  <div
+    class="notification"
+    id="notification"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+  <!-- Screen reader only utility class used in aria labels -->
+  <style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}</style>
+
+  <!-- ethers.js v6 from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"
+    integrity="sha512-/nMRBgQNTRGDEimr/dPm8p2rJJzPBfk2lFbMgzS7J5VqFpH3t/9RgGMq8LVIYSA3xFdPMLs1qZ1HEKDThJeA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+  <script src="app.js"></script>
+</body>
+</html>
