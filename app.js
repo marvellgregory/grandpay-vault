@@ -999,23 +999,44 @@ async function getUSDCAndAmount(amountRaw) {
     showNotification(`❌ No USDC address for chain "${currentChain}". Switch MetaMask to Arc Testnet.`, "error");
     return { usdc: null, decimals: null, amount: null };
   }
-  const usdc = new ethers.Contract(usdcAddr, ERC20_ABI, signer);
-  try {
-    const decimals = await usdc.decimals();
-    const amount   = ethers.parseUnits(amountRaw.toFixed(Number(decimals)), Number(decimals));
-    return { usdc, decimals, amount };
-  } catch (e) {
-    // Log the actual chain ID MetaMask is reporting so it's visible in DevTools
-    let actualId = "?";
-    try { actualId = await window.ethereum.request({ method: "eth_chainId" }); } catch {}
-    console.error("[GrandPay] getUSDCAndAmount failed.", {
-      currentChain, usdcAddr, actualChainId: actualId, error: e
-    });
+
+  // Verify the wallet is actually on the right chain before attempting any contract call
+  let actualId = "?";
+  try { actualId = (await window.ethereum.request({ method: "eth_chainId" })).toLowerCase(); } catch {}
+  if (currentChain === "arc" && !ARC_CHAIN_ID_ALIASES.has(actualId)) {
     showNotification(
-      `❌ Could not read USDC. Your MetaMask is on chain ${actualId}. ` +
-      `Open MetaMask → switch to "Arc Testnet" → try again.`,
+      `❌ Could not read USDC on this network. Make sure you are on Arc Testnet. ` +
+      `(MetaMask is on chain ${actualId}, expected 0x4cfed2)`,
       "error"
     );
+    return { usdc: null, decimals: null, amount: null };
+  }
+
+  const usdc = new ethers.Contract(usdcAddr, ERC20_ABI, signer);
+
+  // Arc's USDC system contract (0x3600…) always uses 6 decimals via its ERC-20 interface.
+  // We hardcode this to avoid a fragile decimals() RPC call that can fail on some providers.
+  let decimals = currentChain === "arc" ? 6 : null;
+
+  if (decimals === null) {
+    try {
+      decimals = await usdc.decimals();
+    } catch (e) {
+      console.error("[GrandPay] decimals() call failed.", { currentChain, usdcAddr, error: e });
+      showNotification(
+        `❌ Could not read USDC on this network. Make sure you are on Arc Testnet.`,
+        "error"
+      );
+      return { usdc: null, decimals: null, amount: null };
+    }
+  }
+
+  try {
+    const amount = ethers.parseUnits(amountRaw.toFixed(Number(decimals)), Number(decimals));
+    return { usdc, decimals, amount };
+  } catch (e) {
+    console.error("[GrandPay] parseUnits failed.", { amountRaw, decimals, error: e });
+    showNotification(`❌ Invalid amount. Please enter a valid USDC amount.`, "error");
     return { usdc: null, decimals: null, amount: null };
   }
 }
