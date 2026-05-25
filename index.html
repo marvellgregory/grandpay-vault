@@ -386,14 +386,16 @@
     .empty-state { text-align:center; padding:40px 20px; color:var(--text-muted); }
     .empty-icon { font-size:40px; margin-bottom:12px; }
 
-    /* ── SPLIT ── */
-    .split-type-toggle { display:flex; gap:8px; margin-bottom:16px; }
+    /* ── SPLIT TABS ── */
+    .split-type-toggle { display:flex; gap:0; margin-bottom:16px; border-radius:10px; overflow:hidden; border:1px solid var(--card-border); }
     .toggle-btn {
-      flex:1; padding:10px; border-radius:10px; border:1px solid var(--card-border);
-      background:transparent; color:var(--text-secondary); font-size:13px; font-weight:600;
+      flex:1; padding:11px 10px; border:none; border-right:1px solid var(--card-border);
+      background:var(--navy-3); color:var(--text-muted); font-size:13px; font-weight:600;
       cursor:pointer; font-family:var(--font); min-height:44px; transition:all 0.2s;
     }
-    .toggle-btn.active { background:var(--blue); color:#fff; border-color:var(--blue); }
+    .toggle-btn:last-child { border-right:none; }
+    .toggle-btn.active { background:var(--blue); color:#fff; }
+    .toggle-btn:not(.active):hover { background:var(--card-hover); color:var(--text-primary); }
     .recipient-list { display:flex; flex-direction:column; gap:10px; margin-bottom:12px; }
     .recipient-row { display:grid; grid-template-columns:1fr 0.4fr 36px; gap:8px; align-items:center; }
     .remove-btn {
