@@ -388,7 +388,12 @@ async function createVault() {
 
   const vaultAddr = CONTRACTS[currentChain].vault;
   if (!isDeployed(vaultAddr)) {
-    showNotification("⚠️ Deploy the vault contract first, then update CONTRACTS in app.js", "error"); return;
+    if (currentChain !== "arc") {
+      showNotification("⚠️ Gift Vault only works on Arc Testnet. Please switch your wallet to Arc Testnet.", "error");
+    } else {
+      showNotification("⚠️ Arc Testnet contract not deployed yet. See About Arc section.", "error");
+    }
+    return;
   }
 
   const btn = document.getElementById("createVaultBtn");
@@ -530,11 +535,29 @@ async function withdrawVault(vaultId, usdcAddr) {
 // =============================================
 function setSplitType(type) {
   splitType = type;
-  document.getElementById("equalBtn").classList.toggle("active", type === "equal");
-  document.getElementById("customBtn").classList.toggle("active", type === "custom");
+
+  const equalBtn  = document.getElementById("equalBtn");
+  const customBtn = document.getElementById("customBtn");
+
+  // Reset both first, then set the active one
+  equalBtn.classList.remove("active");
+  customBtn.classList.remove("active");
+  equalBtn.setAttribute("aria-pressed", "false");
+  customBtn.setAttribute("aria-pressed", "false");
+
+  if (type === "equal") {
+    equalBtn.classList.add("active");
+    equalBtn.setAttribute("aria-pressed", "true");
+  } else {
+    customBtn.classList.add("active");
+    customBtn.setAttribute("aria-pressed", "true");
+  }
+
   document.querySelectorAll(".recipient-amount").forEach(inp => {
     inp.readOnly = (type === "equal");
+    inp.style.background = (type === "equal") ? "var(--input-bg)" : "var(--input-bg)";
     if (type === "equal") inp.classList.remove("error");
+    inp.placeholder = type === "equal" ? "Auto" : "0.00";
   });
   updateSplitAmounts();
 }
@@ -646,7 +669,12 @@ async function splitBill() {
 
   const splitterAddr = CONTRACTS[currentChain].splitter;
   if (!isDeployed(splitterAddr)) {
-    showNotification("⚠️ Deploy the splitter contract first and update CONTRACTS in app.js", "error"); return;
+    if (currentChain !== "arc") {
+      showNotification("⚠️ ChainSplit only works on Arc Testnet right now. Switch your wallet to Arc Testnet.", "error");
+    } else {
+      showNotification("⚠️ Arc Testnet splitter contract not deployed yet. See About Arc section.", "error");
+    }
+    return;
   }
 
   const btn = document.getElementById("splitBtn");
@@ -892,7 +920,12 @@ async function createVaultFromGVP() {
 
   const vaultAddr = CONTRACTS[currentChain].vault;
   if (!isDeployed(vaultAddr)) {
-    showNotification("⚠️ Deploy the vault contract first — see About Arc section", "error"); return;
+    if (currentChain !== "arc") {
+      showNotification("⚠️ Gift Vault only works on Arc Testnet right now. Switch your network to Arc Testnet and try again.", "error");
+    } else {
+      showNotification("⚠️ Arc contract not yet deployed. See the About Arc section for deployment steps.", "error");
+    }
+    return;
   }
 
   const btn = document.getElementById("gvpCreateBtn");
