@@ -44,9 +44,9 @@ const CHAINS = {
   arc:      { chainId: "0x66eee", name: "Arc Testnet",  rpc: "https://rpc.testnet.arc.io",       explorer: "https://testnet.arcscan.app/tx/",      currency: "ETH",   currencyName: "Ether" },
   ethereum: { chainId: "0x1",    name: "Ethereum",     rpc: "https://eth.llamarpc.com",          explorer: "https://etherscan.io/tx/",             currency: "ETH",   currencyName: "Ether" },
   base:     { chainId: "0x2105", name: "Base",         rpc: "https://mainnet.base.org",          explorer: "https://basescan.org/tx/",             currency: "ETH",   currencyName: "Ether" },
-  polygon:  { chainId: "0x89",   name: "Polygon",      rpc: "https://polygon-rpc.com",           explorer: "https://polygonscan.com/tx/",          currency: "MATIC", currencyName: "MATIC" },
+  polygon:  { chainId: "0x89",   name: "Polygon",      rpc: "https://polygon-rpc.com",           explorer: "https://polygonscan.com/tx/",          currency: "POL",   currencyName: "POL" },
   arbitrum: { chainId: "0xA4B1", name: "Arbitrum One", rpc: "https://arb1.arbitrum.io/rpc",     explorer: "https://arbiscan.io/tx/",              currency: "ETH",   currencyName: "Ether" },
-  optimism: { chainId: "0xA",    name: "Optimism",     rpc: "https://mainnet.optimism.io",       explorer: "https://optimistic.etherscan.io/tx/", currency: "ETH",   currencyName: "Ether" },
+  optimism: { chainId: "0xA",    name: "Optimism (OP)", rpc: "https://mainnet.optimism.io",       explorer: "https://optimistic.etherscan.io/tx/", currency: "ETH",   currencyName: "Ether" },
 };
 
 // =============================================
@@ -97,10 +97,34 @@ document.addEventListener("DOMContentLoaded", () => {
   setupButtonListeners();
   setMinDate();
   updateSplitAmounts();
+  updateRecipientCounter();
 
   // Auto-reconnect if user previously connected
   if (window.ethereum && localStorage.getItem("gp_connected") === "1") {
     connectWallet();
+  }
+
+  // Bill upload zone
+  const billUploadZone = document.getElementById("billUploadZone");
+  const billFileInput  = document.getElementById("billFileInput");
+  const billFilePreview = document.getElementById("billFilePreview");
+  if (billUploadZone && billFileInput) {
+    billUploadZone.addEventListener("click", () => billFileInput.click());
+    billFileInput.addEventListener("change", function() {
+      const file = this.files[0];
+      if (!file) return;
+      billFilePreview.textContent = `📎 ${file.name} (${(file.size/1024).toFixed(1)} KB) — attached`;
+      billFilePreview.style.display = "block";
+    });
+  }
+
+  // Split "Learn more about Arc" link — scroll to about section
+  const splitLearnMore = document.getElementById("splitLearnMoreLink");
+  if (splitLearnMore) {
+    splitLearnMore.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.getElementById("about").scrollIntoView({ behavior: "smooth" });
+    });
   }
 });
 
@@ -261,9 +285,23 @@ function handleAccountsChanged(accounts) {
   }
 }
 
-function handleChainChanged() {
-  // Always reload on chain change — safest pattern
-  location.reload();
+async function handleChainChanged(chainId) {
+  // Re-init provider without reloading — avoids disconnecting the wallet
+  try {
+    provider    = new ethers.BrowserProvider(window.ethereum);
+    signer      = await provider.getSigner();
+    userAddress = await signer.getAddress();
+    detectAndSetChain(chainId);
+    showNotification(`✅ Chain switched — reconnected`, "success");
+    // Refresh vault list if GVP is open
+    if (document.getElementById("giftVaultPage") && document.getElementById("giftVaultPage").classList.contains("open")) {
+      loadVaultsGVP();
+    }
+  } catch (err) {
+    // If re-init fails, reload as fallback
+    console.error("handleChainChanged re-init failed, reloading:", err);
+    location.reload();
+  }
 }
 
 function detectAndSetChain(chainId) {
@@ -503,6 +541,11 @@ function setSplitType(type) {
 
 function addRecipient() {
   const list = document.getElementById("recipientList");
+  const currentRows = document.querySelectorAll(".recipient-row").length;
+  if (currentRows >= 10) {
+    showNotification("⚠️ Maximum 10 recipients allowed", "error");
+    return;
+  }
   recipientCount++;
   const row = document.createElement("div");
   row.className = "recipient-row";
@@ -515,6 +558,7 @@ function addRecipient() {
   row.querySelector(".recipient-amount").addEventListener("input", updateSplitAmounts);
   list.appendChild(row);
   updateSplitAmounts();
+  updateRecipientCounter();
 }
 
 function removeRecipient(row) {
@@ -522,6 +566,15 @@ function removeRecipient(row) {
   if (rows.length <= 1) { showNotification("⚠️ You need at least one recipient", "error"); return; }
   row.remove();
   updateSplitAmounts();
+  updateRecipientCounter();
+}
+
+function updateRecipientCounter() {
+  const count = document.querySelectorAll(".recipient-row").length;
+  const label = document.getElementById("recipientCountLabel");
+  if (label) label.textContent = `(${count} / 10)`;
+  const addBtn = document.getElementById("addRecipientBtn");
+  if (addBtn) addBtn.disabled = count >= 10;
 }
 
 function updateSplitAmounts() {
@@ -779,6 +832,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // GVP "Learn more about Arc" link
+  const gvpLearnMore = document.getElementById("gvpLearnMoreArc");
+  if (gvpLearnMore) {
+    gvpLearnMore.addEventListener("click", (e) => {
+      e.preventDefault();
+      closeGiftVault();
+      setTimeout(() => {
+        document.getElementById("about").scrollIntoView({ behavior: "smooth" });
+      }, 350);
+    });
+  }
+
   // GVP create vault button
   const gvpBtn = document.getElementById("gvpCreateBtn");
   if (gvpBtn) {
@@ -836,7 +901,16 @@ async function createVaultFromGVP() {
   try {
     const usdcAddr = USDC_ADDRESSES[currentChain];
     const usdc     = new ethers.Contract(usdcAddr, ERC20_ABI, signer);
-    const decimals = await usdc.decimals();
+
+    let decimals;
+    try {
+      decimals = await usdc.decimals();
+    } catch (decErr) {
+      showNotification(`❌ Cannot read USDC on ${CHAINS[currentChain].name}. Switch to Arc Testnet where the contract is deployed.`, "error");
+      setLoading(btn, false, "🎁 Create Gift Vault");
+      return;
+    }
+
     const amount   = ethers.parseUnits(amountRaw.toFixed(Number(decimals)), Number(decimals));
 
     const balance = await usdc.balanceOf(userAddress);
