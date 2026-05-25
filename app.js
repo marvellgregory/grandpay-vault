@@ -28,7 +28,9 @@ const CONTRACTS = {
 };
 
 const USDC_ADDRESSES = {
-  arc:      "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+  // Arc: USDC is the NATIVE gas token. Its ERC-20 interface lives at this system contract address.
+  // Source: docs.arc.io — "USDC is native at a system contract address"
+  arc:      "0x3600000000000000000000000000000000000001",
   ethereum: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
   base:     "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
   polygon:  "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
@@ -37,13 +39,23 @@ const USDC_ADDRESSES = {
 };
 
 const CHAINS = {
-  arc:      { chainId: "0x66eee", name: "Arc Testnet",   rpc: "https://rpc.testnet.arc.io",       explorer: "https://testnet.arcscan.app/tx/",      currency: "ETH",  currencyName: "Ether" },
-  ethereum: { chainId: "0x1",    name: "Ethereum",      rpc: "https://eth.llamarpc.com",          explorer: "https://etherscan.io/tx/",             currency: "ETH",  currencyName: "Ether" },
-  base:     { chainId: "0x2105", name: "Base",          rpc: "https://mainnet.base.org",          explorer: "https://basescan.org/tx/",             currency: "ETH",  currencyName: "Ether" },
-  polygon:  { chainId: "0x89",   name: "Polygon",       rpc: "https://polygon-rpc.com",           explorer: "https://polygonscan.com/tx/",          currency: "POL",  currencyName: "POL"   },
-  arbitrum: { chainId: "0xa4b1", name: "Arbitrum One",  rpc: "https://arb1.arbitrum.io/rpc",      explorer: "https://arbiscan.io/tx/",              currency: "ETH",  currencyName: "Ether" },
-  optimism: { chainId: "0xa",    name: "Optimism (OP)", rpc: "https://mainnet.optimism.io",       explorer: "https://optimistic.etherscan.io/tx/", currency: "ETH",  currencyName: "Ether" },
+  // Arc Testnet — Chain ID: 5042002 (0x4CFED2) — confirmed from docs.arc.io
+  // RPC: https://rpc.testnet.arc.network
+  // USDC is the NATIVE gas token on Arc (not a regular ERC-20)
+  arc:      { chainId: "0x4CFED2", name: "Arc Testnet",   rpc: "https://rpc.testnet.arc.network",   explorer: "https://testnet.arcscan.app/tx/",      currency: "USDC", currencyName: "USDC" },
+  ethereum: { chainId: "0x1",      name: "Ethereum",      rpc: "https://eth.llamarpc.com",           explorer: "https://etherscan.io/tx/",             currency: "ETH",  currencyName: "Ether" },
+  base:     { chainId: "0x2105",   name: "Base",          rpc: "https://mainnet.base.org",           explorer: "https://basescan.org/tx/",             currency: "ETH",  currencyName: "Ether" },
+  polygon:  { chainId: "0x89",     name: "Polygon",       rpc: "https://polygon-rpc.com",            explorer: "https://polygonscan.com/tx/",          currency: "POL",  currencyName: "POL"   },
+  arbitrum: { chainId: "0xa4b1",   name: "Arbitrum One",  rpc: "https://arb1.arbitrum.io/rpc",       explorer: "https://arbiscan.io/tx/",              currency: "ETH",  currencyName: "Ether" },
+  optimism: { chainId: "0xa",      name: "Optimism (OP)", rpc: "https://mainnet.optimism.io",        explorer: "https://optimistic.etherscan.io/tx/", currency: "ETH",  currencyName: "Ether" },
 };
+
+// Arc chain ID aliases — both decimal and hex forms, lowercase for comparison
+const ARC_CHAIN_ID_ALIASES = new Set([
+  "0x4cfed2",  // 5042002 — official Arc testnet (docs.arc.io)
+  "0x66eee",   // 419430  — older/alternative Arc testnet value seen in some setups
+  "0x7a69",    // 31337   — Hardhat default used by some manual wallet installs
+]);
 
 // =============================================
 // ABIs
@@ -233,6 +245,9 @@ async function switchChain(chainKey) {
 
   if (!window.ethereum || !userAddress) return;
 
+  // Normalise chainId to lowercase for comparison
+  const targetId = chain.chainId.toLowerCase();
+
   try {
     await window.ethereum.request({
       method: "wallet_switchEthereumChain",
@@ -328,20 +343,42 @@ async function handleChainChanged(chainId) {
 
 function detectAndSetChain(chainId) {
   const id = chainId.toLowerCase();
+
+  // ── Arc alias check first ───────────────────────────────────
+  // Some MetaMask installs report Arc Testnet under a different chain ID
+  // depending on how the network was added (manually vs wallet_addEthereumChain).
+  // We accept all known Arc IDs and map them all to "arc".
+  if (ARC_CHAIN_ID_ALIASES.has(id)) {
+    currentChain = "arc";
+    const sel   = document.getElementById("chainSelector");
+    const mob   = document.getElementById("chainSelectorMobile");
+    const badge = document.getElementById("chainBadge");
+    if (sel)   sel.value        = "arc";
+    if (mob)   mob.value        = "arc";
+    if (badge) badge.textContent = "Arc Testnet";
+    return;
+  }
+
+  // ── Standard chain lookup ────────────────────────────────────
   for (const [key, cfg] of Object.entries(CHAINS)) {
     if (cfg.chainId.toLowerCase() === id) {
       currentChain = key;
-      const sel = document.getElementById("chainSelector");
-      const mob = document.getElementById("chainSelectorMobile");
-      if (sel) sel.value = key;
-      if (mob) mob.value = key;
+      const sel   = document.getElementById("chainSelector");
+      const mob   = document.getElementById("chainSelectorMobile");
       const badge = document.getElementById("chainBadge");
+      if (sel)   sel.value        = key;
+      if (mob)   mob.value        = key;
       if (badge) badge.textContent = cfg.name;
       return;
     }
   }
+
+  // ── Unknown chain — display raw ID but do NOT change currentChain ──
+  // Keeping currentChain as-is prevents USDC calls against the wrong address.
   const badge = document.getElementById("chainBadge");
-  if (badge) badge.textContent = `Chain ${chainId}`;
+  if (badge) badge.textContent = `Unknown (${chainId})`;
+  // Show a helpful message so the user knows what to do
+  showNotification(`⚠️ Unrecognised network (${chainId}). Please switch to Arc Testnet in MetaMask.`, "error");
 }
 
 function disconnectWallet() {
@@ -780,7 +817,14 @@ async function createVaultFromGVP() {
     try {
       decimals = await usdc.decimals();
     } catch (e) {
-      showNotification("❌ Could not read USDC on this network. Make sure you are on Arc Testnet.", "error");
+      let actualChainId = "unknown";
+      try { actualChainId = await window.ethereum.request({ method: "eth_chainId" }); } catch {}
+      console.error("usdc.decimals() failed:", e, "chainId:", actualChainId);
+      showNotification(
+        `❌ Could not read USDC. MetaMask is on chain ${actualChainId}. ` +
+        `Please switch to Arc Testnet and try again.`,
+        "error"
+      );
       setLoading(btn, false, "🎁 Create Gift Vault");
       return;
     }
@@ -959,13 +1003,26 @@ function requireArcTestnet() {
 
 async function getUSDCAndAmount(amountRaw) {
   const usdcAddr = USDC_ADDRESSES[currentChain];
-  const usdc     = new ethers.Contract(usdcAddr, ERC20_ABI, signer);
+  if (!usdcAddr) {
+    showNotification(`❌ No USDC address configured for "${currentChain}". Switch to Arc Testnet.`, "error");
+    return { usdc: null, decimals: null, amount: null };
+  }
+  const usdc = new ethers.Contract(usdcAddr, ERC20_ABI, signer);
   try {
     const decimals = await usdc.decimals();
     const amount   = ethers.parseUnits(amountRaw.toFixed(Number(decimals)), Number(decimals));
     return { usdc, decimals, amount };
   } catch (e) {
-    showNotification("❌ Could not read USDC on this network. Make sure you are on Arc Testnet.", "error");
+    // Get the actual chain ID from MetaMask so the error message is useful
+    let actualChainId = "unknown";
+    try { actualChainId = await window.ethereum.request({ method: "eth_chainId" }); } catch {}
+    console.error("getUSDCAndAmount failed:", e, "actualChainId:", actualChainId);
+    showNotification(
+      `❌ Could not read USDC on this network.\n` +
+      `MetaMask reports chain ID: ${actualChainId}.\n` +
+      `Please switch MetaMask to Arc Testnet and try again.`,
+      "error"
+    );
     return { usdc: null, decimals: null, amount: null };
   }
 }
