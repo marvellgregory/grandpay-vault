@@ -111,48 +111,48 @@
       transition: background 0.3s;
     }
     .nav-inner {
-      max-width: 1280px; margin:0 auto;
-      padding: 0 24px;
+      max-width: 1400px; margin:0 auto;
+      padding: 0 20px;
       height: 68px;
-      display: flex; align-items:center; justify-content:space-between; gap:16px;
+      display: flex; align-items:center; justify-content:space-between; gap:8px;
     }
     .nav-logo {
-      display:flex; align-items:center; gap:10px;
+      display:flex; align-items:center; gap:8px;
       text-decoration:none; flex-shrink:0;
     }
-    .logo-icon { font-size:26px; }
-    .logo-main { font-family:'Syne',sans-serif; font-weight:700; font-size:17px; color:var(--text-primary); line-height:1.2; }
-    .logo-badge { font-size:10px; color:var(--blue); font-weight:600; letter-spacing:0.05em; text-transform:uppercase; }
+    .logo-icon { font-size:22px; }
+    .logo-main { font-family:'Syne',sans-serif; font-weight:700; font-size:15px; color:var(--text-primary); line-height:1.2; }
+    .logo-badge { font-size:9px; color:var(--blue); font-weight:600; letter-spacing:0.05em; text-transform:uppercase; }
 
     .nav-links {
-      display:flex; align-items:center; gap:4px;
-      list-style:none;
+      display:flex; align-items:center; gap:0;
+      list-style:none; flex:1; justify-content:center;
     }
     .nav-links a {
-      text-decoration:none; color:var(--text-secondary); font-size:14px; font-weight:500;
-      padding:8px 14px; border-radius:10px;
-      transition: color 0.2s, background 0.2s;
+      text-decoration:none; color:var(--text-secondary); font-size:13px; font-weight:500;
+      padding:8px 10px; border-radius:10px;
+      transition: color 0.2s, background 0.2s; white-space:nowrap;
     }
     .nav-links a:hover { color:var(--text-primary); background:var(--card-bg); }
     .nav-links .nav-gift-vault { color:var(--blue); }
 
-    .nav-right { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+    .nav-right { display:flex; align-items:center; gap:8px; flex-shrink:0; }
     .chain-selector {
       background:var(--card-bg); border:1px solid var(--card-border);
       color:var(--text-primary); border-radius:10px;
-      padding:8px 12px; font-size:13px; font-family:var(--font);
-      cursor:pointer; outline:none;
+      padding:7px 10px; font-size:12px; font-family:var(--font);
+      cursor:pointer; outline:none; max-width:140px;
     }
     .chain-badge {
       background:rgba(10,102,255,0.12); color:var(--blue);
       border:1px solid rgba(10,102,255,0.25);
-      padding:6px 12px; border-radius:10px; font-size:12px; font-weight:600;
+      padding:6px 10px; border-radius:10px; font-size:11px; font-weight:600;
       white-space:nowrap;
     }
     .btn-connect {
       background:var(--blue); color:#fff; border:none;
-      padding:10px 20px; border-radius:10px; font-size:14px; font-weight:600;
-      cursor:pointer; min-height:44px; font-family:var(--font);
+      padding:9px 16px; border-radius:10px; font-size:13px; font-weight:600;
+      cursor:pointer; min-height:40px; font-family:var(--font);
       transition:background 0.2s, transform 0.1s;
       white-space:nowrap;
     }
@@ -352,6 +352,25 @@
     }
     .input-field:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(10,102,255,0.12); }
     .input-field.textarea { resize:vertical; min-height:80px; }
+    /* Fix dropdown option visibility in dark themes */
+    select.input-field, select.chain-selector {
+      color-scheme: dark;
+      appearance: auto;
+    }
+    [data-theme="light"] select.input-field,
+    [data-theme="light"] select.chain-selector { color-scheme: light; }
+    select.input-field option, select.chain-selector option {
+      background: var(--navy-2);
+      color: var(--text-primary);
+      padding: 8px;
+    }
+    select.input-field option:checked,
+    select.input-field option:hover,
+    select.chain-selector option:checked,
+    select.chain-selector option:hover {
+      background: var(--blue);
+      color: #ffffff;
+    }
     .input-with-badge { position:relative; }
     .input-with-badge .input-field { padding-right:60px; }
     .input-badge {
@@ -394,6 +413,13 @@
     }
     .summary-row { display:flex; justify-content:space-between; padding:4px 0; font-size:13px; }
     .summary-row span:last-child { font-weight:700; color:var(--blue); }
+    .bill-upload-zone {
+      display:flex; align-items:center; gap:10px;
+      border:1px dashed var(--card-border); border-radius:10px;
+      padding:12px 16px; cursor:pointer; transition:all 0.2s; min-height:48px;
+      background:var(--input-bg);
+    }
+    .bill-upload-zone:hover { border-color:var(--blue); background:rgba(10,102,255,0.04); }
 
     /* ── ARC INFO GRID ── */
     .arc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
@@ -643,11 +669,11 @@
         <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Change theme" title="Theme">🎨</button>
         <select id="chainSelector" class="chain-selector" aria-label="Select network">
           <option value="arc">🔵 Arc Testnet</option>
-          <option value="ethereum">⟠ Ethereum</option>
+          <option value="ethereum">Ξ Ethereum</option>
           <option value="base">🔵 Base</option>
-          <option value="polygon">💜 Polygon</option>
-          <option value="arbitrum">🔵 Arbitrum</option>
-          <option value="optimism">🔴 Optimism</option>
+          <option value="polygon">🟣 Polygon</option>
+          <option value="arbitrum">🔷 Arbitrum</option>
+          <option value="optimism">🔴 Optimism (OP)</option>
         </select>
         <div id="chainBadge" class="chain-badge" aria-live="polite">Arc Testnet</div>
         <button id="connectBtn" class="btn-connect" type="button">Connect Wallet</button>
@@ -695,11 +721,11 @@
       <div style="display:flex;gap:10px;padding-top:8px;flex-wrap:wrap;">
         <select id="chainSelectorMobile" class="chain-selector" aria-label="Select network" style="flex:1">
           <option value="arc">🔵 Arc Testnet</option>
-          <option value="ethereum">⟠ Ethereum</option>
+          <option value="ethereum">Ξ Ethereum</option>
           <option value="base">🔵 Base</option>
-          <option value="polygon">💜 Polygon</option>
-          <option value="arbitrum">🔵 Arbitrum</option>
-          <option value="optimism">🔴 Optimism</option>
+          <option value="polygon">🟣 Polygon</option>
+          <option value="arbitrum">🔷 Arbitrum</option>
+          <option value="optimism">🔴 Optimism (OP)</option>
         </select>
         <button id="connectBtnMobile" class="btn-connect" type="button" style="flex:1">Connect Wallet</button>
       </div>
@@ -716,10 +742,10 @@
       </div>
       <select id="chainSelectorGVP" class="chain-selector" aria-label="Select network">
         <option value="arc">🔵 Arc</option>
-        <option value="ethereum">⟠ ETH</option>
+        <option value="ethereum">Ξ ETH</option>
         <option value="base">🔵 Base</option>
-        <option value="polygon">💜 Poly</option>
-        <option value="arbitrum">🔵 Arb</option>
+        <option value="polygon">🟣 Poly</option>
+        <option value="arbitrum">🔷 Arb</option>
         <option value="optimism">🔴 OP</option>
       </select>
     </div>
@@ -841,7 +867,7 @@
             </div>
 
             <button class="btn-primary full-width" id="gvpCreateBtn" type="button">🎁 Create Gift Vault</button>
-            <p class="form-note">Contract must be deployed. <a href="#about" style="color:var(--blue)">Learn more about Arc</a></p>
+            <p class="form-note">Contract must be deployed. <a href="#" id="gvpLearnMoreArc" style="color:var(--blue)">Learn more about Arc ↓</a></p>
           </div>
 
           <!-- Share options -->
@@ -928,10 +954,10 @@
   <!-- Chain badges row -->
   <div class="chain-badges-row" aria-label="Supported networks">
     <div class="chain-badge-pill">🔵 Arc Testnet</div>
-    <div class="chain-badge-pill">⟠ Ethereum</div>
+    <div class="chain-badge-pill">Ξ Ethereum</div>
     <div class="chain-badge-pill">🔵 Base</div>
-    <div class="chain-badge-pill">💜 Polygon</div>
-    <div class="chain-badge-pill">🔵 Arbitrum</div>
+    <div class="chain-badge-pill">🟣 Polygon</div>
+    <div class="chain-badge-pill">🔷 Arbitrum</div>
     <div class="chain-badge-pill">🔴 Optimism</div>
   </div>
 
@@ -1035,9 +1061,20 @@
             </div>
           </div>
 
+          <!-- Bill Upload -->
+          <div class="form-group">
+            <label>Upload Bill <span class="optional">(optional)</span></label>
+            <div class="bill-upload-zone" id="billUploadZone">
+              <input type="file" id="billFileInput" accept="image/*,application/pdf" style="display:none" />
+              <span class="upload-zone-icon" style="font-size:22px;">🧾</span>
+              <span style="font-size:13px;color:var(--text-secondary);margin-left:8px;">Click to attach receipt / invoice</span>
+            </div>
+            <div id="billFilePreview" style="display:none;margin-top:8px;font-size:12px;color:var(--blue);"></div>
+          </div>
+
           <div class="split-type-toggle" role="group" aria-label="Split type">
-            <button class="toggle-btn active" id="equalBtn" type="button" aria-pressed="true">Equal Split</button>
-            <button class="toggle-btn" id="customBtn" type="button" aria-pressed="false">Custom Split</button>
+            <button class="toggle-btn active" id="equalBtn" type="button" aria-pressed="true">⚖️ Equal Split</button>
+            <button class="toggle-btn" id="customBtn" type="button" aria-pressed="false">✏️ Custom Split</button>
           </div>
 
           <div id="recipientList" class="recipient-list" aria-label="Recipients">
@@ -1048,7 +1085,7 @@
             </div>
           </div>
 
-          <button class="btn-ghost full-width" id="addRecipientBtn" type="button">+ Add Recipient</button>
+          <button class="btn-ghost full-width" id="addRecipientBtn" type="button">+ Add Recipient <span id="recipientCountLabel" style="font-size:11px;color:var(--text-muted);margin-left:4px;">(1 / 10)</span></button>
 
           <div class="split-summary" id="splitSummary" style="display:none" aria-live="polite">
             <div class="summary-row"><span>Total:</span><span id="summaryTotal">$0.00</span></div>
@@ -1057,7 +1094,7 @@
           </div>
 
           <button class="btn-primary full-width" id="splitBtn" type="button" style="margin-top:16px">Split Bill 💸</button>
-          <p class="form-note">Contract required. Deploy to Arc Testnet first.</p>
+          <p class="form-note">Contract required. <a href="#about" id="splitLearnMoreLink" style="color:var(--blue);text-decoration:none;">Deploy on Arc Testnet — Learn more ↓</a></p>
         </div>
 
         <div class="glass-card">
@@ -1573,9 +1610,12 @@
 
     // Share functions
     function shareVia(platform) {
+      if (platform === 'whatsapp') {
+        showNotification('💬 WhatsApp sharing — Coming Soon!', 'info');
+        return;
+      }
       const msg = encodeURIComponent('🎁 I sent you a GrandPay Vault gift! Check it out at https://marvellgregory.github.io/grandpay-vault/');
-      if (platform === 'whatsapp') window.open(`https://wa.me/?text=${msg}`, '_blank');
-      else if (platform === 'telegram') window.open(`https://t.me/share/url?url=https://marvellgregory.github.io/grandpay-vault/&text=${encodeURIComponent('🎁 I sent you a GrandPay Vault gift!')}`, '_blank');
+      if (platform === 'telegram') window.open(`https://t.me/share/url?url=https://marvellgregory.github.io/grandpay-vault/&text=${encodeURIComponent('🎁 I sent you a GrandPay Vault gift!')}`, '_blank');
       else if (platform === 'email') window.open(`mailto:?subject=You%20have%20a%20GrandPay%20Gift!&body=${msg}`);
       else if (platform === 'sms') window.open(`sms:?body=${msg}`);
     }
