@@ -244,31 +244,42 @@ async function switchChain(chainKey) {
 
   if (!window.ethereum || !userAddress) return;
 
+  // For Arc, MetaMask may have saved it under 0x66eee (419430) OR 0x4cfed2 (5042002).
+  // Try all known aliases so we find whichever one MetaMask has saved.
+  const chainIdsToTry = chainKey === "arc"
+    ? [...ARC_CHAIN_ID_ALIASES]
+    : [chain.chainId];
+
+  for (const tryId of chainIdsToTry) {
+    try {
+      await window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: tryId }],
+      });
+      showNotification(`✅ Switched to ${chain.name}`, "success");
+      return;
+    } catch (err) {
+      if (err.code === 4001) return;   // user rejected — stop trying
+      if (err.code === 4902) continue; // not found under this ID — try next
+    }
+  }
+
+  // None of the known IDs worked — add Arc fresh with the official chain ID
   try {
     await window.ethereum.request({
-      method: "wallet_switchEthereumChain",
-      params: [{ chainId: chain.chainId }],
+      method: "wallet_addEthereumChain",
+      params: [{
+        chainId: chain.chainId,
+        chainName: chain.name,
+        nativeCurrency: { name: chain.currencyName, symbol: chain.currency, decimals: 18 },
+        rpcUrls: [chain.rpc],
+        blockExplorerUrls: [chain.explorer.replace("/tx/", "")]
+      }],
     });
-    showNotification(`✅ Switched to ${chain.name}`, "success");
-  } catch (err) {
-    if (err.code === 4902) {
-      try {
-        await window.ethereum.request({
-          method: "wallet_addEthereumChain",
-          params: [{
-            chainId: chain.chainId,
-            chainName: chain.name,
-            nativeCurrency: { name: chain.currencyName, symbol: chain.currency, decimals: 18 },
-            rpcUrls: [chain.rpc],
-            blockExplorerUrls: [chain.explorer.replace("/tx/", "")]
-          }],
-        });
-        showNotification(`✅ Added & switched to ${chain.name}`, "success");
-      } catch (addErr) {
-        showNotification(`❌ Could not add ${chain.name}. Add it manually in MetaMask.`, "error");
-      }
-    } else if (err.code !== 4001) {
-      showNotification(`❌ Chain switch failed`, "error");
+    showNotification(`✅ Added & switched to ${chain.name}`, "success");
+  } catch (addErr) {
+    if (addErr.code !== 4001) {
+      showNotification(`❌ Could not switch to ${chain.name}. Add it manually in MetaMask.`, "error");
     }
   }
 }
@@ -1000,33 +1011,29 @@ async function getUSDCAndAmount(amountRaw) {
     return { usdc: null, decimals: null, amount: null };
   }
 
-  // Verify the wallet is actually on the right chain before attempting any contract call
-  let actualId = "?";
-  try { actualId = (await window.ethereum.request({ method: "eth_chainId" })).toLowerCase(); } catch {}
-  if (currentChain === "arc" && !ARC_CHAIN_ID_ALIASES.has(actualId)) {
-    showNotification(
-      `❌ Could not read USDC on this network. Make sure you are on Arc Testnet. ` +
-      `(MetaMask is on chain ${actualId}, expected 0x4cfed2)`,
-      "error"
-    );
-    return { usdc: null, decimals: null, amount: null };
+  // Confirm MetaMask is on an Arc alias before touching the contract
+  if (currentChain === "arc") {
+    let actualId = "?";
+    try { actualId = (await window.ethereum.request({ method: "eth_chainId" })).toLowerCase(); } catch {}
+    if (!ARC_CHAIN_ID_ALIASES.has(actualId)) {
+      showNotification(
+        `❌ Could not read USDC on this network. Make sure you are on Arc Testnet.`,
+        "error"
+      );
+      return { usdc: null, decimals: null, amount: null };
+    }
   }
 
   const usdc = new ethers.Contract(usdcAddr, ERC20_ABI, signer);
 
-  // Arc's USDC system contract (0x3600…) always uses 6 decimals via its ERC-20 interface.
-  // We hardcode this to avoid a fragile decimals() RPC call that can fail on some providers.
+  // Arc USDC ERC-20 interface always uses 6 decimals — hardcode to avoid fragile RPC call
   let decimals = currentChain === "arc" ? 6 : null;
-
   if (decimals === null) {
     try {
       decimals = await usdc.decimals();
     } catch (e) {
       console.error("[GrandPay] decimals() call failed.", { currentChain, usdcAddr, error: e });
-      showNotification(
-        `❌ Could not read USDC on this network. Make sure you are on Arc Testnet.`,
-        "error"
-      );
+      showNotification(`❌ Could not read USDC on this network. Make sure you are on Arc Testnet.`, "error");
       return { usdc: null, decimals: null, amount: null };
     }
   }
