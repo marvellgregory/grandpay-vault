@@ -760,3 +760,175 @@ document.addEventListener("DOMContentLoaded", () => {
     firstRow.querySelector(".recipient-amount").addEventListener("input", updateSplitAmounts);
   }
 });
+
+// =============================================
+// GIFT VAULT PAGE — ADDITIONAL WIRING
+// =============================================
+
+// Wire GVP create button and load vaults when page opens
+document.addEventListener("DOMContentLoaded", () => {
+  // GVP chain selector sync
+  const gvpChain = document.getElementById("chainSelectorGVP");
+  if (gvpChain) {
+    gvpChain.addEventListener("change", async (e) => {
+      const val = e.target.value;
+      document.getElementById("chainSelector").value = val;
+      const mobile = document.getElementById("chainSelectorMobile");
+      if (mobile) mobile.value = val;
+      await switchChain(val);
+    });
+  }
+
+  // GVP create vault button
+  const gvpBtn = document.getElementById("gvpCreateBtn");
+  if (gvpBtn) {
+    gvpBtn.addEventListener("click", createVaultFromGVP);
+  }
+
+  // GVP load vaults button
+  const gvpLoad = document.getElementById("gvpLoadVaults");
+  if (gvpLoad) {
+    gvpLoad.addEventListener("click", loadVaultsGVP);
+  }
+
+  // Set min date for GVP date picker
+  const gvpDate = document.getElementById("gvpUnlockDate");
+  if (gvpDate) {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    gvpDate.min = tomorrow.toISOString().split("T")[0];
+  }
+});
+
+async function createVaultFromGVP() {
+  if (!signer) { showNotification("❌ Connect your wallet first", "error"); return; }
+
+  const recipient     = (document.getElementById("gvpRecipient") || {}).value?.trim();
+  const amountRaw     = parseFloat((document.getElementById("gvpAmount") || {}).value);
+  const unlockDateStr = (document.getElementById("gvpUnlockDate") || {}).value;
+  const bodyText      = sanitize((document.getElementById("ecardBodyText") || {}).value?.trim() || "");
+  const greeting      = (document.getElementById("ecardGreeting") || {}).textContent || "";
+  const sig           = sanitize((document.getElementById("ecardSignature") || {}).value?.trim() || "");
+  const message       = [greeting, bodyText, sig].filter(Boolean).join(" | ").slice(0, 280);
+
+  if (!ethers.isAddress(recipient)) {
+    showNotification("❌ Invalid recipient wallet address", "error"); return;
+  }
+  if (!amountRaw || amountRaw <= 0) {
+    showNotification("❌ Amount must be greater than 0", "error"); return;
+  }
+  if (!unlockDateStr) {
+    showNotification("❌ Please select an unlock date", "error"); return;
+  }
+  const unlockDate = new Date(unlockDateStr + "T00:00:00");
+  if (unlockDate <= new Date()) {
+    showNotification("❌ Unlock date must be in the future", "error"); return;
+  }
+
+  const vaultAddr = CONTRACTS[currentChain].vault;
+  if (!isDeployed(vaultAddr)) {
+    showNotification("⚠️ Deploy the vault contract first — see About Arc section", "error"); return;
+  }
+
+  const btn = document.getElementById("gvpCreateBtn");
+  setLoading(btn, true, "Creating Gift Vault…");
+
+  try {
+    const usdcAddr = USDC_ADDRESSES[currentChain];
+    const usdc     = new ethers.Contract(usdcAddr, ERC20_ABI, signer);
+    const decimals = await usdc.decimals();
+    const amount   = ethers.parseUnits(amountRaw.toFixed(Number(decimals)), Number(decimals));
+
+    const balance = await usdc.balanceOf(userAddress);
+    if (balance < amount) {
+      showNotification("❌ Insufficient USDC balance", "error");
+      setLoading(btn, false, "🎁 Create Gift Vault"); return;
+    }
+
+    const allowance = await usdc.allowance(userAddress, vaultAddr);
+    if (allowance < amount) {
+      showNotification("🔄 Step 1/2 — Approving USDC…", "info");
+      const approveTx = await usdc.approve(vaultAddr, amount);
+      await approveTx.wait();
+    }
+
+    showNotification("🔄 Step 2/2 — Locking gift on-chain…", "info");
+    const vault = new ethers.Contract(vaultAddr, VAULT_ABI, signer);
+    const unlockTimestamp = Math.floor(unlockDate.getTime() / 1000);
+    const tx = await vault.createVault(usdcAddr, recipient, amount, unlockTimestamp, message);
+    await tx.wait();
+
+    showModal("🎁 Gift Vault Created!", `Your USDC gift is locked until ${unlockDate.toLocaleDateString()}.`, tx.hash);
+    loadVaultsGVP();
+
+  } catch (err) {
+    console.error("createVaultFromGVP:", err);
+    showNotification(`❌ ${err.reason || err.shortMessage || err.message || "Transaction failed"}`, "error");
+  } finally {
+    setLoading(btn, false, "🎁 Create Gift Vault");
+  }
+}
+
+async function loadVaultsGVP() {
+  const list = document.getElementById("gvpVaultList");
+  if (!list) return;
+
+  if (!signer || !userAddress) {
+    list.innerHTML = emptyState("🔐", "Connect your wallet to see your gift vaults");
+    return;
+  }
+
+  const vaultAddr = CONTRACTS[currentChain].vault;
+  if (!isDeployed(vaultAddr)) {
+    list.innerHTML = emptyState("⚙️", "Deploy the vault contract first. See the About Arc section.");
+    return;
+  }
+
+  try {
+    list.innerHTML = emptyState("⏳", "Loading your vaults…");
+    const vault = new ethers.Contract(vaultAddr, VAULT_ABI, signer);
+    const ids   = await vault.getUserVaults(userAddress);
+
+    if (!ids || !ids.length) {
+      list.innerHTML = emptyState("🎁", "No vaults yet — create your first gift vault above!");
+      return;
+    }
+
+    list.innerHTML = "";
+    const usdcAddr = USDC_ADDRESSES[currentChain];
+    for (const id of ids) {
+      const v = await vault.getVault(id);
+      const unlockDate = new Date(Number(v.unlockDate) * 1000);
+      const isUnlocked = Date.now() >= unlockDate.getTime();
+      const isRecipient = v.recipient.toLowerCase() === userAddress.toLowerCase();
+      const canWithdraw = isUnlocked && !v.withdrawn && isRecipient;
+
+      const item = document.createElement("div");
+      item.className = "vault-item";
+      item.innerHTML = `
+        <div class="vault-item-header">
+          <span class="vault-id">Vault #${id}</span>
+          <span class="vault-status ${isUnlocked ? "unlocked" : "locked"}">${isUnlocked ? "✅ Unlocked" : "🔒 Locked"}</span>
+        </div>
+        <div class="vault-item-detail"><strong>Amount:</strong> ${ethers.formatUnits(v.amount, 6)} USDC</div>
+        <div class="vault-item-detail"><strong>Recipient:</strong> ${shortAddress(v.recipient)}</div>
+        <div class="vault-item-detail"><strong>Unlocks:</strong> ${unlockDate.toLocaleDateString()}</div>
+        ${v.withdrawn ? `<div class="vault-item-detail" style="color:#22c55e">✅ Withdrawn</div>` : ""}
+        ${v.message ? `<div class="vault-item-detail vault-message">💬 "${escapeHtml(v.message)}"</div>` : ""}
+        ${canWithdraw ? `<button class="vault-withdraw" data-vault-id="${id}" data-usdc="${usdcAddr}">Withdraw USDC 💰</button>` : ""}
+      `;
+      list.appendChild(item);
+    }
+
+    list.querySelectorAll(".vault-withdraw").forEach(b => {
+      b.addEventListener("click", () => withdrawVault(b.dataset.vaultId, b.dataset.usdc));
+    });
+
+  } catch (err) {
+    console.error("loadVaultsGVP:", err);
+    list.innerHTML = emptyState("⚠️", "Error loading vaults. Check your connection.");
+  }
+}
+
+// Override disconnectWallet to also clear GVP vault list
+const _origDisconnect = typeof disconnectWallet === 'function' ? disconnectWallet : null;
