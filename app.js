@@ -28,9 +28,9 @@ const CONTRACTS = {
 };
 
 const USDC_ADDRESSES = {
-  // Arc: USDC is the NATIVE gas token. Its ERC-20 interface lives at this system contract address.
-  // Source: docs.arc.io — "USDC is native at a system contract address"
-  arc:      "0x3600000000000000000000000000000000000001",
+  // Arc: USDC is the native gas token. ERC-20 interface address confirmed from docs.arc.io/arc/references/contract-addresses
+  // Uses 6 decimals via ERC-20 interface (native balance uses 18 — we always use the ERC-20 interface)
+  arc:      "0x3600000000000000000000000000000000000000",
   ethereum: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
   base:     "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
   polygon:  "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
@@ -39,9 +39,8 @@ const USDC_ADDRESSES = {
 };
 
 const CHAINS = {
-  // Arc Testnet — Chain ID: 5042002 (0x4CFED2) — confirmed from docs.arc.io
-  // RPC: https://rpc.testnet.arc.network
-  // USDC is the NATIVE gas token on Arc (not a regular ERC-20)
+  // Arc Testnet — Chain ID 5042002 (0x4CFED2). Confirmed from docs.arc.io/arc/references/connect-to-arc
+  // RPC: https://rpc.testnet.arc.network  |  Explorer: https://testnet.arcscan.app
   arc:      { chainId: "0x4CFED2", name: "Arc Testnet",   rpc: "https://rpc.testnet.arc.network",   explorer: "https://testnet.arcscan.app/tx/",      currency: "USDC", currencyName: "USDC" },
   ethereum: { chainId: "0x1",      name: "Ethereum",      rpc: "https://eth.llamarpc.com",           explorer: "https://etherscan.io/tx/",             currency: "ETH",  currencyName: "Ether" },
   base:     { chainId: "0x2105",   name: "Base",          rpc: "https://mainnet.base.org",           explorer: "https://basescan.org/tx/",             currency: "ETH",  currencyName: "Ether" },
@@ -50,11 +49,11 @@ const CHAINS = {
   optimism: { chainId: "0xa",      name: "Optimism (OP)", rpc: "https://mainnet.optimism.io",        explorer: "https://optimistic.etherscan.io/tx/", currency: "ETH",  currencyName: "Ether" },
 };
 
-// Arc chain ID aliases — both decimal and hex forms, lowercase for comparison
+// Arc chain ID aliases — handles wallets that added Arc testnet under different IDs
 const ARC_CHAIN_ID_ALIASES = new Set([
-  "0x4cfed2",  // 5042002 — official Arc testnet (docs.arc.io)
-  "0x66eee",   // 419430  — older/alternative Arc testnet value seen in some setups
-  "0x7a69",    // 31337   — Hardhat default used by some manual wallet installs
+  "0x4cfed2",  // 5042002 — official (docs.arc.io)
+  "0x66eee",   // 419430  — older Arc testnet ID, still appears in some MetaMask installs
+  "0x7a69",    // 31337   — Hardhat/Anvil default used in some manual installs
 ]);
 
 // =============================================
@@ -245,9 +244,6 @@ async function switchChain(chainKey) {
 
   if (!window.ethereum || !userAddress) return;
 
-  // Normalise chainId to lowercase for comparison
-  const targetId = chain.chainId.toLowerCase();
-
   try {
     await window.ethereum.request({
       method: "wallet_switchEthereumChain",
@@ -344,10 +340,8 @@ async function handleChainChanged(chainId) {
 function detectAndSetChain(chainId) {
   const id = chainId.toLowerCase();
 
-  // ── Arc alias check first ───────────────────────────────────
-  // Some MetaMask installs report Arc Testnet under a different chain ID
-  // depending on how the network was added (manually vs wallet_addEthereumChain).
-  // We accept all known Arc IDs and map them all to "arc".
+  // Check Arc aliases first — handles all the different chain IDs MetaMask
+  // reports for Arc depending on how the network was added
   if (ARC_CHAIN_ID_ALIASES.has(id)) {
     currentChain = "arc";
     const sel   = document.getElementById("chainSelector");
@@ -359,7 +353,7 @@ function detectAndSetChain(chainId) {
     return;
   }
 
-  // ── Standard chain lookup ────────────────────────────────────
+  // Standard lookup for all other chains
   for (const [key, cfg] of Object.entries(CHAINS)) {
     if (cfg.chainId.toLowerCase() === id) {
       currentChain = key;
@@ -373,12 +367,10 @@ function detectAndSetChain(chainId) {
     }
   }
 
-  // ── Unknown chain — display raw ID but do NOT change currentChain ──
-  // Keeping currentChain as-is prevents USDC calls against the wrong address.
+  // Unknown chain — show ID but do NOT reset currentChain
   const badge = document.getElementById("chainBadge");
-  if (badge) badge.textContent = `Unknown (${chainId})`;
-  // Show a helpful message so the user knows what to do
-  showNotification(`⚠️ Unrecognised network (${chainId}). Please switch to Arc Testnet in MetaMask.`, "error");
+  if (badge) badge.textContent = `Chain ${chainId}`;
+  console.warn("Unknown chain ID:", chainId, "— currentChain kept as:", currentChain);
 }
 
 function disconnectWallet() {
@@ -817,12 +809,12 @@ async function createVaultFromGVP() {
     try {
       decimals = await usdc.decimals();
     } catch (e) {
-      let actualChainId = "unknown";
-      try { actualChainId = await window.ethereum.request({ method: "eth_chainId" }); } catch {}
-      console.error("usdc.decimals() failed:", e, "chainId:", actualChainId);
+      let actualId = "?";
+      try { actualId = await window.ethereum.request({ method: "eth_chainId" }); } catch {}
+      console.error("[GrandPay] usdc.decimals() failed in createVaultFromGVP:", { usdcAddr, actualId, e });
       showNotification(
-        `❌ Could not read USDC. MetaMask is on chain ${actualChainId}. ` +
-        `Please switch to Arc Testnet and try again.`,
+        `❌ Could not read USDC. MetaMask is on chain ${actualId}. ` +
+        `Switch MetaMask to "Arc Testnet" and try again.`,
         "error"
       );
       setLoading(btn, false, "🎁 Create Gift Vault");
@@ -1004,7 +996,7 @@ function requireArcTestnet() {
 async function getUSDCAndAmount(amountRaw) {
   const usdcAddr = USDC_ADDRESSES[currentChain];
   if (!usdcAddr) {
-    showNotification(`❌ No USDC address configured for "${currentChain}". Switch to Arc Testnet.`, "error");
+    showNotification(`❌ No USDC address for chain "${currentChain}". Switch MetaMask to Arc Testnet.`, "error");
     return { usdc: null, decimals: null, amount: null };
   }
   const usdc = new ethers.Contract(usdcAddr, ERC20_ABI, signer);
@@ -1013,14 +1005,15 @@ async function getUSDCAndAmount(amountRaw) {
     const amount   = ethers.parseUnits(amountRaw.toFixed(Number(decimals)), Number(decimals));
     return { usdc, decimals, amount };
   } catch (e) {
-    // Get the actual chain ID from MetaMask so the error message is useful
-    let actualChainId = "unknown";
-    try { actualChainId = await window.ethereum.request({ method: "eth_chainId" }); } catch {}
-    console.error("getUSDCAndAmount failed:", e, "actualChainId:", actualChainId);
+    // Log the actual chain ID MetaMask is reporting so it's visible in DevTools
+    let actualId = "?";
+    try { actualId = await window.ethereum.request({ method: "eth_chainId" }); } catch {}
+    console.error("[GrandPay] getUSDCAndAmount failed.", {
+      currentChain, usdcAddr, actualChainId: actualId, error: e
+    });
     showNotification(
-      `❌ Could not read USDC on this network.\n` +
-      `MetaMask reports chain ID: ${actualChainId}.\n` +
-      `Please switch MetaMask to Arc Testnet and try again.`,
+      `❌ Could not read USDC. Your MetaMask is on chain ${actualId}. ` +
+      `Open MetaMask → switch to "Arc Testnet" → try again.`,
       "error"
     );
     return { usdc: null, decimals: null, amount: null };
