@@ -8,639 +8,631 @@
   <meta property="og:title" content="GrandPay Vault — Built on Arc" />
   <meta property="og:description" content="Gift anyone, anywhere, with USDC. A cross-chain gifting infrastructure layer built on Arc." />
   <meta property="og:type" content="website" />
-  <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
   <style>
-    /* ── THEME SYSTEM ── */
+    /* ── DESIGN SYSTEM ── */
     :root {
-      --blue: #0A66FF;
-      --blue-light: #3d85ff;
-      --blue-dark: #0850cc;
-      --navy: #0B1020;
-      --navy-2: #0f1730;
-      --navy-3: #162040;
-      --white: #ffffff;
-      --text-primary: #ffffff;
-      --text-secondary: rgba(255,255,255,0.72);
-      --text-muted: rgba(255,255,255,0.45);
-      --card-bg: rgba(255,255,255,0.04);
-      --card-border: rgba(255,255,255,0.09);
-      --card-hover: rgba(255,255,255,0.07);
-      --input-bg: rgba(255,255,255,0.06);
-      --input-border: rgba(255,255,255,0.12);
-      --nav-bg: rgba(11,16,32,0.92);
-      --section-alt: rgba(10,102,255,0.04);
-      --shadow: 0 8px 32px rgba(0,0,0,0.4);
-      --radius: 16px;
-      --font: 'Plus Jakarta Sans', sans-serif;
+      --bg-primary: #060B18;
+      --bg-secondary: #0A1128;
+      --bg-tertiary: #0F1935;
+      --bg-elevated: #141E3C;
+      --accent: #0066FF;
+      --accent-light: #3388FF;
+      --accent-glow: rgba(0,102,255,0.3);
+      --cyan: #00C2FF;
+      --violet: #7B61FF;
+      --emerald: #10B981;
+      --amber: #F59E0B;
+      --rose: #F43F5E;
+      --text-primary: #F0F2F8;
+      --text-secondary: rgba(240,242,248,0.65);
+      --text-muted: rgba(240,242,248,0.38);
+      --glass-bg: rgba(255,255,255,0.03);
+      --glass-border: rgba(255,255,255,0.06);
+      --glass-hover: rgba(255,255,255,0.08);
+      --glass-active: rgba(0,102,255,0.08);
+      --input-bg: rgba(255,255,255,0.04);
+      --input-border: rgba(255,255,255,0.1);
+      --nav-bg: rgba(6,11,24,0.85);
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+      --shadow-md: 0 8px 32px rgba(0,0,0,0.4);
+      --shadow-glow: 0 0 40px rgba(0,102,255,0.15);
+      --radius: 20px;
+      --radius-sm: 12px;
+      --radius-xs: 8px;
+      --font: 'Inter', -apple-system, sans-serif;
+      --font-display: 'Syne', sans-serif;
     }
     [data-theme="light"] {
-      --navy: #f5f7ff;
-      --navy-2: #eef1fb;
-      --navy-3: #e4e9f7;
-      --white: #0B1020;
-      --text-primary: #0d1526;
-      --text-secondary: rgba(13,21,38,0.72);
-      --text-muted: rgba(13,21,38,0.45);
-      --card-bg: rgba(255,255,255,0.8);
-      --card-border: rgba(10,102,255,0.12);
-      --card-hover: rgba(255,255,255,0.95);
-      --input-bg: rgba(10,102,255,0.04);
-      --input-border: rgba(10,102,255,0.18);
-      --nav-bg: rgba(245,247,255,0.95);
-      --section-alt: rgba(10,102,255,0.03);
-      --shadow: 0 8px 32px rgba(10,102,255,0.1);
-    }
-    [data-theme="warm"] {
-      --navy: #1a1208;
-      --navy-2: #221a0e;
-      --navy-3: #2e2414;
-      --text-primary: #fdf6e3;
-      --text-secondary: rgba(253,246,227,0.75);
-      --text-muted: rgba(253,246,227,0.45);
-      --card-bg: rgba(255,220,100,0.04);
-      --card-border: rgba(255,200,80,0.12);
-      --card-hover: rgba(255,220,100,0.08);
-      --input-bg: rgba(255,200,80,0.06);
-      --input-border: rgba(255,200,80,0.2);
-      --nav-bg: rgba(26,18,8,0.94);
-      --section-alt: rgba(255,200,80,0.04);
-      --blue: #F59E0B;
-      --blue-light: #FBBF24;
-      --shadow: 0 8px 32px rgba(0,0,0,0.5);
-    }
-    [data-theme="dim"] {
-      --navy: #1a1f2e;
-      --navy-2: #1f2537;
-      --navy-3: #252d42;
-      --text-primary: #e8eaf6;
-      --text-secondary: rgba(232,234,246,0.72);
-      --text-muted: rgba(232,234,246,0.45);
-      --card-bg: rgba(255,255,255,0.05);
-      --card-border: rgba(255,255,255,0.1);
-      --card-hover: rgba(255,255,255,0.08);
-      --input-bg: rgba(255,255,255,0.07);
-      --input-border: rgba(255,255,255,0.14);
-      --nav-bg: rgba(26,31,46,0.94);
-      --section-alt: rgba(10,102,255,0.05);
-      --shadow: 0 8px 32px rgba(0,0,0,0.35);
-    }
-    [data-theme="system"] {
-      color-scheme: light dark;
+      --bg-primary: #F4F6FB;
+      --bg-secondary: #EBEEF6;
+      --bg-tertiary: #E2E6F2;
+      --bg-elevated: #FFFFFF;
+      --text-primary: #0A1128;
+      --text-secondary: rgba(10,17,40,0.65);
+      --text-muted: rgba(10,17,40,0.38);
+      --glass-bg: rgba(255,255,255,0.7);
+      --glass-border: rgba(0,102,255,0.1);
+      --glass-hover: rgba(255,255,255,0.9);
+      --glass-active: rgba(0,102,255,0.06);
+      --input-bg: rgba(0,102,255,0.03);
+      --input-border: rgba(0,102,255,0.15);
+      --nav-bg: rgba(244,246,251,0.9);
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 32px rgba(0,102,255,0.08);
+      --shadow-glow: 0 0 40px rgba(0,102,255,0.08);
     }
 
-    * { margin:0; padding:0; box-sizing:border-box; }
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     html { scroll-behavior:smooth; }
     body {
       font-family: var(--font);
-      background: var(--navy);
+      background: var(--bg-primary);
       color: var(--text-primary);
-      transition: background 0.3s, color 0.3s;
+      line-height: 1.6;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
     .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--font); }
 
     /* ── NAVBAR ── */
     .navbar {
-      position: fixed; top:0; left:0; right:0; z-index:1000;
-      background: var(--nav-bg);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--card-border);
-      transition: background 0.3s;
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      background:var(--nav-bg);
+      backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+      border-bottom:1px solid var(--glass-border);
     }
     .nav-inner {
-      max-width: 1400px; margin:0 auto;
-      padding: 0 20px;
-      height: 68px;
-      display: flex; align-items:center; justify-content:space-between; gap:8px;
+      max-width:1340px; margin:0 auto;
+      padding:0 24px; height:64px;
+      display:flex; align-items:center; gap:12px;
     }
     .nav-logo {
-      display:flex; align-items:center; gap:8px;
+      display:flex; align-items:center; gap:10px;
       text-decoration:none; flex-shrink:0;
     }
-    .logo-icon { font-size:22px; }
-    .logo-main { font-family:'Syne',sans-serif; font-weight:700; font-size:15px; color:var(--text-primary); line-height:1.2; }
-    .logo-badge { font-size:9px; color:var(--blue); font-weight:600; letter-spacing:0.05em; text-transform:uppercase; }
+    .logo-icon { font-size:24px; }
+    .logo-text { line-height:1.2; }
+    .logo-main { font-family:var(--font-display); font-weight:700; font-size:15px; color:var(--text-primary); letter-spacing:-0.02em; }
+    .logo-badge { font-size:9px; color:var(--accent); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; }
 
     .nav-links {
-      display:flex; align-items:center; gap:0;
+      display:flex; align-items:center; gap:2px;
       list-style:none; flex:1; justify-content:center;
     }
     .nav-links a {
       text-decoration:none; color:var(--text-secondary); font-size:13px; font-weight:500;
-      padding:8px 10px; border-radius:10px;
-      transition: color 0.2s, background 0.2s; white-space:nowrap;
+      padding:7px 12px; border-radius:var(--radius-xs);
+      transition: all 0.2s; white-space:nowrap;
     }
-    .nav-links a:hover { color:var(--text-primary); background:var(--card-bg); }
-    .nav-links .nav-gift-vault { color:var(--blue); }
+    .nav-links a:hover { color:var(--text-primary); background:var(--glass-bg); }
+    .nav-links .nav-gift-vault { color:var(--accent); }
 
     .nav-right { display:flex; align-items:center; gap:8px; flex-shrink:0; }
-    .chain-selector {
-      background:var(--card-bg); border:1px solid var(--card-border);
-      color:var(--text-primary); border-radius:10px;
-      padding:7px 10px; font-size:12px; font-family:var(--font);
-      cursor:pointer; outline:none; max-width:140px;
+
+    /* Language selector */
+    .lang-btn {
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      color:var(--text-secondary); border-radius:var(--radius-xs);
+      padding:6px 10px; font-size:12px; font-weight:600; cursor:pointer;
+      display:flex; align-items:center; gap:5px; min-height:36px;
+      font-family:var(--font); transition:all 0.2s;
     }
+    .lang-btn:hover { border-color:var(--accent); color:var(--accent); }
+    .lang-panel {
+      position:absolute; top:68px; right:80px;
+      background:var(--bg-secondary); border:1px solid var(--glass-border);
+      border-radius:var(--radius-sm); padding:8px; width:180px;
+      box-shadow:var(--shadow-md); z-index:1001; display:none;
+    }
+    .lang-panel.open { display:block; }
+    .lang-option {
+      display:block; width:100%; text-align:left;
+      padding:9px 12px; border-radius:var(--radius-xs); border:none;
+      background:none; color:var(--text-secondary); font-size:13px;
+      font-weight:500; cursor:pointer; font-family:var(--font); transition:all 0.15s;
+    }
+    .lang-option:hover, .lang-option.active { background:var(--glass-active); color:var(--accent); }
+
+    .chain-selector {
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      color:var(--text-primary); border-radius:var(--radius-xs);
+      padding:6px 10px; font-size:12px; font-family:var(--font);
+      cursor:pointer; outline:none; max-width:140px; min-height:36px;
+    }
+    select.chain-selector { color-scheme:dark; appearance:auto; }
+    [data-theme="light"] select.chain-selector { color-scheme:light; }
     .chain-badge {
-      background:rgba(10,102,255,0.12); color:var(--blue);
-      border:1px solid rgba(10,102,255,0.25);
-      padding:6px 10px; border-radius:10px; font-size:11px; font-weight:600;
+      background:rgba(0,102,255,0.1); color:var(--accent);
+      border:1px solid rgba(0,102,255,0.2);
+      padding:6px 10px; border-radius:var(--radius-xs); font-size:11px; font-weight:700;
       white-space:nowrap;
     }
     .btn-connect {
-      background:var(--blue); color:#fff; border:none;
-      padding:9px 16px; border-radius:10px; font-size:13px; font-weight:600;
-      cursor:pointer; min-height:40px; font-family:var(--font);
-      transition:background 0.2s, transform 0.1s;
-      white-space:nowrap;
+      background:var(--accent); color:#fff; border:none;
+      padding:8px 16px; border-radius:var(--radius-xs); font-size:13px; font-weight:600;
+      cursor:pointer; min-height:36px; font-family:var(--font);
+      transition:all 0.2s; white-space:nowrap;
     }
-    .btn-connect:hover { background:var(--blue-light); transform:translateY(-1px); }
-
-    /* Theme toggle button */
+    .btn-connect:hover { background:var(--accent-light); transform:translateY(-1px); }
     .theme-toggle-btn {
-      background:var(--card-bg); border:1px solid var(--card-border);
-      color:var(--text-primary); border-radius:10px;
-      padding:8px 12px; font-size:16px; cursor:pointer; min-height:44px;
-      transition:background 0.2s;
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      color:var(--text-primary); border-radius:var(--radius-xs);
+      padding:6px 10px; font-size:15px; cursor:pointer; min-height:36px;
+      transition:all 0.2s;
     }
-    .theme-toggle-btn:hover { background:var(--card-hover); }
-
-    /* Theme panel */
+    .theme-toggle-btn:hover { border-color:var(--accent); }
     .theme-panel {
-      position:absolute; top:76px; right:24px;
-      background:var(--navy-2); border:1px solid var(--card-border);
-      border-radius:16px; padding:16px; width:220px;
-      box-shadow:var(--shadow); z-index:1001;
-      display:none;
+      position:absolute; top:68px; right:24px;
+      background:var(--bg-secondary); border:1px solid var(--glass-border);
+      border-radius:var(--radius-sm); padding:14px; width:200px;
+      box-shadow:var(--shadow-md); z-index:1001; display:none;
     }
     .theme-panel.open { display:block; }
-    .theme-panel h4 { font-size:12px; font-weight:600; color:var(--text-muted); margin-bottom:10px; letter-spacing:0.06em; text-transform:uppercase; }
-    .theme-options { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .theme-panel h4 { font-size:11px; font-weight:700; color:var(--text-muted); margin-bottom:8px; letter-spacing:0.08em; text-transform:uppercase; }
+    .theme-options { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
     .theme-opt {
       display:flex; flex-direction:column; align-items:center; gap:4px;
-      padding:10px 8px; border-radius:10px; border:1px solid var(--card-border);
-      background:var(--card-bg); cursor:pointer; transition:all 0.2s;
+      padding:8px; border-radius:var(--radius-xs); border:1px solid var(--glass-border);
+      background:var(--glass-bg); cursor:pointer; transition:all 0.15s;
       font-size:11px; font-weight:600; color:var(--text-secondary); font-family:var(--font);
     }
-    .theme-opt:hover, .theme-opt.active { border-color:var(--blue); color:var(--blue); background:rgba(10,102,255,0.08); }
-    .theme-opt .theme-swatch { width:28px; height:28px; border-radius:50%; margin-bottom:2px; }
+    .theme-opt:hover, .theme-opt.active { border-color:var(--accent); color:var(--accent); background:var(--glass-active); }
+    .theme-opt .theme-swatch { width:24px; height:24px; border-radius:50%; }
 
-    /* Hamburger */
     .hamburger {
       display:none; background:none; border:none; color:var(--text-primary);
       font-size:22px; cursor:pointer; padding:8px; min-height:44px;
     }
     .mobile-menu {
-      display:none; flex-direction:column; gap:8px;
-      padding:16px 24px 20px; border-top:1px solid var(--card-border);
+      display:none; flex-direction:column; gap:4px;
+      padding:12px 20px 16px; border-top:1px solid var(--glass-border);
+      background:var(--bg-secondary);
     }
     .mobile-menu.open { display:flex; }
-    .mobile-menu a { text-decoration:none; color:var(--text-secondary); font-size:15px; font-weight:500; padding:10px 0; border-bottom:1px solid var(--card-border); }
-    .mobile-menu a:last-child { border:none; }
+    .mobile-menu a { text-decoration:none; color:var(--text-secondary); font-size:14px; font-weight:500; padding:10px 8px; border-radius:var(--radius-xs); transition:all 0.15s; }
+    .mobile-menu a:hover { background:var(--glass-bg); color:var(--text-primary); }
 
     /* ── HERO ── */
     .hero {
       min-height:100vh; display:flex; align-items:center; justify-content:center;
-      padding: 100px 24px 60px;
+      padding:120px 24px 80px;
       position:relative; overflow:hidden;
-      background: linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 50%, var(--navy) 100%);
+      background:var(--bg-primary);
     }
     .hero-bg { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
-    .orb {
-      position:absolute; border-radius:50%; filter:blur(80px); opacity:0.25;
-      animation: float 8s ease-in-out infinite;
+    .hero-grid {
+      position:absolute; inset:0;
+      background-image:
+        linear-gradient(rgba(0,102,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,102,255,0.03) 1px, transparent 1px);
+      background-size:60px 60px;
+      mask-image:radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
+      -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
     }
-    .orb1 { width:600px;height:600px; background:var(--blue); top:-200px; right:-200px; animation-delay:0s; }
-    .orb2 { width:400px;height:400px; background:#7c3aed; bottom:-150px; left:-100px; animation-delay:-3s; }
-    .orb3 { width:300px;height:300px; background:var(--blue-light); top:40%; left:30%; animation-delay:-5s; }
-    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-30px)} }
+    .orb {
+      position:absolute; border-radius:50%; filter:blur(100px); opacity:0.2;
+      animation:float 10s ease-in-out infinite;
+    }
+    .orb1 { width:700px;height:700px; background:var(--accent); top:-250px; right:-200px; }
+    .orb2 { width:500px;height:500px; background:var(--violet); bottom:-200px; left:-150px; animation-delay:-4s; }
+    .orb3 { width:350px;height:350px; background:var(--cyan); top:35%; left:25%; animation-delay:-7s; opacity:0.12; }
+    @keyframes float { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-25px) scale(1.02)} }
 
-    .hero-content { max-width:780px; text-align:center; position:relative; z-index:1; }
+    .hero-content { max-width:720px; text-align:center; position:relative; z-index:1; }
     .hero-tag {
       display:inline-flex; align-items:center; gap:8px;
-      background:rgba(10,102,255,0.12); border:1px solid rgba(10,102,255,0.25);
-      color:var(--blue); font-size:13px; font-weight:600;
-      padding:8px 18px; border-radius:50px; margin-bottom:28px;
-      animation: fadeUp 0.6s ease both;
+      background:rgba(0,102,255,0.08); border:1px solid rgba(0,102,255,0.18);
+      color:var(--accent); font-size:12px; font-weight:600; letter-spacing:0.03em;
+      padding:8px 20px; border-radius:50px; margin-bottom:32px;
+      animation:fadeUp 0.6s ease both;
     }
     .hero-title {
-      font-family:'Syne',sans-serif; font-size:clamp(42px,8vw,80px); font-weight:800;
-      line-height:1.05; margin-bottom:20px;
-      animation: fadeUp 0.7s ease 0.1s both;
+      font-family:var(--font-display); font-size:clamp(40px,7.5vw,76px); font-weight:800;
+      line-height:1.02; margin-bottom:24px; letter-spacing:-0.03em;
+      animation:fadeUp 0.7s ease 0.1s both;
     }
     .gradient-text {
-      background: linear-gradient(135deg, var(--blue) 0%, #60a5fa 100%);
+      background:linear-gradient(135deg, var(--accent) 0%, var(--cyan) 50%, var(--violet) 100%);
       -webkit-background-clip:text; background-clip:text; color:transparent;
     }
     .hero-sub {
-      font-size:clamp(16px,2.5vw,20px); color:var(--text-secondary);
-      line-height:1.6; margin-bottom:36px; max-width:580px; margin-left:auto; margin-right:auto;
-      animation: fadeUp 0.7s ease 0.2s both;
+      font-size:clamp(15px,2.2vw,18px); color:var(--text-secondary);
+      line-height:1.7; margin-bottom:40px; max-width:540px; margin-left:auto; margin-right:auto;
+      font-weight:400; animation:fadeUp 0.7s ease 0.2s both;
     }
     .hero-ctas {
-      display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-bottom:48px;
-      animation: fadeUp 0.7s ease 0.3s both;
+      display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-bottom:48px;
+      animation:fadeUp 0.7s ease 0.3s both;
     }
     .btn-primary {
-      background:var(--blue); color:#fff; border:none;
-      padding:14px 28px; border-radius:12px; font-size:16px; font-weight:600;
-      cursor:pointer; min-height:52px; font-family:var(--font); text-decoration:none;
+      background:var(--accent); color:#fff; border:none;
+      padding:14px 28px; border-radius:var(--radius-sm); font-size:15px; font-weight:600;
+      cursor:pointer; min-height:50px; font-family:var(--font); text-decoration:none;
       display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      transition:background 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow:0 4px 24px rgba(10,102,255,0.35);
+      transition:all 0.25s; box-shadow:0 4px 20px rgba(0,102,255,0.3);
     }
-    .btn-primary:hover { background:var(--blue-light); transform:translateY(-2px); box-shadow:0 8px 32px rgba(10,102,255,0.45); }
+    .btn-primary:hover { background:var(--accent-light); transform:translateY(-2px); box-shadow:0 8px 30px rgba(0,102,255,0.4); }
     .btn-secondary {
-      background:transparent; color:var(--text-primary); border:1.5px solid var(--card-border);
-      padding:14px 28px; border-radius:12px; font-size:16px; font-weight:600;
-      cursor:pointer; min-height:52px; font-family:var(--font); text-decoration:none;
+      background:var(--glass-bg); color:var(--text-primary); border:1px solid var(--glass-border);
+      padding:14px 28px; border-radius:var(--radius-sm); font-size:15px; font-weight:600;
+      cursor:pointer; min-height:50px; font-family:var(--font); text-decoration:none;
       display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      transition:all 0.2s;
+      transition:all 0.25s; backdrop-filter:blur(8px);
     }
-    .btn-secondary:hover { border-color:var(--blue); color:var(--blue); transform:translateY(-2px); }
+    .btn-secondary:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-2px); }
 
     .hero-stats {
-      display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:0;
-      background:var(--card-bg); border:1px solid var(--card-border);
-      border-radius:16px; padding:20px 32px;
-      animation: fadeUp 0.7s ease 0.4s both;
+      display:flex; align-items:center; justify-content:center; gap:0;
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      border-radius:var(--radius); padding:20px 40px;
+      backdrop-filter:blur(12px);
+      animation:fadeUp 0.7s ease 0.4s both;
     }
-    .stat { text-align:center; padding:0 24px; }
-    .stat-num { display:block; font-family:'Syne',sans-serif; font-size:26px; font-weight:800; color:var(--blue); }
-    .stat-label { font-size:12px; color:var(--text-muted); font-weight:500; }
-    .stat-divider { width:1px; height:40px; background:var(--card-border); flex-shrink:0; }
+    .stat { text-align:center; padding:0 28px; }
+    .stat-num { display:block; font-family:var(--font-display); font-size:28px; font-weight:800; color:var(--accent); }
+    .stat-label { font-size:11px; color:var(--text-muted); font-weight:500; letter-spacing:0.03em; }
+    .stat-divider { width:1px; height:36px; background:var(--glass-border); flex-shrink:0; }
 
-    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 
     /* ── CHAIN BADGES ── */
     .chain-badges-row {
-      display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
-      padding:32px 24px; max-width:900px; margin:0 auto;
-      animation: fadeUp 0.7s ease 0.5s both;
+      display:flex; flex-wrap:wrap; gap:8px; justify-content:center;
+      padding:28px 24px 48px; max-width:800px; margin:0 auto;
     }
     .chain-badge-pill {
-      background:var(--card-bg); border:1px solid var(--card-border);
-      padding:8px 16px; border-radius:50px; font-size:13px; font-weight:600;
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      padding:8px 16px; border-radius:50px; font-size:12px; font-weight:600;
       color:var(--text-secondary); display:flex; align-items:center; gap:6px;
-      transition:all 0.2s;
+      transition:all 0.2s; backdrop-filter:blur(4px);
     }
-    .chain-badge-pill:hover { border-color:var(--blue); color:var(--blue); }
+    .chain-badge-pill:hover { border-color:var(--accent); color:var(--accent); }
 
     /* ── SECTIONS ── */
-    .section { padding:80px 24px; }
-    .section-alt { background:var(--section-alt); }
+    .section { padding:100px 24px; }
+    .section-alt { background:var(--bg-secondary); }
     .section-inner { max-width:1200px; margin:0 auto; }
-    .section-header { text-align:center; margin-bottom:52px; }
+    .section-header { text-align:center; margin-bottom:56px; }
     .section-tag {
-      display:inline-block; background:rgba(10,102,255,0.1); color:var(--blue);
-      border:1px solid rgba(10,102,255,0.2); padding:6px 16px; border-radius:50px;
-      font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+      display:inline-block; background:rgba(0,102,255,0.06); color:var(--accent);
+      border:1px solid rgba(0,102,255,0.12); padding:6px 16px; border-radius:50px;
+      font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
       margin-bottom:16px;
     }
-    .section-title { font-family:'Syne',sans-serif; font-size:clamp(28px,5vw,44px); font-weight:800; margin-bottom:14px; }
-    .section-sub { font-size:16px; color:var(--text-secondary); max-width:560px; margin:0 auto; line-height:1.65; }
-
-    /* ── CARDS GRID ── */
-    .cards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px; }
-    .cards-grid-5 { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:20px; }
-    .gift-card {
-      background:var(--card-bg); border:1px solid var(--card-border);
-      border-radius:var(--radius); padding:28px 24px;
-      cursor:pointer; transition:all 0.25s;
-      text-decoration:none; color:inherit; display:block;
+    .section-title {
+      font-family:var(--font-display); font-size:clamp(26px,4.5vw,42px); font-weight:800;
+      margin-bottom:14px; letter-spacing:-0.02em;
     }
-    .gift-card:hover { border-color:var(--blue); background:var(--card-hover); transform:translateY(-4px); box-shadow:var(--shadow); }
-    .gift-card-icon { font-size:36px; margin-bottom:16px; }
-    .gift-card-title { font-family:'Syne',sans-serif; font-size:18px; font-weight:700; margin-bottom:8px; }
-    .gift-card-desc { font-size:14px; color:var(--text-secondary); line-height:1.6; }
-    .gift-card-arrow { display:flex; align-items:center; justify-content:space-between; margin-top:16px; }
-    .gift-card-cta { color:var(--blue); font-size:13px; font-weight:600; }
+    .section-sub { font-size:15px; color:var(--text-secondary); max-width:520px; margin:0 auto; line-height:1.7; font-weight:400; }
+
+    /* ── GLASS CARDS ── */
+    .cards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
+    .cards-grid-5 { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:16px; }
+    .gift-card {
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      border-radius:var(--radius); padding:28px 24px;
+      cursor:pointer; transition:all 0.3s;
+      text-decoration:none; color:inherit; display:block;
+      backdrop-filter:blur(6px); position:relative; overflow:hidden;
+    }
+    .gift-card::before {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(135deg, rgba(0,102,255,0.04) 0%, transparent 60%);
+      opacity:0; transition:opacity 0.3s;
+    }
+    .gift-card:hover { border-color:rgba(0,102,255,0.3); transform:translateY(-4px); box-shadow:var(--shadow-glow); }
+    .gift-card:hover::before { opacity:1; }
+    .gift-card-icon { font-size:32px; margin-bottom:14px; position:relative; }
+    .gift-card-title { font-family:var(--font-display); font-size:17px; font-weight:700; margin-bottom:8px; position:relative; }
+    .gift-card-desc { font-size:13px; color:var(--text-secondary); line-height:1.6; position:relative; }
+    .gift-card-arrow { display:flex; align-items:center; justify-content:space-between; margin-top:14px; position:relative; }
+    .gift-card-cta { color:var(--accent); font-size:12px; font-weight:600; }
     .coming-soon-tag {
-      display:inline-block; background:rgba(245,158,11,0.12); color:#F59E0B;
-      border:1px solid rgba(245,158,11,0.25); padding:4px 10px; border-radius:50px;
-      font-size:11px; font-weight:600; margin-top:10px;
+      display:inline-block; background:rgba(245,158,11,0.1); color:var(--amber);
+      border:1px solid rgba(245,158,11,0.2); padding:4px 10px; border-radius:50px;
+      font-size:10px; font-weight:700; margin-top:10px;
     }
     .testnet-banner {
-      background:rgba(10,102,255,0.08); border:1px solid rgba(10,102,255,0.18);
-      border-radius:12px; padding:14px 20px; text-align:center;
-      font-size:13px; color:var(--blue); font-weight:600; margin-bottom:28px;
+      background:rgba(0,102,255,0.05); border:1px solid rgba(0,102,255,0.12);
+      border-radius:var(--radius-sm); padding:12px 20px; text-align:center;
+      font-size:12px; color:var(--accent); font-weight:600; margin-bottom:32px;
     }
 
-    /* ── TWO COL ── */
+    /* ── TWO COL + FORMS ── */
     .two-col { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
-
-    /* ── GLASS CARD (FORMS) ── */
     .glass-card {
-      background:var(--card-bg); border:1px solid var(--card-border);
+      background:var(--glass-bg); border:1px solid var(--glass-border);
       border-radius:var(--radius); padding:28px;
       backdrop-filter:blur(8px);
     }
     .card-header { display:flex; align-items:center; gap:12px; margin-bottom:24px; }
-    .card-icon { font-size:22px; }
-    .card-header h3 { font-family:'Syne',sans-serif; font-size:18px; font-weight:700; }
-
-    /* ── FORMS ── */
-    .form-group { margin-bottom:18px; }
-    label { display:block; font-size:13px; font-weight:600; color:var(--text-secondary); margin-bottom:7px; }
+    .card-icon { font-size:20px; }
+    .card-header h3 { font-family:var(--font-display); font-size:17px; font-weight:700; }
+    .form-group { margin-bottom:16px; }
+    .form-group label { display:block; font-size:12px; font-weight:600; color:var(--text-secondary); margin-bottom:6px; letter-spacing:0.02em; }
     .input-field {
-      width:100%; background:var(--input-bg); border:1px solid var(--input-border);
-      color:var(--text-primary); border-radius:10px; padding:12px 14px;
+      width:100%; padding:10px 14px;
+      background:var(--input-bg); border:1px solid var(--input-border);
+      border-radius:var(--radius-xs); color:var(--text-primary);
       font-size:14px; font-family:var(--font); outline:none;
-      transition:border-color 0.2s, box-shadow 0.2s; min-height:44px;
+      transition:border-color 0.2s, box-shadow 0.2s; min-height:42px;
     }
-    .input-field:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(10,102,255,0.12); }
+    .input-field:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,102,255,0.1); }
     .input-field.textarea { resize:vertical; min-height:80px; }
-    /* Fix dropdown option visibility in dark themes */
-    select.input-field, select.chain-selector {
-      color-scheme: dark;
-      appearance: auto;
-    }
-    [data-theme="light"] select.input-field,
-    [data-theme="light"] select.chain-selector { color-scheme: light; }
-    select.input-field option, select.chain-selector option {
-      background: var(--navy-2);
-      color: var(--text-primary);
-      padding: 8px;
-    }
-    select.input-field option:checked,
-    select.input-field option:hover,
-    select.chain-selector option:checked,
-    select.chain-selector option:hover {
-      background: var(--blue);
-      color: #ffffff;
-    }
+    select.input-field { color-scheme:dark; appearance:auto; }
+    [data-theme="light"] select.input-field { color-scheme:light; }
     .input-with-badge { position:relative; }
     .input-with-badge .input-field { padding-right:60px; }
-    .input-badge {
-      position:absolute; right:12px; top:50%; transform:translateY(-50%);
-      color:var(--blue); font-size:12px; font-weight:700;
-    }
+    .input-badge { position:absolute; right:12px; top:50%; transform:translateY(-50%); color:var(--accent); font-size:12px; font-weight:700; }
     .optional { font-weight:400; color:var(--text-muted); font-size:11px; }
-    .form-note { font-size:12px; color:var(--text-muted); text-align:center; margin-top:10px; }
+    .form-note { font-size:11px; color:var(--text-muted); text-align:center; margin-top:10px; }
     .full-width { width:100%; }
 
-    /* ── VAULT LIST ── */
-    .vault-list { min-height:180px; }
-    .empty-state { text-align:center; padding:40px 20px; color:var(--text-muted); }
-    .empty-icon { font-size:40px; margin-bottom:12px; }
-
-    /* ── SPLIT TABS ── */
-    .split-type-toggle { display:flex; gap:0; margin-bottom:16px; border-radius:10px; overflow:hidden; border:1px solid var(--card-border); }
+    /* ── SPLIT ── */
+    .split-type-toggle { display:flex; gap:0; margin-bottom:16px; border-radius:var(--radius-xs); overflow:hidden; border:1px solid var(--glass-border); }
     .toggle-btn {
-      flex:1; padding:11px 10px; border:none; border-right:1px solid var(--card-border);
-      background:var(--navy-3); color:var(--text-muted); font-size:13px; font-weight:600;
-      cursor:pointer; font-family:var(--font); min-height:44px; transition:all 0.2s;
+      flex:1; padding:10px; border:none; border-right:1px solid var(--glass-border);
+      background:var(--bg-tertiary); color:var(--text-muted); font-size:12px; font-weight:600;
+      cursor:pointer; font-family:var(--font); min-height:40px; transition:all 0.2s;
     }
     .toggle-btn:last-child { border-right:none; }
-    .toggle-btn.active { background:var(--blue); color:#fff; }
-    .toggle-btn:not(.active):hover { background:var(--card-hover); color:var(--text-primary); }
-    .recipient-list { display:flex; flex-direction:column; gap:10px; margin-bottom:12px; }
+    .toggle-btn.active { background:var(--accent); color:#fff; }
+    .recipient-list { display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
     .recipient-row { display:grid; grid-template-columns:1fr 0.4fr 36px; gap:8px; align-items:center; }
     .remove-btn {
-      background:rgba(239,68,68,0.12); border:none; color:#ef4444; border-radius:8px;
+      background:rgba(244,63,94,0.1); border:none; color:var(--rose); border-radius:var(--radius-xs);
       width:36px;height:36px; cursor:pointer; font-size:14px; transition:background 0.2s;
     }
-    .remove-btn:hover { background:rgba(239,68,68,0.25); }
+    .remove-btn:hover { background:rgba(244,63,94,0.2); }
     .btn-ghost {
-      background:transparent; border:1px dashed var(--card-border); color:var(--text-secondary);
-      padding:12px; border-radius:10px; font-size:14px; font-weight:500;
-      cursor:pointer; font-family:var(--font); min-height:44px; width:100%; transition:all 0.2s;
+      background:transparent; border:1px dashed var(--glass-border); color:var(--text-secondary);
+      padding:10px; border-radius:var(--radius-xs); font-size:13px; font-weight:500;
+      cursor:pointer; font-family:var(--font); min-height:40px; width:100%; transition:all 0.2s;
     }
-    .btn-ghost:hover { border-color:var(--blue); color:var(--blue); }
+    .btn-ghost:hover { border-color:var(--accent); color:var(--accent); }
     .split-summary {
-      background:rgba(10,102,255,0.06); border:1px solid rgba(10,102,255,0.15);
-      border-radius:12px; padding:16px; margin-top:14px;
+      background:rgba(0,102,255,0.04); border:1px solid rgba(0,102,255,0.1);
+      border-radius:var(--radius-xs); padding:14px; margin-top:12px;
     }
-    .summary-row { display:flex; justify-content:space-between; padding:4px 0; font-size:13px; }
-    .summary-row span:last-child { font-weight:700; color:var(--blue); }
+    .summary-row { display:flex; justify-content:space-between; padding:3px 0; font-size:12px; }
+    .summary-row span:last-child { font-weight:700; color:var(--accent); }
     .bill-upload-zone {
       display:flex; align-items:center; gap:10px;
-      border:1px dashed var(--card-border); border-radius:10px;
-      padding:12px 16px; cursor:pointer; transition:all 0.2s; min-height:48px;
+      border:1px dashed var(--glass-border); border-radius:var(--radius-xs);
+      padding:12px 14px; cursor:pointer; transition:all 0.2s; min-height:46px;
       background:var(--input-bg);
     }
-    .bill-upload-zone:hover { border-color:var(--blue); background:rgba(10,102,255,0.04); }
+    .bill-upload-zone:hover { border-color:var(--accent); }
 
-    /* ── ARC INFO GRID ── */
-    .arc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
-    .arc-card {
-      background:var(--card-bg); border:1px solid var(--card-border);
-      border-radius:var(--radius); padding:24px;
-      transition:all 0.25s;
+    /* ── STEPS ── */
+    .steps-row { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:20px; }
+    .step-card {
+      text-align:center; padding:28px 20px;
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      border-radius:var(--radius); transition:all 0.25s;
     }
-    .arc-card:hover { border-color:var(--blue); transform:translateY(-2px); }
-    .arc-card-icon { font-size:28px; margin-bottom:12px; }
-    .arc-card h4 { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; margin-bottom:8px; }
-    .arc-card p { font-size:14px; color:var(--text-secondary); line-height:1.6; }
-
-    /* ── HOW IT WORKS ── */
-    .steps-row { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:24px; }
-    .step-card { text-align:center; padding:24px; }
+    .step-card:hover { border-color:rgba(0,102,255,0.2); transform:translateY(-2px); }
     .step-num {
-      display:inline-flex; width:48px;height:48px; align-items:center; justify-content:center;
-      background:rgba(10,102,255,0.12); border:1px solid rgba(10,102,255,0.25);
-      border-radius:50%; font-size:14px; font-weight:700; color:var(--blue);
+      display:inline-flex; width:44px;height:44px; align-items:center; justify-content:center;
+      background:rgba(0,102,255,0.08); border:1px solid rgba(0,102,255,0.15);
+      border-radius:50%; font-size:13px; font-weight:700; color:var(--accent);
       margin-bottom:14px;
     }
-    .step-card h4 { font-family:'Syne',sans-serif; font-size:15px; font-weight:700; margin-bottom:8px; }
+    .step-card h4 { font-family:var(--font-display); font-size:15px; font-weight:700; margin-bottom:6px; }
     .step-card p { font-size:13px; color:var(--text-secondary); line-height:1.6; }
 
-    /* ── BUSINESS SECTION ── */
-    .biz-features { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:18px; margin-bottom:40px; }
-    .biz-feature { display:flex; align-items:flex-start; gap:14px; padding:20px; background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; }
-    .biz-feature-icon { font-size:22px; flex-shrink:0; }
-    .biz-feature-text h5 { font-size:14px; font-weight:700; margin-bottom:4px; }
-    .biz-feature-text p { font-size:12px; color:var(--text-secondary); line-height:1.5; }
+    /* ── BUSINESS ── */
+    .biz-features { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; margin-bottom:40px; }
+    .biz-feature {
+      display:flex; align-items:flex-start; gap:14px; padding:20px;
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      border-radius:var(--radius-sm); transition:all 0.25s;
+    }
+    .biz-feature:hover { border-color:rgba(0,102,255,0.2); }
+    .biz-feature-icon { font-size:20px; flex-shrink:0; padding-top:2px; }
+    .biz-feature-text h5 { font-size:13px; font-weight:700; margin-bottom:4px; }
+    .biz-feature-text p { font-size:12px; color:var(--text-secondary); line-height:1.55; }
 
     /* ── MARKETPLACE ── */
-    .partner-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:16px; }
+    .partner-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:12px; }
     .partner-tile {
-      background:var(--card-bg); border:1px solid var(--card-border);
-      border-radius:12px; padding:24px 16px; text-align:center;
-      transition:all 0.2s; display:flex; flex-direction:column; align-items:center; gap:8px;
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      border-radius:var(--radius-sm); padding:20px 14px; text-align:center;
+      transition:all 0.25s; display:flex; flex-direction:column; align-items:center; gap:6px;
     }
-    .partner-tile:hover { border-color:var(--blue); }
-    .partner-tile-icon { font-size:28px; }
-    .partner-tile-name { font-size:13px; font-weight:700; }
+    .partner-tile:hover { border-color:rgba(0,102,255,0.2); transform:translateY(-2px); }
+    .partner-tile-icon { font-size:24px; }
+    .partner-tile-name { font-size:12px; font-weight:700; }
+
+    /* ── ARC INFO ── */
+    .arc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
+    .arc-card {
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      border-radius:var(--radius); padding:24px; transition:all 0.25s;
+    }
+    .arc-card:hover { border-color:rgba(0,102,255,0.25); transform:translateY(-2px); box-shadow:var(--shadow-glow); }
+    .arc-card-icon { font-size:24px; margin-bottom:12px; }
+    .arc-card h4 { font-family:var(--font-display); font-size:15px; font-weight:700; margin-bottom:8px; }
+    .arc-card p { font-size:13px; color:var(--text-secondary); line-height:1.6; }
 
     /* ── TRUST STATS ── */
     .trust-row {
-      display:flex; flex-wrap:wrap; gap:40px; justify-content:center; align-items:center;
-      padding:40px; background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--radius);
+      display:flex; flex-wrap:wrap; gap:48px; justify-content:center; align-items:center;
+      padding:40px; background:var(--glass-bg); border:1px solid var(--glass-border);
+      border-radius:var(--radius); backdrop-filter:blur(8px);
     }
     .trust-stat { text-align:center; }
-    .trust-stat-num { font-family:'Syne',sans-serif; font-size:36px; font-weight:800; color:var(--blue); }
-    .trust-stat-label { font-size:13px; color:var(--text-muted); margin-top:4px; }
+    .trust-stat-num { font-family:var(--font-display); font-size:36px; font-weight:800; color:var(--accent); }
+    .trust-stat-label { font-size:12px; color:var(--text-muted); margin-top:4px; letter-spacing:0.03em; }
+
+    /* ── SUPPORT ── */
+    .support-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; }
+    .support-card {
+      background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:var(--radius);
+      padding:24px; text-align:center; text-decoration:none; color:inherit; transition:all 0.25s;
+    }
+    .support-card:hover { border-color:rgba(0,102,255,0.3); transform:translateY(-3px); box-shadow:var(--shadow-glow); }
+    .support-card-icon { font-size:32px; margin-bottom:10px; }
+    .support-card-title { font-weight:700; font-size:14px; margin-bottom:4px; }
+    .support-card-sub { font-size:11px; color:var(--text-muted); line-height:1.5; }
 
     /* ── FAQ ── */
-    .faq-list { display:flex; flex-direction:column; gap:12px; max-width:800px; margin:0 auto; }
-    .faq-item { background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; overflow:hidden; }
+    .faq-list { display:flex; flex-direction:column; gap:10px; max-width:780px; margin:0 auto; }
+    .faq-item { background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:var(--radius-sm); overflow:hidden; }
     .faq-q {
       width:100%; background:none; border:none; text-align:left;
-      padding:18px 20px; font-size:15px; font-weight:600; color:var(--text-primary);
+      padding:16px 20px; font-size:14px; font-weight:600; color:var(--text-primary);
       cursor:pointer; font-family:var(--font); display:flex; justify-content:space-between; align-items:center;
-      min-height:56px;
+      min-height:52px; transition:color 0.15s;
     }
-    .faq-q:hover { color:var(--blue); }
-    .faq-icon { font-size:18px; transition:transform 0.3s; flex-shrink:0; }
-    .faq-item.open .faq-icon { transform:rotate(45deg); }
+    .faq-q:hover { color:var(--accent); }
+    .faq-icon { font-size:16px; transition:transform 0.3s; flex-shrink:0; color:var(--text-muted); }
+    .faq-item.open .faq-icon { transform:rotate(45deg); color:var(--accent); }
     .faq-a { padding:0 20px; max-height:0; overflow:hidden; transition:max-height 0.3s ease, padding 0.3s; }
-    .faq-item.open .faq-a { max-height:300px; padding:0 20px 18px; }
-    .faq-a p { font-size:14px; color:var(--text-secondary); line-height:1.65; }
+    .faq-item.open .faq-a { max-height:300px; padding:0 20px 16px; }
+    .faq-a p { font-size:13px; color:var(--text-secondary); line-height:1.7; }
 
     /* ── FOOTER ── */
     .footer {
-      border-top:1px solid var(--card-border); padding:48px 24px 32px;
-      background:var(--navy-2);
+      border-top:1px solid var(--glass-border); padding:56px 24px 32px;
+      background:var(--bg-secondary);
     }
     .footer-inner { max-width:1200px; margin:0 auto; }
-    .footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; margin-bottom:40px; }
-    .footer-col h5 { font-family:'Syne',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-muted); margin-bottom:14px; }
-    .footer-col a { display:block; font-size:14px; color:var(--text-secondary); text-decoration:none; margin-bottom:10px; transition:color 0.2s; }
-    .footer-col a:hover { color:var(--blue); }
-    .footer-bottom { border-top:1px solid var(--card-border); padding-top:24px; display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center; }
-    .footer-credit { font-size:12px; color:var(--text-muted); }
+    .footer-grid { display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px; }
     .footer-logo { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
-
-    /* ── MODALS ── */
-    .modal-overlay {
-      position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(8px);
-      z-index:2000; display:flex; align-items:center; justify-content:center; padding:20px;
+    .footer-col h5 {
+      font-family:var(--font-display); font-size:11px; font-weight:700;
+      letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:14px;
     }
-    .modal {
-      background:var(--navy-2); border:1px solid var(--card-border);
-      border-radius:20px; padding:36px 32px; max-width:520px; width:100%;
-      position:relative; max-height:90vh; overflow-y:auto;
+    .footer-col a {
+      display:block; color:var(--text-secondary); font-size:13px;
+      padding:4px 0; transition:color 0.15s; text-decoration:none;
     }
-    .modal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; }
-    .modal-header h3 { font-family:'Syne',sans-serif; font-size:20px; font-weight:700; }
-    .modal-close { background:var(--card-bg); border:1px solid var(--card-border); color:var(--text-primary); width:36px;height:36px; border-radius:50%; cursor:pointer; font-size:16px; transition:all 0.2s; }
-    .modal-close:hover { background:rgba(239,68,68,0.15); color:#ef4444; }
-    .modal-success-icon { font-size:48px; text-align:center; margin-bottom:16px; }
-    .modal-tx { background:var(--card-bg); border-radius:10px; padding:12px 16px; margin:16px 0; font-size:13px; }
-    .tx-hash { color:var(--blue); word-break:break-all; }
+    .footer-col a:hover { color:var(--accent); }
+    .footer-bottom { border-top:1px solid var(--glass-border); padding-top:24px; text-align:center; }
+    .footer-credit { font-size:11px; color:var(--text-muted); line-height:1.8; }
 
-    /* Gift Vault Page (separate) */
+    /* ── GIFT VAULT PAGE ── */
     .gift-vault-page {
-      display:none; position:fixed; inset:0; z-index:3000; overflow-y:auto;
-      background:var(--navy);
+      display:none; position:fixed; inset:0; z-index:999;
+      background:var(--bg-primary); overflow-y:auto;
     }
     .gift-vault-page.open { display:block; }
     .gvp-header {
-      background:var(--nav-bg); backdrop-filter:blur(20px);
-      border-bottom:1px solid var(--card-border);
-      padding:16px 24px; display:flex; align-items:center; gap:16px; position:sticky; top:0; z-index:10;
+      display:flex; align-items:center; gap:16px;
+      padding:14px 24px; border-bottom:1px solid var(--glass-border);
+      background:var(--bg-secondary); position:sticky; top:0; z-index:1;
     }
     .gvp-back {
-      background:var(--card-bg); border:1px solid var(--card-border);
-      color:var(--text-primary); border-radius:10px; padding:8px 16px;
-      cursor:pointer; font-size:14px; font-weight:600; font-family:var(--font); min-height:44px;
-      display:flex; align-items:center; gap:6px; transition:all 0.2s;
+      background:none; border:1px solid var(--glass-border); color:var(--text-secondary);
+      padding:8px 16px; border-radius:var(--radius-xs); cursor:pointer;
+      font-size:13px; font-weight:500; font-family:var(--font); transition:all 0.15s;
     }
-    .gvp-back:hover { border-color:var(--blue); color:var(--blue); }
-    .gvp-inner { max-width:900px; margin:0 auto; padding:40px 24px 80px; }
-    .vault-type-tabs { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:36px; }
+    .gvp-back:hover { border-color:var(--accent); color:var(--accent); }
+    .gvp-inner { max-width:1100px; margin:0 auto; padding:32px 24px 80px; }
+    .vault-type-tabs {
+      display:flex; flex-wrap:wrap; gap:6px; margin-bottom:28px;
+      padding-bottom:20px; border-bottom:1px solid var(--glass-border);
+    }
     .vault-tab {
-      padding:10px 20px; border-radius:50px; border:1px solid var(--card-border);
-      background:var(--card-bg); color:var(--text-secondary); font-size:13px; font-weight:600;
-      cursor:pointer; font-family:var(--font); min-height:44px; transition:all 0.2s;
+      padding:8px 16px; border-radius:50px; border:1px solid var(--glass-border);
+      background:var(--glass-bg); color:var(--text-secondary); font-size:12px; font-weight:600;
+      cursor:pointer; font-family:var(--font); transition:all 0.2s;
     }
-    .vault-tab.active { background:var(--blue); color:#fff; border-color:var(--blue); }
-
-    /* E-card area */
+    .vault-tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
     .ecard-preview {
-      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
-      border-radius:16px; padding:32px; text-align:center; margin-bottom:24px;
-      min-height:200px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+      background:linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+      border:1px solid var(--glass-border); border-radius:var(--radius);
+      padding:40px 24px; text-align:center; margin-bottom:20px;
       position:relative; overflow:hidden;
     }
-    .ecard-preview .ecard-emoji { font-size:52px; margin-bottom:12px; }
-    .ecard-preview .ecard-greeting { font-family:'Syne',sans-serif; font-size:22px; font-weight:700; color:#fff; margin-bottom:8px; }
-    .ecard-preview .ecard-body { font-size:14px; color:rgba(255,255,255,0.8); max-width:380px; line-height:1.6; }
-    .ecard-preview .ecard-sig { font-size:13px; color:rgba(255,255,255,0.6); margin-top:16px; font-style:italic; }
-
-    .upload-zone {
-      border:2px dashed var(--input-border); border-radius:12px;
-      padding:28px; text-align:center; cursor:pointer; transition:all 0.2s;
-      background:var(--input-bg);
+    .ecard-preview::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(circle at 30% 20%, rgba(0,102,255,0.06), transparent 60%);
     }
-    .upload-zone:hover { border-color:var(--blue); background:rgba(10,102,255,0.05); }
-    .upload-zone input { display:none; }
-    .upload-zone-icon { font-size:32px; margin-bottom:8px; }
-    .upload-zone-text { font-size:13px; color:var(--text-secondary); }
-    .upload-tabs { display:flex; gap:8px; margin-bottom:16px; }
+    .ecard-emoji { font-size:48px; margin-bottom:14px; position:relative; }
+    .ecard-greeting { font-family:var(--font-display); font-size:22px; font-weight:700; margin-bottom:8px; position:relative; }
+    .ecard-body { font-size:14px; color:var(--text-secondary); margin-bottom:8px; position:relative; }
+    .ecard-sig { font-size:12px; color:var(--text-muted); font-style:italic; position:relative; }
+    .upload-tabs { display:flex; gap:6px; margin-bottom:12px; }
     .upload-tab {
-      flex:1; padding:8px; border-radius:8px; border:1px solid var(--card-border);
-      background:var(--card-bg); color:var(--text-secondary); font-size:12px; font-weight:600;
-      cursor:pointer; font-family:var(--font); transition:all 0.2s; text-align:center;
+      padding:6px 12px; border-radius:var(--radius-xs); border:1px solid var(--glass-border);
+      background:var(--glass-bg); color:var(--text-secondary); font-size:11px; font-weight:600;
+      cursor:pointer; font-family:var(--font); transition:all 0.15s;
     }
-    .upload-tab.active { background:var(--blue); color:#fff; border-color:var(--blue); }
-
-    .share-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+    .upload-tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+    .upload-zone {
+      border:1px dashed var(--glass-border); border-radius:var(--radius-xs);
+      padding:24px; text-align:center; cursor:pointer; transition:all 0.2s;
+    }
+    .upload-zone:hover { border-color:var(--accent); }
+    .upload-zone input[type="file"] { display:none; }
+    .upload-zone-icon { font-size:28px; margin-bottom:6px; }
+    .upload-zone-text { font-size:12px; color:var(--text-muted); }
+    .share-row { display:grid; grid-template-columns:repeat(auto-fill,minmax(100px,1fr)); gap:8px; }
     .share-btn {
-      flex:1; min-width:100px; padding:12px 16px; border-radius:10px; border:1px solid var(--card-border);
-      background:var(--card-bg); color:var(--text-primary); font-size:13px; font-weight:600;
-      cursor:pointer; font-family:var(--font); min-height:44px; transition:all 0.2s; text-align:center;
+      padding:10px 8px; border-radius:var(--radius-xs); border:1px solid var(--glass-border);
+      background:var(--glass-bg); color:var(--text-secondary); font-size:12px; font-weight:600;
+      cursor:pointer; font-family:var(--font); transition:all 0.15s; text-align:center;
     }
-    .share-btn:hover { border-color:var(--blue); color:var(--blue); }
-    .share-btn.whatsapp:hover { border-color:#25D366; color:#25D366; }
-    .share-btn.telegram:hover { border-color:#2CA5E0; color:#2CA5E0; }
+    .share-btn:hover { border-color:var(--accent); color:var(--accent); }
+    .vault-list { min-height:120px; }
+    .empty-state { text-align:center; padding:32px 16px; color:var(--text-muted); }
+    .empty-icon { font-size:36px; margin-bottom:8px; }
 
-    /* ── NOTIFICATION TOAST ── */
+    /* ── MODALS ── */
+    .modal-overlay {
+      position:fixed; inset:0; z-index:2000;
+      background:rgba(0,0,0,0.6); backdrop-filter:blur(4px);
+      display:flex; align-items:center; justify-content:center; padding:24px;
+    }
+    .modal {
+      background:var(--bg-elevated); border:1px solid var(--glass-border);
+      border-radius:var(--radius); padding:32px; max-width:420px; width:100%;
+      box-shadow:var(--shadow-md);
+    }
+    .modal-success-icon { font-size:48px; text-align:center; margin-bottom:14px; }
+    .tx-hash { font-size:11px; color:var(--accent); word-break:break-all; display:block; margin-top:4px; }
+    .modal-tx { background:var(--glass-bg); border-radius:var(--radius-xs); padding:12px; margin-top:12px; }
+
+    /* ── NOTIFICATION ── */
     .notification {
-      position:fixed; bottom:24px; right:24px; z-index:9999;
-      background:var(--navy-2); border:1px solid var(--card-border);
-      border-radius:12px; padding:14px 20px; font-size:14px; font-weight:500;
-      transform:translateY(100px); opacity:0; transition:all 0.35s;
-      max-width:360px; box-shadow:var(--shadow);
+      position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px);
+      padding:14px 24px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
+      z-index:3000; transition:transform 0.3s ease; pointer-events:none;
+      background:var(--bg-elevated); border:1px solid var(--glass-border);
+      box-shadow:var(--shadow-md); white-space:nowrap; max-width:90vw;
     }
-    .notification.show { transform:translateY(0); opacity:1; }
-    .notification.success { border-color:rgba(34,197,94,0.4); color:#22c55e; }
-    .notification.error { border-color:rgba(239,68,68,0.4); color:#ef4444; }
-    .notification.info { border-color:rgba(10,102,255,0.4); color:var(--blue); }
-
-    /* ── SUPPORT PAGE ── */
-    .support-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:18px; }
-    .support-card {
-      background:var(--card-bg); border:1px solid var(--card-border); border-radius:14px;
-      padding:24px; text-align:center; text-decoration:none; color:inherit; transition:all 0.25s;
-    }
-    .support-card:hover { border-color:var(--blue); transform:translateY(-3px); }
-    .support-card-icon { font-size:36px; margin-bottom:12px; }
-    .support-card-title { font-weight:700; font-size:15px; margin-bottom:6px; }
-    .support-card-sub { font-size:12px; color:var(--text-muted); }
-
-    /* ── SECTION NAV TABS ── */
-    .section-nav {
-      display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:48px;
-    }
-    .sec-tab {
-      padding:10px 20px; border-radius:50px; border:1px solid var(--card-border);
-      background:var(--card-bg); color:var(--text-secondary); font-size:13px; font-weight:600;
-      cursor:pointer; transition:all 0.2s; font-family:var(--font);
-    }
-    .sec-tab.active { background:var(--blue); color:#fff; border-color:var(--blue); }
+    .notification.show { transform:translateX(-50%) translateY(0); pointer-events:auto; }
+    .notification.success { border-color:rgba(16,185,129,0.4); color:var(--emerald); }
+    .notification.error { border-color:rgba(244,63,94,0.4); color:var(--rose); }
+    .notification.info { border-color:rgba(0,102,255,0.4); color:var(--accent); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width:900px) {
+    @media(max-width:900px) {
       .two-col { grid-template-columns:1fr; }
       .footer-grid { grid-template-columns:1fr 1fr; }
       .nav-links { display:none; }
+      .lang-panel { right:20px; }
     }
-    @media (max-width:640px) {
-      .hamburger { display:flex; }
-      .nav-right .chain-selector, .nav-right .chain-badge, .nav-right .btn-connect, .nav-right .theme-toggle-btn { display:none; }
-      .hero-stats { flex-direction:column; gap:16px; }
+    @media(max-width:640px) {
+      .hamburger { display:flex; align-items:center; justify-content:center; }
+      .nav-right .chain-selector, .nav-right .chain-badge, .nav-right .btn-connect { display:none; }
+      .hero-stats { flex-direction:column; gap:16px; padding:20px; }
       .stat-divider { width:60px; height:1px; }
       .footer-grid { grid-template-columns:1fr; }
       .recipient-row { grid-template-columns:1fr; }
       .hero-ctas { flex-direction:column; align-items:stretch; }
+      .section { padding:70px 20px; }
     }
-    @media (max-width:390px) {
-      .section { padding:60px 16px; }
-      .gvp-inner { padding:24px 16px 60px; }
+    @media(max-width:390px) {
+      .gvp-inner { padding:20px 16px 60px; }
     }
   </style>
 </head>
@@ -658,16 +650,17 @@
       </a>
 
       <ul class="nav-links" role="list">
-        <li><a href="#" class="nav-gift-vault" id="navGiftVaultLink">🎁 Gift Vault</a></li>
-        <li><a href="#chainsplit">ChainSplit</a></li>
-        <li><a href="#business">For Business</a></li>
-        <li><a href="#marketplace">Shop</a></li>
-        <li><a href="#travel">Travel</a></li>
-        <li><a href="#about">About Arc</a></li>
-        <li><a href="#support">Support</a></li>
+        <li><a href="#" class="nav-gift-vault" id="navGiftVaultLink" data-i18n="nav_gift">🎁 Gift Vault</a></li>
+        <li><a href="#chainsplit" data-i18n="nav_split">ChainSplit</a></li>
+        <li><a href="#business" data-i18n="nav_biz">For Business</a></li>
+        <li><a href="#marketplace" data-i18n="nav_shop">Shop</a></li>
+        <li><a href="#travel" data-i18n="nav_travel">Travel</a></li>
+        <li><a href="#about" data-i18n="nav_arc">About Arc</a></li>
+        <li><a href="#support" data-i18n="nav_support">Support</a></li>
       </ul>
 
       <div class="nav-right">
+        <button class="lang-btn" id="langToggleBtn" aria-label="Change language" title="Language">🌐 <span id="langLabel">EN</span></button>
         <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Change theme" title="Theme">🎨</button>
         <select id="chainSelector" class="chain-selector" aria-label="Select network">
           <option value="arc">🔵 Arc Testnet</option>
@@ -678,10 +671,21 @@
           <option value="optimism">🔴 Optimism (OP)</option>
         </select>
         <div id="chainBadge" class="chain-badge" aria-live="polite">Arc Testnet</div>
-        <button id="connectBtn" class="btn-connect" type="button">Connect Wallet</button>
+        <button id="connectBtn" class="btn-connect" type="button" data-i18n="connect">Connect Wallet</button>
       </div>
 
       <button class="hamburger" id="hamburger" type="button" aria-label="Open mobile menu" aria-expanded="false">☰</button>
+    </div>
+
+    <!-- Language Panel -->
+    <div class="lang-panel" id="langPanel" role="dialog" aria-label="Language options">
+      <button class="lang-option active" data-lang="en">🇬🇧 English</button>
+      <button class="lang-option" data-lang="es">🇪🇸 Español</button>
+      <button class="lang-option" data-lang="fr">🇫🇷 Français</button>
+      <button class="lang-option" data-lang="hi">🇮🇳 हिन्दी</button>
+      <button class="lang-option" data-lang="ar">🇸🇦 العربية</button>
+      <button class="lang-option" data-lang="pt">🇧🇷 Português</button>
+      <button class="lang-option" data-lang="zh">🇨🇳 中文</button>
     </div>
 
     <!-- Theme Panel -->
@@ -689,24 +693,12 @@
       <h4>Theme</h4>
       <div class="theme-options">
         <button class="theme-opt active" data-theme="dark">
-          <div class="theme-swatch" style="background:#0B1020;border:2px solid #0A66FF"></div>
+          <div class="theme-swatch" style="background:#060B18;border:2px solid #0066FF"></div>
           Dark
         </button>
         <button class="theme-opt" data-theme="light">
-          <div class="theme-swatch" style="background:#f5f7ff;border:2px solid #0A66FF"></div>
+          <div class="theme-swatch" style="background:#F4F6FB;border:2px solid #0066FF"></div>
           Light
-        </button>
-        <button class="theme-opt" data-theme="dim">
-          <div class="theme-swatch" style="background:#1a1f2e;border:2px solid #4f6ef7"></div>
-          Dim
-        </button>
-        <button class="theme-opt" data-theme="warm">
-          <div class="theme-swatch" style="background:#1a1208;border:2px solid #F59E0B"></div>
-          Warm
-        </button>
-        <button class="theme-opt" data-theme="system" style="grid-column:1/-1">
-          <div class="theme-swatch" style="background:linear-gradient(90deg,#f5f7ff 50%,#0B1020 50%);border:2px solid #888;width:40px"></div>
-          System
         </button>
       </div>
     </div>
@@ -720,7 +712,7 @@
       <a href="#travel">✈️ Travel</a>
       <a href="#about">🔵 About Arc</a>
       <a href="#support">💬 Support</a>
-      <div style="display:flex;gap:10px;padding-top:8px;flex-wrap:wrap;">
+      <div style="display:flex;gap:8px;padding-top:8px;flex-wrap:wrap;">
         <select id="chainSelectorMobile" class="chain-selector" aria-label="Select network" style="flex:1">
           <option value="arc">🔵 Arc Testnet</option>
           <option value="ethereum">Ξ Ethereum</option>
@@ -734,12 +726,12 @@
     </div>
   </nav>
 
-  <!-- ═══════════════ GIFT VAULT PAGE (separate overlay) ═══════════════ -->
+  <!-- ═══════════════ GIFT VAULT PAGE ═══════════════ -->
   <div class="gift-vault-page" id="giftVaultPage" role="dialog" aria-modal="true" aria-label="Gift Vault">
     <div class="gvp-header">
-      <button class="gvp-back" id="gvpBack" type="button">← Back to Home</button>
+      <button class="gvp-back" id="gvpBack" type="button">← Back</button>
       <div class="logo-text" style="flex:1; text-align:center;">
-        <div class="logo-main" style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;">🎁 Gift Vault</div>
+        <div class="logo-main" style="font-family:var(--font-display);font-size:16px;font-weight:700;">🎁 Gift Vault</div>
         <div class="logo-badge">Send gifts that wait for the right moment</div>
       </div>
       <select id="chainSelectorGVP" class="chain-selector" aria-label="Select network">
@@ -751,54 +743,37 @@
         <option value="optimism">🔴 OP</option>
       </select>
     </div>
-
     <div class="gvp-inner">
-      <div class="testnet-banner">Running on Arc Testnet — <strong>Make sure your wallet is set to Arc Testnet</strong> to create gifts. Mainnet support coming later.</div>
-
-      <!-- Vault type tabs -->
+      <div class="testnet-banner">Running on Arc Testnet — <strong>Make sure your wallet is set to Arc Testnet</strong> to create gifts.</div>
       <div class="vault-type-tabs" role="tablist" aria-label="Gift vault types">
         <button class="vault-tab active" role="tab" aria-selected="true" data-vtype="birthday">🎂 Birthday</button>
         <button class="vault-tab" role="tab" data-vtype="milestone">🎓 Milestone</button>
-        <button class="vault-tab" role="tab" data-vtype="family">👨‍👩‍👧 Family Allowance</button>
+        <button class="vault-tab" role="tab" data-vtype="family">👨‍👩‍👧 Family</button>
         <button class="vault-tab" role="tab" data-vtype="memory">💌 Memory</button>
         <button class="vault-tab" role="tab" data-vtype="holiday">🎄 Holiday</button>
       </div>
-
       <div class="two-col" style="align-items:start;">
-        <!-- LEFT: E-Card builder -->
         <div>
-          <!-- E-Card preview -->
           <div class="ecard-preview" id="ecardPreview">
             <div class="ecard-emoji" id="ecardEmoji">🎂</div>
             <div class="ecard-greeting" id="ecardGreeting">Happy Birthday!</div>
             <div class="ecard-body" id="ecardBody">Grandad left you a gift ❤️</div>
             <div class="ecard-sig" id="ecardSig">— With love</div>
           </div>
-
           <div class="glass-card">
-            <div class="card-header">
-              <span class="card-icon">🎨</span>
-              <h3>Customize E-Card</h3>
-            </div>
-
+            <div class="card-header"><span class="card-icon">🎨</span><h3>Customize E-Card</h3></div>
             <div class="form-group">
               <label for="greetingTemplate">Greeting Template</label>
-              <select id="greetingTemplate" class="input-field">
-                <option value="">— Choose a template —</option>
-              </select>
+              <select id="greetingTemplate" class="input-field"><option value="">— Choose a template —</option></select>
             </div>
-
             <div class="form-group">
               <label for="ecardBodyText">Personal Message</label>
               <textarea id="ecardBodyText" class="input-field textarea" placeholder='e.g. "Grandad left you a gift ❤️"' rows="3" maxlength="300"></textarea>
             </div>
-
             <div class="form-group">
-              <label for="ecardSignature">Signature (shown on right)</label>
+              <label for="ecardSignature">Signature</label>
               <input type="text" id="ecardSignature" class="input-field" placeholder="— With love, Grandad" maxlength="60" />
             </div>
-
-            <!-- Upload tabs -->
             <div class="form-group">
               <label>Attach Media</label>
               <div class="upload-tabs">
@@ -810,101 +785,54 @@
               <div class="upload-zone" id="uploadZone">
                 <input type="file" id="fileInput" accept="image/*" />
                 <div class="upload-zone-icon">📷</div>
-                <div class="upload-zone-text">Click to upload or drag & drop<br><small>PNG, JPG up to 10MB</small></div>
+                <div class="upload-zone-text">Click to upload<br><small>PNG, JPG up to 10MB</small></div>
               </div>
-              <div id="uploadPreview" style="display:none;margin-top:10px;"></div>
+              <div id="uploadPreview" style="display:none;margin-top:8px;"></div>
             </div>
-
             <div class="form-group">
               <label for="noteText" id="noteLabel" style="display:none;">Note Content</label>
               <textarea id="noteText" class="input-field textarea" placeholder="Write your note..." rows="3" style="display:none;"></textarea>
             </div>
           </div>
         </div>
-
-        <!-- RIGHT: Vault creation + scheduling -->
         <div>
-          <div class="glass-card" style="margin-bottom:20px;">
-            <div class="card-header">
-              <span class="card-icon">🔐</span>
-              <h3>Lock USDC Gift</h3>
-            </div>
-
-            <div class="form-group">
-              <label for="gvpRecipient">Recipient Wallet Address</label>
-              <input type="text" id="gvpRecipient" class="input-field" placeholder="0x..." autocomplete="off" spellcheck="false" />
-            </div>
-
-            <div class="form-group">
-              <label for="gvpAmount">USDC Amount</label>
-              <div class="input-with-badge">
-                <input type="number" id="gvpAmount" class="input-field" placeholder="0.00" min="0.01" step="0.01" />
-                <span class="input-badge">USDC</span>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="gvpUnlockDate">Send / Unlock Date</label>
-              <input type="date" id="gvpUnlockDate" class="input-field" />
-            </div>
-
-            <div class="form-group">
-              <label for="gvpUnlockTime">Time</label>
-              <input type="time" id="gvpUnlockTime" class="input-field" />
-            </div>
-
-            <div class="form-group">
-              <label for="gvpTimezone">Timezone</label>
+          <div class="glass-card" style="margin-bottom:16px;">
+            <div class="card-header"><span class="card-icon">🔐</span><h3>Lock USDC Gift</h3></div>
+            <div class="form-group"><label for="gvpRecipient">Recipient Wallet</label><input type="text" id="gvpRecipient" class="input-field" placeholder="0x..." autocomplete="off" spellcheck="false" /></div>
+            <div class="form-group"><label for="gvpAmount">USDC Amount</label><div class="input-with-badge"><input type="number" id="gvpAmount" class="input-field" placeholder="0.00" min="0.01" step="0.01" /><span class="input-badge">USDC</span></div></div>
+            <div class="form-group"><label for="gvpUnlockDate">Send / Unlock Date</label><input type="date" id="gvpUnlockDate" class="input-field" /></div>
+            <div class="form-group"><label for="gvpUnlockTime">Time</label><input type="time" id="gvpUnlockTime" class="input-field" /></div>
+            <div class="form-group"><label for="gvpTimezone">Timezone</label>
               <select id="gvpTimezone" class="input-field">
-                <option value="UTC">UTC</option>
-                <option value="Asia/Kolkata">India (IST)</option>
-                <option value="America/New_York">US Eastern (ET)</option>
-                <option value="America/Los_Angeles">US Pacific (PT)</option>
-                <option value="Europe/London">London (GMT/BST)</option>
-                <option value="Europe/Paris">Paris (CET)</option>
-                <option value="Asia/Dubai">Dubai (GST)</option>
-                <option value="Asia/Singapore">Singapore (SGT)</option>
-                <option value="Australia/Sydney">Sydney (AEDT)</option>
+                <option value="UTC">UTC</option><option value="Asia/Kolkata">India (IST)</option><option value="America/New_York">US Eastern</option><option value="America/Los_Angeles">US Pacific</option><option value="Europe/London">London</option><option value="Europe/Paris">Paris</option><option value="Asia/Dubai">Dubai</option><option value="Asia/Singapore">Singapore</option><option value="Australia/Sydney">Sydney</option>
               </select>
             </div>
-
             <button class="btn-primary full-width" id="gvpCreateBtn" type="button">🎁 Create Gift Vault</button>
-            <p class="form-note">Contract must be deployed. <a href="#" id="gvpLearnMoreArc" style="color:var(--blue)">Learn more about Arc ↓</a></p>
+            <p class="form-note">Contract must be deployed. <a href="#" id="gvpLearnMoreArc" style="color:var(--accent)">Learn more about Arc ↓</a></p>
           </div>
-
-          <!-- Share options -->
           <div class="glass-card">
-            <div class="card-header">
-              <span class="card-icon">📤</span>
-              <h3>Share Gift Card</h3>
-            </div>
-            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;">Once created, share your gift via:</p>
+            <div class="card-header"><span class="card-icon">📤</span><h3>Share Gift Card</h3></div>
+            <p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px;">Once created, share your gift via:</p>
             <div class="share-row">
-              <button class="share-btn whatsapp" onclick="shareVia('whatsapp')">💬 WhatsApp</button>
-              <button class="share-btn telegram" onclick="shareVia('telegram')">✈️ Telegram</button>
+              <button class="share-btn" onclick="shareVia('whatsapp')">💬 WhatsApp</button>
+              <button class="share-btn" onclick="shareVia('telegram')">✈️ Telegram</button>
               <button class="share-btn" onclick="shareVia('email')">📧 Email</button>
               <button class="share-btn" onclick="shareVia('sms')">💬 SMS</button>
             </div>
-            <div class="share-row" style="margin-top:10px;">
-              <button class="share-btn" onclick="downloadCard('png')">⬇️ Download PNG</button>
-              <button class="share-btn" onclick="downloadCard('mp4')">🎬 Download Video</button>
+            <div class="share-row" style="margin-top:8px;">
+              <button class="share-btn" onclick="downloadCard('png')">⬇️ PNG</button>
+              <button class="share-btn" onclick="downloadCard('mp4')">🎬 Video</button>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Your active vaults -->
-      <div class="glass-card" style="margin-top:24px;">
+      <div class="glass-card" style="margin-top:20px;">
         <div class="card-header">
-          <span class="card-icon">📦</span>
-          <h3>Your Active Vaults</h3>
-          <button class="btn-secondary" id="gvpLoadVaults" type="button" style="margin-left:auto;padding:8px 16px;font-size:13px;">↻ Refresh</button>
+          <span class="card-icon">📦</span><h3>Your Active Vaults</h3>
+          <button class="btn-secondary" id="gvpLoadVaults" type="button" style="margin-left:auto;padding:6px 14px;font-size:12px;min-height:32px;">↻ Refresh</button>
         </div>
         <div id="gvpVaultList" class="vault-list" aria-live="polite">
-          <div class="empty-state">
-            <div class="empty-icon">🔐</div>
-            <p>Connect your wallet to see your gift vaults</p>
-          </div>
+          <div class="empty-state"><div class="empty-icon">🔐</div><p>Connect your wallet to see your gift vaults</p></div>
         </div>
       </div>
     </div>
@@ -913,37 +841,31 @@
   <!-- ═══════════════ HERO ═══════════════ -->
   <section class="hero" id="home" aria-label="Hero section">
     <div class="hero-bg" aria-hidden="true">
+      <div class="hero-grid"></div>
       <div class="orb orb1"></div>
       <div class="orb orb2"></div>
       <div class="orb orb3"></div>
     </div>
     <div class="hero-content">
-      <div class="hero-tag">Live on Arc Testnet &nbsp;·&nbsp; USDC-Native &nbsp;·&nbsp; 6 Chains</div>
+      <div class="hero-tag" data-i18n="hero_tag">Live on Arc Testnet · USDC-Native · 6 Chains</div>
       <h1 class="hero-title">
-        Gift. Split. Save.<br />
-        <span class="gradient-text">Across Chains.</span>
+        <span data-i18n="hero_t1">Gift. Split. Save.</span><br />
+        <span class="gradient-text" data-i18n="hero_t2">Across Chains.</span>
       </h1>
-      <p class="hero-sub">A cross-chain USDC gifting infrastructure built on Arc. Gift anyone, anywhere — powered by programmable dollars.</p>
+      <p class="hero-sub" data-i18n="hero_sub">A cross-chain USDC gifting infrastructure built on Arc. Gift anyone, anywhere — powered by programmable dollars.</p>
       <div class="hero-ctas">
-        <button class="btn-primary" id="heroGiftVaultBtn" type="button">Send a Gift 🎁</button>
-        <a href="#chainsplit" class="btn-secondary">Split a Bill 💸</a>
-        <a href="#business" class="btn-secondary">For Business 🏢</a>
+        <button class="btn-primary" id="heroGiftVaultBtn" type="button" data-i18n="hero_cta1">Send a Gift 🎁</button>
+        <a href="#chainsplit" class="btn-secondary" data-i18n="hero_cta2">Split a Bill 💸</a>
+        <a href="#business" class="btn-secondary" data-i18n="hero_cta3">For Business 🏢</a>
       </div>
       <div class="hero-stats" aria-label="Key statistics">
-        <div class="stat">
-          <span class="stat-num">6</span>
-          <span class="stat-label">Chains Supported</span>
-        </div>
+        <div class="stat"><span class="stat-num">6</span><span class="stat-label" data-i18n="stat_chains">Chains Supported</span></div>
         <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat">
-          <span class="stat-num">&lt;1s</span>
-          <span class="stat-label">Arc Finality</span>
-        </div>
+        <div class="stat"><span class="stat-num">&lt;1s</span><span class="stat-label" data-i18n="stat_finality">Arc Finality</span></div>
       </div>
     </div>
   </section>
 
-  <!-- Chain badges row -->
   <div class="chain-badges-row" aria-label="Supported networks">
     <div class="chain-badge-pill">🔵 Arc Testnet</div>
     <div class="chain-badge-pill">Ξ Ethereum</div>
@@ -957,74 +879,33 @@
   <section class="section section-alt" aria-labelledby="hiw-heading">
     <div class="section-inner">
       <header class="section-header">
-        <div class="section-tag">⚡ Simple by Design</div>
-        <h2 class="section-title" id="hiw-heading">How It Works</h2>
-        <p class="section-sub">From wallet connection to gift delivery — four steps, seconds on Arc.</p>
+        <div class="section-tag" data-i18n="hiw_tag">Simple by Design</div>
+        <h2 class="section-title" id="hiw-heading" data-i18n="hiw_title">How It Works</h2>
+        <p class="section-sub" data-i18n="hiw_sub">From wallet connection to gift delivery — four steps, seconds on Arc.</p>
       </header>
       <div class="steps-row">
-        <div class="step-card">
-          <div class="step-num">01</div>
-          <h4>Connect Wallet</h4>
-          <p>Link your MetaMask or Web3 wallet. Switch to any supported chain in one click.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">02</div>
-          <h4>Choose Gift Type</h4>
-          <p>Birthday, Milestone, Holiday, Family — pick what fits the moment. Add a personal card.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">03</div>
-          <h4>Lock USDC</h4>
-          <p>Enter amount and unlock date. USDC is locked on-chain. No middlemen.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">04</div>
-          <h4>Share & Schedule</h4>
-          <p>Share via WhatsApp, Telegram, or SMS. Schedule for the perfect moment across timezones.</p>
-        </div>
+        <div class="step-card"><div class="step-num">01</div><h4 data-i18n="step1_t">Connect Wallet</h4><p data-i18n="step1_p">Link your MetaMask or Web3 wallet. Switch to any supported chain in one click.</p></div>
+        <div class="step-card"><div class="step-num">02</div><h4 data-i18n="step2_t">Choose Gift Type</h4><p data-i18n="step2_p">Birthday, Milestone, Holiday, Family — pick what fits the moment. Add a personal card.</p></div>
+        <div class="step-card"><div class="step-num">03</div><h4 data-i18n="step3_t">Lock USDC</h4><p data-i18n="step3_p">Enter amount and unlock date. USDC is locked on-chain. No middlemen.</p></div>
+        <div class="step-card"><div class="step-num">04</div><h4 data-i18n="step4_t">Share & Schedule</h4><p data-i18n="step4_p">Share via WhatsApp, Telegram, or SMS. Schedule for the perfect moment across timezones.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════ CONSUMER GIFTING OVERVIEW ═══════════════ -->
+  <!-- ═══════════════ CONSUMER GIFTING ═══════════════ -->
   <section class="section" id="gifting" aria-labelledby="gifting-heading">
     <div class="section-inner">
       <header class="section-header">
-        <div class="section-tag">🎁 Consumer Gifting</div>
-        <h2 class="section-title" id="gifting-heading">Gift That Means Something</h2>
-        <p class="section-sub">Five vault types for every milestone. Lock USDC, add a personal e-card, schedule delivery.</p>
+        <div class="section-tag" data-i18n="gift_tag">Consumer Gifting</div>
+        <h2 class="section-title" id="gifting-heading" data-i18n="gift_title">Gift That Means Something</h2>
+        <p class="section-sub" data-i18n="gift_sub">Five vault types for every milestone. Lock USDC, add a personal e-card, schedule delivery.</p>
       </header>
       <div class="cards-grid">
-        <button class="gift-card" onclick="openGiftVault('birthday')" aria-label="Open Birthday Vault">
-          <div class="gift-card-icon">🎂</div>
-          <div class="gift-card-title">Birthday Vault</div>
-          <div class="gift-card-desc">Lock USDC for someone's special day. Add a custom e-card, photos, voice, or video.</div>
-          <div class="gift-card-arrow"><span class="gift-card-cta">Create Gift →</span></div>
-        </button>
-        <button class="gift-card" onclick="openGiftVault('milestone')" aria-label="Open Milestone Vault">
-          <div class="gift-card-icon">🎓</div>
-          <div class="gift-card-title">Milestone Vault</div>
-          <div class="gift-card-desc">Graduation, wedding, promotion, retirement — mark life's big moments with USDC.</div>
-          <div class="gift-card-arrow"><span class="gift-card-cta">Create Gift →</span></div>
-        </button>
-        <button class="gift-card" onclick="openGiftVault('family')" aria-label="Open Family Allowance Vault">
-          <div class="gift-card-icon">👨‍👩‍👧</div>
-          <div class="gift-card-title">Family Allowance</div>
-          <div class="gift-card-desc">Set recurring gifts for family members. Schedule weekly, monthly, or on any date.</div>
-          <div class="gift-card-arrow"><span class="gift-card-cta">Create Gift →</span></div>
-        </button>
-        <button class="gift-card" onclick="openGiftVault('memory')" aria-label="Open Memory Vault">
-          <div class="gift-card-icon">💌</div>
-          <div class="gift-card-title">Memory Vault</div>
-          <div class="gift-card-desc">Preserve a gift and a message for the future. Open it when the time is right.</div>
-          <div class="gift-card-arrow"><span class="gift-card-cta">Create Gift →</span></div>
-        </button>
-        <button class="gift-card" onclick="openGiftVault('holiday')" aria-label="Open Holiday Vault">
-          <div class="gift-card-icon">🎄</div>
-          <div class="gift-card-title">Holiday Vault</div>
-          <div class="gift-card-desc">Christmas, Eid, Diwali, Easter — gift USDC for every celebration.</div>
-          <div class="gift-card-arrow"><span class="gift-card-cta">Create Gift →</span></div>
-        </button>
+        <button class="gift-card" onclick="openGiftVault('birthday')"><div class="gift-card-icon">🎂</div><div class="gift-card-title" data-i18n="bday_t">Birthday Vault</div><div class="gift-card-desc" data-i18n="bday_d">Lock USDC for someone's special day. Add a custom e-card, photos, voice, or video.</div><div class="gift-card-arrow"><span class="gift-card-cta" data-i18n="create_gift">Create Gift →</span></div></button>
+        <button class="gift-card" onclick="openGiftVault('milestone')"><div class="gift-card-icon">🎓</div><div class="gift-card-title" data-i18n="mile_t">Milestone Vault</div><div class="gift-card-desc" data-i18n="mile_d">Graduation, wedding, promotion, retirement — mark life's big moments with USDC.</div><div class="gift-card-arrow"><span class="gift-card-cta" data-i18n="create_gift">Create Gift →</span></div></button>
+        <button class="gift-card" onclick="openGiftVault('family')"><div class="gift-card-icon">👨‍👩‍👧</div><div class="gift-card-title" data-i18n="fam_t">Family Allowance</div><div class="gift-card-desc" data-i18n="fam_d">Set recurring gifts for family members. Schedule weekly, monthly, or on any date.</div><div class="gift-card-arrow"><span class="gift-card-cta" data-i18n="create_gift">Create Gift →</span></div></button>
+        <button class="gift-card" onclick="openGiftVault('memory')"><div class="gift-card-icon">💌</div><div class="gift-card-title" data-i18n="mem_t">Memory Vault</div><div class="gift-card-desc" data-i18n="mem_d">Preserve a gift and a message for the future. Open it when the time is right.</div><div class="gift-card-arrow"><span class="gift-card-cta" data-i18n="create_gift">Create Gift →</span></div></button>
+        <button class="gift-card" onclick="openGiftVault('holiday')"><div class="gift-card-icon">🎄</div><div class="gift-card-title" data-i18n="hol_t">Holiday Vault</div><div class="gift-card-desc" data-i18n="hol_d">Christmas, Eid, Diwali, Easter — gift USDC for every celebration.</div><div class="gift-card-arrow"><span class="gift-card-cta" data-i18n="create_gift">Create Gift →</span></div></button>
       </div>
     </div>
   </section>
@@ -1033,84 +914,46 @@
   <section class="section section-alt" id="chainsplit" aria-labelledby="split-heading">
     <div class="section-inner">
       <header class="section-header">
-        <div class="section-tag">💸 ChainSplit</div>
-        <h2 class="section-title" id="split-heading">Split Any Bill. Instantly.</h2>
-        <p class="section-sub">Dinner, rent, trips — settle it in USDC on any chain in seconds. Equal or custom splits.</p>
+        <div class="section-tag" data-i18n="split_tag">ChainSplit</div>
+        <h2 class="section-title" id="split-heading" data-i18n="split_title">Split Any Bill. Instantly.</h2>
+        <p class="section-sub" data-i18n="split_sub">Dinner, rent, trips — settle it in USDC on any chain in seconds. Equal or custom splits.</p>
       </header>
-
       <div class="two-col">
         <div class="glass-card">
-          <div class="card-header">
-            <span class="card-icon">✂️</span>
-            <h3>Create Bill Split</h3>
+          <div class="card-header"><span class="card-icon">✂️</span><h3 data-i18n="split_form_t">Create Bill Split</h3></div>
+          <div class="form-group"><label for="billAmount" data-i18n="split_amount">Total Bill Amount</label><div class="input-with-badge"><input type="number" id="billAmount" class="input-field" placeholder="0.00" min="0.01" step="0.01" /><span class="input-badge">USDC</span></div></div>
+          <div class="form-group"><label data-i18n="split_upload">Upload Bill <span class="optional">(optional)</span></label>
+            <input type="file" id="billFileInput" accept="image/*,.pdf" style="display:none" />
+            <div class="bill-upload-zone" id="billUploadZone"><span>🧾</span><span style="font-size:12px;color:var(--text-muted)" data-i18n="split_receipt">Click to attach receipt — PNG, JPG, PDF</span></div>
+            <div id="billFilePreview" style="display:none;font-size:12px;color:var(--emerald);margin-top:6px;"></div>
           </div>
-
-          <div class="form-group">
-            <label for="billAmount">Total Bill Amount</label>
-            <div class="input-with-badge">
-              <input type="number" id="billAmount" class="input-field" placeholder="0.00" min="0.01" step="0.01" aria-label="Total bill amount in USDC" />
-              <span class="input-badge">USDC</span>
-            </div>
+          <div class="split-type-toggle">
+            <button class="toggle-btn active" id="equalBtn" type="button">⚖️ Equal Split</button>
+            <button class="toggle-btn" id="customBtn" type="button">✏️ Custom Split</button>
           </div>
-
-          <!-- Bill Upload -->
-          <div class="form-group">
-            <label>Upload Bill <span class="optional">(optional)</span></label>
-            <input type="file" id="billFileInput" accept="image/png,image/jpeg,image/jpg,image/gif,image/webp,application/pdf,.pdf,.png,.jpg,.jpeg,.gif,.webp,.heic" style="display:none" />
-            <div class="bill-upload-zone" id="billUploadZone">
-              <span class="upload-zone-icon" style="font-size:22px;">🧾</span>
-              <span style="font-size:13px;color:var(--text-secondary);margin-left:8px;">Click to attach receipt — PNG, JPG, PDF, etc.</span>
-            </div>
-            <div id="billFilePreview" style="display:none;margin-top:8px;font-size:12px;color:var(--blue);padding:8px;background:rgba(10,102,255,0.06);border-radius:8px;"></div>
-          </div>
-
-          <div class="split-type-toggle" role="group" aria-label="Split type">
-            <button class="toggle-btn active" id="equalBtn" type="button" aria-pressed="true">⚖️ Equal Split</button>
-            <button class="toggle-btn" id="customBtn" type="button" aria-pressed="false">✏️ Custom Split</button>
-          </div>
-
-          <div id="recipientList" class="recipient-list" aria-label="Recipients">
+          <div class="recipient-list" id="recipientList">
             <div class="recipient-row">
-              <input type="text" class="input-field recipient-addr" placeholder="Wallet address 0x…" autocomplete="off" spellcheck="false" aria-label="Recipient wallet address" />
-              <input type="number" class="input-field recipient-amount" placeholder="0.00" min="0.01" step="0.01" readonly aria-label="Amount" />
-              <button class="remove-btn" type="button" title="Remove" aria-label="Remove recipient">✕</button>
+              <input type="text" class="input-field recipient-addr" placeholder="Wallet address 0x…" autocomplete="off" spellcheck="false" />
+              <input type="number" class="input-field recipient-amount" placeholder="0.00" min="0.01" step="0.01" readonly />
+              <button class="remove-btn" type="button" title="Remove">✕</button>
             </div>
           </div>
-
-          <button class="btn-ghost full-width" id="addRecipientBtn" type="button">+ Add Recipient <span id="recipientCountLabel" style="font-size:11px;color:var(--text-muted);margin-left:4px;">(1 / 10)</span></button>
-
+          <button class="btn-ghost full-width" id="addRecipientBtn" type="button">+ Add Recipient <span id="recipientCountLabel" style="font-size:10px;color:var(--text-muted);margin-left:4px;">(1 / 10)</span></button>
           <div class="split-summary" id="splitSummary" style="display:none" aria-live="polite">
             <div class="summary-row"><span>Total:</span><span id="summaryTotal">$0.00</span></div>
             <div class="summary-row"><span>Recipients:</span><span id="summaryCount">0</span></div>
             <div class="summary-row"><span>Each Pays:</span><span id="summaryEach">$0.00</span></div>
           </div>
-
-          <button class="btn-primary full-width" id="splitBtn" type="button" style="margin-top:16px">Split Bill 💸</button>
-          <p class="form-note">Contract required. <a href="#about" id="splitLearnMoreLink" style="color:var(--blue);text-decoration:none;">Deploy on Arc Testnet — Learn more ↓</a></p>
+          <button class="btn-primary full-width" id="splitBtn" type="button" style="margin-top:14px" data-i18n="split_btn">Split Bill 💸</button>
+          <p class="form-note">Contract required. <a href="#about" id="splitLearnMoreLink" style="color:var(--accent);text-decoration:none;">Deploy on Arc Testnet — Learn more ↓</a></p>
         </div>
-
         <div class="glass-card">
-          <div class="card-header">
-            <span class="card-icon">⚡</span>
-            <h3>How ChainSplit Works</h3>
-          </div>
-          <ol class="steps" aria-label="How ChainSplit works" style="list-style:none;">
-            <li style="display:flex;gap:14px;margin-bottom:20px;align-items:flex-start;">
-              <div class="step-num" style="flex-shrink:0">01</div>
-              <div><h4 style="font-size:14px;font-weight:700;margin-bottom:4px;">Enter Bill Amount</h4><p style="font-size:13px;color:var(--text-secondary)">Type the total in USDC. Stable. No price guessing.</p></div>
-            </li>
-            <li style="display:flex;gap:14px;margin-bottom:20px;align-items:flex-start;">
-              <div class="step-num" style="flex-shrink:0">02</div>
-              <div><h4 style="font-size:14px;font-weight:700;margin-bottom:4px;">Add Wallets</h4><p style="font-size:13px;color:var(--text-secondary)">Paste friends' wallet addresses. Equal or custom split.</p></div>
-            </li>
-            <li style="display:flex;gap:14px;margin-bottom:20px;align-items:flex-start;">
-              <div class="step-num" style="flex-shrink:0">03</div>
-              <div><h4 style="font-size:14px;font-weight:700;margin-bottom:4px;">One-Click Split</h4><p style="font-size:13px;color:var(--text-secondary)">One transaction. Everyone paid instantly. Arc finality in under a second.</p></div>
-            </li>
-            <li style="display:flex;gap:14px;align-items:flex-start;">
-              <div class="step-num" style="flex-shrink:0">04</div>
-              <div><h4 style="font-size:14px;font-weight:700;margin-bottom:4px;">6 Chains</h4><p style="font-size:13px;color:var(--text-secondary)">Arc, Ethereum, Base, Polygon, Arbitrum, Optimism — your choice.</p></div>
-            </li>
+          <div class="card-header"><span class="card-icon">⚡</span><h3 data-i18n="split_how">How ChainSplit Works</h3></div>
+          <ol style="list-style:none;">
+            <li style="display:flex;gap:12px;margin-bottom:18px;align-items:flex-start;"><div class="step-num" style="flex-shrink:0">01</div><div><h4 style="font-size:13px;font-weight:700;margin-bottom:3px;" data-i18n="sh1_t">Enter Bill Amount</h4><p style="font-size:12px;color:var(--text-secondary)" data-i18n="sh1_p">Type the total in USDC. Stable. No price guessing.</p></div></li>
+            <li style="display:flex;gap:12px;margin-bottom:18px;align-items:flex-start;"><div class="step-num" style="flex-shrink:0">02</div><div><h4 style="font-size:13px;font-weight:700;margin-bottom:3px;" data-i18n="sh2_t">Add Wallets</h4><p style="font-size:12px;color:var(--text-secondary)" data-i18n="sh2_p">Paste friends' wallet addresses. Equal or custom split.</p></div></li>
+            <li style="display:flex;gap:12px;margin-bottom:18px;align-items:flex-start;"><div class="step-num" style="flex-shrink:0">03</div><div><h4 style="font-size:13px;font-weight:700;margin-bottom:3px;" data-i18n="sh3_t">One-Click Split</h4><p style="font-size:12px;color:var(--text-secondary)" data-i18n="sh3_p">One transaction. Everyone paid instantly. Arc finality in under a second.</p></div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start;"><div class="step-num" style="flex-shrink:0">04</div><div><h4 style="font-size:13px;font-weight:700;margin-bottom:3px;" data-i18n="sh4_t">6 Chains</h4><p style="font-size:12px;color:var(--text-secondary)" data-i18n="sh4_p">Arc, Ethereum, Base, Polygon, Arbitrum, Optimism — your choice.</p></div></li>
           </ol>
         </div>
       </div>
@@ -1121,55 +964,27 @@
   <section class="section" id="business" aria-labelledby="biz-heading">
     <div class="section-inner">
       <header class="section-header">
-        <div class="section-tag">🏢 For Business</div>
-        <h2 class="section-title" id="biz-heading">Enterprise Gift Infrastructure</h2>
-        <p class="section-sub">Bulk gifting, brand campaigns, employee rewards — at scale, on-chain, in USDC.</p>
+        <div class="section-tag" data-i18n="biz_tag">For Business</div>
+        <h2 class="section-title" id="biz-heading" data-i18n="biz_title">Enterprise Gift Infrastructure</h2>
+        <p class="section-sub" data-i18n="biz_sub">Bulk gifting, brand campaigns, employee rewards — at scale, on-chain, in USDC.</p>
       </header>
-
-      <div class="testnet-banner">Running on Arc Testnet now — additional features coming soon</div>
-
+      <div class="testnet-banner" data-i18n="testnet_msg">Running on Arc Testnet now — additional features coming soon</div>
       <div class="biz-features">
-        <div class="biz-feature">
-          <div class="biz-feature-icon">📋</div>
-          <div class="biz-feature-text"><h5>CSV / XLSX Upload</h5><p>Bulk upload recipient emails or wallet addresses. Send thousands of gifts in one transaction batch.</p></div>
-        </div>
-        <div class="biz-feature">
-          <div class="biz-feature-icon">📅</div>
-          <div class="biz-feature-text"><h5>Campaign Scheduling</h5><p>Schedule gift campaigns for employee birthdays, loyalty milestones, or seasonal events — automatically.</p></div>
-        </div>
-        <div class="biz-feature">
-          <div class="biz-feature-icon">📦</div>
-          <div class="biz-feature-text"><h5>Delivery Tracking</h5><p>Monitor delivery status for every recipient in real time. On-chain transparency, enterprise dashboard.</p></div>
-        </div>
-        <div class="biz-feature">
-          <div class="biz-feature-icon">🎨</div>
-          <div class="biz-feature-text"><h5>Custom Branding</h5><p>Upload your logo. Customise gift card colours and messaging to match your brand identity.</p></div>
-        </div>
-        <div class="biz-feature">
-          <div class="biz-feature-icon">👥</div>
-          <div class="biz-feature-text"><h5>Team Accounts</h5><p>Multi-user access with role-based permissions. Finance, HR, and marketing teams — all in one dashboard.</p></div>
-        </div>
-        <div class="biz-feature">
-          <div class="biz-feature-icon">💰</div>
-          <div class="biz-feature-text"><h5>Budget Controls</h5><p>Set spending limits per department, per campaign, or per recipient. Full control over your gifting budget.</p></div>
-        </div>
-        <div class="biz-feature">
-          <div class="biz-feature-icon">✅</div>
-          <div class="biz-feature-text"><h5>Approval Workflows</h5><p>Multi-step approval chains for large campaigns. Compliance-ready for enterprise procurement.</p></div>
-        </div>
-        <div class="biz-feature">
-          <div class="biz-feature-icon">🔗</div>
-          <div class="biz-feature-text"><h5>API Integration</h5><p>Connect GrandPay Vault to your HRMS, CRM, or loyalty platform via REST API. Automate at scale.</p></div>
-        </div>
+        <div class="biz-feature"><div class="biz-feature-icon">📋</div><div class="biz-feature-text"><h5>CSV / XLSX Upload</h5><p>Bulk upload recipient emails or wallet addresses. Send thousands of gifts in one batch.</p></div></div>
+        <div class="biz-feature"><div class="biz-feature-icon">📅</div><div class="biz-feature-text"><h5>Campaign Scheduling</h5><p>Schedule gift campaigns for birthdays, loyalty milestones, or seasonal events.</p></div></div>
+        <div class="biz-feature"><div class="biz-feature-icon">📦</div><div class="biz-feature-text"><h5>Delivery Tracking</h5><p>Monitor delivery status in real time. On-chain transparency, enterprise dashboard.</p></div></div>
+        <div class="biz-feature"><div class="biz-feature-icon">🎨</div><div class="biz-feature-text"><h5>Custom Branding</h5><p>Upload your logo. Customise gift card colours and messaging to match your brand.</p></div></div>
+        <div class="biz-feature"><div class="biz-feature-icon">👥</div><div class="biz-feature-text"><h5>Team Accounts</h5><p>Multi-user access with role-based permissions. Finance, HR, and marketing teams.</p></div></div>
+        <div class="biz-feature"><div class="biz-feature-icon">💰</div><div class="biz-feature-text"><h5>Budget Controls</h5><p>Set spending limits per department, campaign, or recipient.</p></div></div>
+        <div class="biz-feature"><div class="biz-feature-icon">✅</div><div class="biz-feature-text"><h5>Approval Workflows</h5><p>Multi-step approval chains. Compliance-ready for enterprise procurement.</p></div></div>
+        <div class="biz-feature"><div class="biz-feature-icon">🔗</div><div class="biz-feature-text"><h5>API Integration</h5><p>Connect GrandPay Vault to your HRMS, CRM, or loyalty platform via REST API.</p></div></div>
       </div>
-
-      <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:16px;">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:16px;">
         <a href="mailto:marvellgregory85@gmail.com?subject=GrandPay%20Business%20Enquiry" class="btn-primary">📧 Contact for Business</a>
         <a href="https://t.me/Minerbtc1985" target="_blank" rel="noopener noreferrer" class="btn-secondary">✈️ Talk on Telegram</a>
       </div>
-
       <div style="margin-top:48px;">
-        <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;text-align:center;margin-bottom:28px;">Use Cases</h3>
+        <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;text-align:center;margin-bottom:24px;" data-i18n="biz_uc">Use Cases</h3>
         <div class="cards-grid">
           <div class="arc-card"><div class="arc-card-icon">🏆</div><h4>Employee Rewards</h4><p>Recognise performance with instant USDC gifts. Stable, transparent, instant.</p></div>
           <div class="arc-card"><div class="arc-card-icon">📈</div><h4>Sales Incentives</h4><p>Automate commission payments and sales bonuses on-chain.</p></div>
@@ -1180,15 +995,15 @@
     </div>
   </section>
 
-  <!-- ═══════════════ MARKETPLACE ═══════════════ -->
+  <!-- MARKETPLACE -->
   <section class="section section-alt" id="marketplace" aria-labelledby="market-heading">
     <div class="section-inner">
       <header class="section-header">
-        <div class="section-tag">🛍 Spend with Partners</div>
-        <h2 class="section-title" id="market-heading">Gift Cards Marketplace</h2>
-        <p class="section-sub">Pay in USDC. Receive gift vouchers from world-class brands. Simple.</p>
+        <div class="section-tag" data-i18n="mkt_tag">Spend with Partners</div>
+        <h2 class="section-title" id="market-heading" data-i18n="mkt_title">Gift Cards Marketplace</h2>
+        <p class="section-sub" data-i18n="mkt_sub">Pay in USDC. Receive gift vouchers from world-class brands. Simple.</p>
       </header>
-      <div class="testnet-banner">Running on Arc Testnet now — additional features coming soon</div>
+      <div class="testnet-banner" data-i18n="testnet_msg">Running on Arc Testnet now — additional features coming soon</div>
       <div class="partner-grid">
         <div class="partner-tile"><div class="partner-tile-icon">🛒</div><div class="partner-tile-name">Amazon</div><div class="coming-soon-tag">Coming Soon</div></div>
         <div class="partner-tile"><div class="partner-tile-icon">🍔</div><div class="partner-tile-name">DoorDash</div><div class="coming-soon-tag">Coming Soon</div></div>
@@ -1203,56 +1018,30 @@
         <div class="partner-tile"><div class="partner-tile-icon">☕</div><div class="partner-tile-name">Starbucks</div><div class="coming-soon-tag">Coming Soon</div></div>
         <div class="partner-tile"><div class="partner-tile-icon">🎮</div><div class="partner-tile-name">Steam</div><div class="coming-soon-tag">Coming Soon</div></div>
       </div>
-      <div style="text-align:center;margin-top:28px;">
-        <p style="font-size:14px;color:var(--text-secondary);">Planned integrations via <strong>Bitrefill</strong> & <strong>Tremendous</strong> — <span class="coming-soon-tag" style="margin:0 4px;">Coming Soon</span></p>
+      <div style="text-align:center;margin-top:24px;">
+        <p style="font-size:13px;color:var(--text-secondary);">Planned integrations via <strong>Bitrefill</strong> &amp; <strong>Tremendous</strong> — <span class="coming-soon-tag" style="margin:0 4px;">Coming Soon</span></p>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════ TRAVEL ═══════════════ -->
+  <!-- TRAVEL -->
   <section class="section" id="travel" aria-labelledby="travel-heading">
     <div class="section-inner">
       <header class="section-header">
-        <div class="section-tag">✈️ Travel Gift</div>
+        <div class="section-tag">Travel Gift</div>
         <h2 class="section-title" id="travel-heading">Book Travel. Pay in USDC. Gift Memories.</h2>
         <p class="section-sub">Flights, hotels, holiday packages, honeymoons, pilgrimages — gift the world to your loved ones.</p>
       </header>
       <div class="testnet-banner">Running on Arc Testnet now — additional features coming soon</div>
       <div class="cards-grid-5" style="margin-bottom:40px;">
-        <div class="gift-card" style="cursor:default;">
-          <div class="gift-card-icon">✈️</div>
-          <div class="gift-card-title">Flights</div>
-          <div class="gift-card-desc">Gift a flight ticket anywhere in the world, paid in USDC.</div>
-          <div class="coming-soon-tag">Coming Soon</div>
-        </div>
-        <div class="gift-card" style="cursor:default;">
-          <div class="gift-card-icon">🏨</div>
-          <div class="gift-card-title">Hotels</div>
-          <div class="gift-card-desc">Book a hotel stay as a gift. Surprise someone with a weekend away.</div>
-          <div class="coming-soon-tag">Coming Soon</div>
-        </div>
-        <div class="gift-card" style="cursor:default;">
-          <div class="gift-card-icon">🌴</div>
-          <div class="gift-card-title">Holiday Packages</div>
-          <div class="gift-card-desc">Complete vacation bundles — flights, hotels, transfers — all in USDC.</div>
-          <div class="coming-soon-tag">Coming Soon</div>
-        </div>
-        <div class="gift-card" style="cursor:default;">
-          <div class="gift-card-icon">💍</div>
-          <div class="gift-card-title">Honeymoon Gift</div>
-          <div class="gift-card-desc">The most romantic gift you can give. A honeymoon funded by USDC.</div>
-          <div class="coming-soon-tag">Coming Soon</div>
-        </div>
-        <div class="gift-card" style="cursor:default;">
-          <div class="gift-card-icon">🕌</div>
-          <div class="gift-card-title">Pilgrimage Gift</div>
-          <div class="gift-card-desc">Fund a loved one's sacred journey — Hajj, Umrah, Camino, or any pilgrimage.</div>
-          <div class="coming-soon-tag">Coming Soon</div>
-        </div>
+        <div class="gift-card" style="cursor:default;"><div class="gift-card-icon">✈️</div><div class="gift-card-title">Flights</div><div class="gift-card-desc">Gift a flight ticket anywhere in the world, paid in USDC.</div><div class="coming-soon-tag">Coming Soon</div></div>
+        <div class="gift-card" style="cursor:default;"><div class="gift-card-icon">🏨</div><div class="gift-card-title">Hotels</div><div class="gift-card-desc">Book a hotel stay as a gift. Surprise someone with a weekend away.</div><div class="coming-soon-tag">Coming Soon</div></div>
+        <div class="gift-card" style="cursor:default;"><div class="gift-card-icon">🌴</div><div class="gift-card-title">Holiday Packages</div><div class="gift-card-desc">Complete vacation bundles — flights, hotels, transfers — all in USDC.</div><div class="coming-soon-tag">Coming Soon</div></div>
+        <div class="gift-card" style="cursor:default;"><div class="gift-card-icon">💍</div><div class="gift-card-title">Honeymoon Gift</div><div class="gift-card-desc">The most romantic gift you can give. A honeymoon funded by USDC.</div><div class="coming-soon-tag">Coming Soon</div></div>
+        <div class="gift-card" style="cursor:default;"><div class="gift-card-icon">🕌</div><div class="gift-card-title">Pilgrimage Gift</div><div class="gift-card-desc">Fund a loved one&#39;s sacred journey — Hajj, Umrah, Camino, or any pilgrimage.</div><div class="coming-soon-tag">Coming Soon</div></div>
       </div>
-
-      <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;text-align:center;margin-bottom:20px;">Travel Partners</h3>
-      <div class="partner-grid" style="grid-template-columns:repeat(auto-fill,minmax(140px,1fr));">
+      <h3 style="font-family:var(--font-display);font-size:17px;font-weight:700;text-align:center;margin-bottom:16px;">Travel Partners</h3>
+      <div class="partner-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr));">
         <div class="partner-tile"><div class="partner-tile-icon">🌐</div><div class="partner-tile-name">Travala</div><div class="coming-soon-tag">Coming Soon</div></div>
         <div class="partner-tile"><div class="partner-tile-icon">✈️</div><div class="partner-tile-name">Alternative Airlines</div><div class="coming-soon-tag">Coming Soon</div></div>
         <div class="partner-tile"><div class="partner-tile-icon">💸</div><div class="partner-tile-name">CheapAir</div><div class="coming-soon-tag">Coming Soon</div></div>
@@ -1263,24 +1052,24 @@
     </div>
   </section>
 
-  <!-- ═══════════════ ABOUT ARC ═══════════════ -->
+  <!-- ABOUT ARC -->
   <section class="section section-alt" id="about" aria-labelledby="about-heading">
     <div class="section-inner">
       <header class="section-header">
         <div class="section-tag">About Arc</div>
         <h2 class="section-title" id="about-heading">Built on Arc Testnet</h2>
-        <p class="section-sub">Arc is Circle's Layer-1 blockchain, built for USDC-native finance.</p>
+        <p class="section-sub">Arc is Circle&#39;s Layer-1 blockchain, built for USDC-native finance.</p>
       </header>
       <div class="arc-grid">
         <article class="arc-card"><div class="arc-card-icon">⚡</div><h4>Sub-Second Finality</h4><p>Arc delivers deterministic finality in under 1 second. Your gift arrives before the moment ends.</p></article>
-        <article class="arc-card"><div class="arc-card-icon">💵</div><h4>USDC for Gas</h4><p>No volatile native token for fees. Arc uses USDC — so you always know exactly what you're paying.</p></article>
-        <article class="arc-card"><div class="arc-card-icon">🏛️</div><h4>Institutional Backing</h4><p>Arc is backed by leading global financial institutions and technology partners. See <a href="https://www.arc.io/ecosystem" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:underline;">arc.io/ecosystem</a> for the current partner list.</p></article>
+        <article class="arc-card"><div class="arc-card-icon">💵</div><h4>USDC for Gas</h4><p>No volatile native token for fees. Arc uses USDC — so you always know exactly what you&#39;re paying.</p></article>
+        <article class="arc-card"><div class="arc-card-icon">🏛️</div><h4>Institutional Backing</h4><p>Arc is backed by leading global financial institutions and technology partners. See <a href="https://www.arc.io/ecosystem" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">arc.io/ecosystem</a> for the current partner list.</p></article>
         <article class="arc-card"><div class="arc-card-icon">🔗</div><h4>EVM Compatible</h4><p>Full Solidity support. Deploy with Remix, Hardhat, or Foundry. Familiar tooling, new chain.</p></article>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════ TRUST STATS ═══════════════ -->
+  <!-- TRUST STATS -->
   <section class="section" aria-label="Trust statistics">
     <div class="section-inner">
       <div class="trust-row">
@@ -1290,116 +1079,54 @@
     </div>
   </section>
 
-  <!-- ═══════════════ SUPPORT ═══════════════ -->
+  <!-- SUPPORT -->
   <section class="section section-alt" id="support" aria-labelledby="support-heading">
     <div class="section-inner">
       <header class="section-header">
-        <div class="section-tag">💬 Support</div>
-        <h2 class="section-title" id="support-heading">We're Here to Help</h2>
-        <p class="section-sub">Reach out via any channel. We'll respond quickly.</p>
+        <div class="section-tag">Support</div>
+        <h2 class="section-title" id="support-heading">We&#39;re Here to Help</h2>
+        <p class="section-sub">Reach out via any channel. We&#39;ll respond quickly.</p>
       </header>
       <div class="support-cards">
-        <a class="support-card" href="mailto:marvellgregory85@gmail.com?subject=GrandPay%20Vault%20Support" aria-label="Send email support">
-          <div class="support-card-icon">📧</div>
-          <div class="support-card-title">Email</div>
-          <div class="support-card-sub">marvellgregory85@gmail.com<br>Opens your default mail app</div>
-        </a>
-        <a class="support-card" href="https://t.me/Minerbtc1985" target="_blank" rel="noopener noreferrer" aria-label="Message on Telegram">
-          <div class="support-card-icon">✈️</div>
-          <div class="support-card-title">Telegram</div>
-          <div class="support-card-sub">@Minerbtc1985<br>Opens Telegram app</div>
-        </a>
-        <a class="support-card" href="https://wa.me/message/placeholder" target="_blank" rel="noopener noreferrer" aria-label="Message on WhatsApp">
-          <div class="support-card-icon">💬</div>
-          <div class="support-card-title">WhatsApp</div>
-          <div class="support-card-sub">Click to open WhatsApp<br>Quick response</div>
-        </a>
-        <a class="support-card" href="https://x.com/YoungestGrandad" target="_blank" rel="noopener noreferrer" aria-label="Follow on X (Twitter)">
-          <div class="support-card-icon">𝕏</div>
-          <div class="support-card-title">X / Twitter</div>
-          <div class="support-card-sub">@YoungestGrandad<br>DMs open</div>
-        </a>
+        <a class="support-card" href="mailto:marvellgregory85@gmail.com?subject=GrandPay%20Vault%20Support"><div class="support-card-icon">📧</div><div class="support-card-title">Email</div><div class="support-card-sub">marvellgregory85@gmail.com</div></a>
+        <a class="support-card" href="https://t.me/Minerbtc1985" target="_blank" rel="noopener noreferrer"><div class="support-card-icon">✈️</div><div class="support-card-title">Telegram</div><div class="support-card-sub">@Minerbtc1985</div></a>
+        <a class="support-card" href="https://wa.me/message/placeholder" target="_blank" rel="noopener noreferrer"><div class="support-card-icon">💬</div><div class="support-card-title">WhatsApp</div><div class="support-card-sub">Quick response</div></a>
+        <a class="support-card" href="https://x.com/YoungestGrandad" target="_blank" rel="noopener noreferrer"><div class="support-card-icon">𝕏</div><div class="support-card-title">X / Twitter</div><div class="support-card-sub">@YoungestGrandad</div></a>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════ FAQ ═══════════════ -->
+  <!-- FAQ -->
   <section class="section" id="faq" aria-labelledby="faq-heading">
     <div class="section-inner">
       <header class="section-header">
-        <div class="section-tag">❓ FAQ</div>
+        <div class="section-tag">FAQ</div>
         <h2 class="section-title" id="faq-heading">Frequently Asked Questions</h2>
       </header>
       <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-q" type="button">What is GrandPay Vault? <span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>GrandPay Vault is a Web3 gifting platform built on Arc — Circle's Layer-1 blockchain. You can lock USDC as a gift, split bills, shop with partners, and book travel — all powered by stable USDC across 6 chains.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" type="button">What is Arc? <span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Arc is Circle's Layer-1 blockchain, designed for USDC-native finance. It offers sub-second finality and USDC for gas fees. See arc.io for the latest on institutional backing and mainnet timing.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" type="button">Do I need crypto knowledge to use this? <span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>You'll need a Web3 wallet like MetaMask and some USDC to get started. Once connected, the experience is as simple as any payment app. We're working on a fiat on-ramp to make it even easier.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" type="button">Is GrandPay Vault live? <span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Yes — the core Gift Vault and ChainSplit features are live on Arc Testnet right now. The marketplace, travel, and corporate gifting features are planned for Arc Mainnet. See <a href="https://www.arc.io" target="_blank" rel="noopener noreferrer" style="color:var(--blue);">arc.io</a> for the latest on mainnet timing.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" type="button">What chains are supported? <span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Arc Testnet, Ethereum, Base, Polygon, Arbitrum, and Optimism. Switch chains from the dropdown in the navbar. Arc is the primary chain and offers the best experience with sub-second finality.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" type="button">How is my USDC kept safe? <span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>USDC is locked in a non-custodial smart contract. Only the designated recipient can withdraw it after the unlock date. No platform intermediary controls your funds at any time.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" type="button">How can my business use GrandPay Vault? <span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>The Business section offers bulk gifting via CSV/XLSX upload, custom branding, campaign scheduling, budget controls, and approval workflows. Contact us via email or Telegram to discuss enterprise onboarding.</p></div>
-        </div>
+        <div class="faq-item"><button class="faq-q" type="button">What is GrandPay Vault? <span class="faq-icon">+</span></button><div class="faq-a"><p>GrandPay Vault is a Web3 gifting platform built on Arc — Circle&#39;s Layer-1 blockchain. You can lock USDC as a gift, split bills, shop with partners, and book travel — all powered by stable USDC across 6 chains.</p></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">What is Arc? <span class="faq-icon">+</span></button><div class="faq-a"><p>Arc is Circle&#39;s Layer-1 blockchain, designed for USDC-native finance. It offers sub-second finality and USDC for gas fees. See <a href="https://www.arc.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">arc.io</a> for the latest on institutional backing and mainnet timing.</p></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">Do I need crypto knowledge? <span class="faq-icon">+</span></button><div class="faq-a"><p>You&#39;ll need a Web3 wallet like MetaMask and some USDC to get started. Once connected, the experience is as simple as any payment app. We&#39;re working on a fiat on-ramp to make it even easier.</p></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">Is GrandPay Vault live? <span class="faq-icon">+</span></button><div class="faq-a"><p>Yes — the core Gift Vault and ChainSplit features are live on Arc Testnet right now. The marketplace, travel, and corporate gifting features are planned for Arc Mainnet. See <a href="https://www.arc.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">arc.io</a> for the latest on mainnet timing.</p></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">What chains are supported? <span class="faq-icon">+</span></button><div class="faq-a"><p>Arc Testnet, Ethereum, Base, Polygon, Arbitrum, and Optimism. Switch chains from the dropdown in the navbar. Arc is the primary chain.</p></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">How is my USDC kept safe? <span class="faq-icon">+</span></button><div class="faq-a"><p>USDC is locked in a non-custodial smart contract. Only the designated recipient can withdraw it after the unlock date. No platform intermediary controls your funds at any time.</p></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">How can my business use GrandPay Vault? <span class="faq-icon">+</span></button><div class="faq-a"><p>The Business section offers bulk gifting via CSV/XLSX upload, custom branding, campaign scheduling, budget controls, and approval workflows. Contact us via email or Telegram to discuss enterprise onboarding.</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <!-- FOOTER -->
   <footer class="footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-grid">
         <div class="footer-col">
-          <div class="footer-logo">
-            <span style="font-size:26px">🏦</span>
-            <div>
-              <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;">GrandPay Vault</div>
-              <div style="font-size:11px;color:var(--blue);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Built on Arc</div>
-            </div>
-          </div>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;margin-bottom:16px;">A cross-chain USDC gifting infrastructure layer. Built by the Youngest Grandad in Web3.</p>
-          <p style="font-size:12px;color:var(--text-muted);">Built on Arc</p>
+          <div class="footer-logo"><span style="font-size:24px">🏦</span><div><div style="font-family:var(--font-display);font-size:15px;font-weight:700;">GrandPay Vault</div><div style="font-size:10px;color:var(--accent);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Built on Arc</div></div></div>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7;margin-bottom:12px;">A cross-chain USDC gifting infrastructure layer. Built by the Youngest Grandad in Web3.</p>
+          <p style="font-size:11px;color:var(--text-muted);">Built on Arc</p>
         </div>
-        <div class="footer-col">
-          <h5>Products</h5>
-          <a href="#" onclick="openGiftVault('birthday');return false;">Gift Vault</a>
-          <a href="#chainsplit">ChainSplit</a>
-          <a href="#marketplace">Marketplace</a>
-          <a href="#travel">Travel Gift</a>
-          <a href="#business">For Business</a>
-        </div>
-        <div class="footer-col">
-          <h5>Resources</h5>
-          <a href="#about">About Arc</a>
-          <a href="#faq">FAQ</a>
-          <a href="https://arc.io" target="_blank" rel="noopener noreferrer">arc.io ↗</a>
-          <a href="https://github.com/marvellgregory" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-        </div>
-        <div class="footer-col">
-          <h5>Contact</h5>
-          <a href="mailto:marvellgregory85@gmail.com">📧 Email Us</a>
-          <a href="https://t.me/Minerbtc1985" target="_blank" rel="noopener noreferrer">✈️ Telegram</a>
-          <a href="https://x.com/YoungestGrandad" target="_blank" rel="noopener noreferrer">𝕏 @YoungestGrandad</a>
-          <a href="#support">💬 Support</a>
-        </div>
+        <div class="footer-col"><h5>Products</h5><a href="#" onclick="openGiftVault(&#39;birthday&#39;);return false;">Gift Vault</a><a href="#chainsplit">ChainSplit</a><a href="#marketplace">Marketplace</a><a href="#travel">Travel Gift</a><a href="#business">For Business</a></div>
+        <div class="footer-col"><h5>Resources</h5><a href="#about">About Arc</a><a href="#faq">FAQ</a><a href="https://www.arc.io" target="_blank" rel="noopener noreferrer">arc.io ↗</a><a href="https://github.com/marvellgregory" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+        <div class="footer-col"><h5>Contact</h5><a href="mailto:marvellgregory85@gmail.com">📧 Email Us</a><a href="https://t.me/Minerbtc1985" target="_blank" rel="noopener noreferrer">✈️ Telegram</a><a href="https://x.com/YoungestGrandad" target="_blank" rel="noopener noreferrer">𝕏 @YoungestGrandad</a><a href="#support">💬 Support</a></div>
       </div>
       <div class="footer-bottom">
         <p class="footer-credit">© 2025–2026 GrandPay Vault · Built by the Youngest Grandad in Web3 · USDC-Native · Multi-Chain</p>
@@ -1408,221 +1135,243 @@
     </div>
   </footer>
 
-  <!-- ═══════════════ SUCCESS MODAL ═══════════════ -->
-  <div class="modal-overlay" id="successModal" style="display:none" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+  <!-- MODALS -->
+  <div class="modal-overlay" id="successModal" style="display:none" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal">
-      <div class="modal-success-icon" aria-hidden="true">✅</div>
-      <h3 id="modalTitle" style="font-family:'Syne',sans-serif;text-align:center;margin-bottom:10px;">Transaction Successful!</h3>
-      <p id="modalMessage" style="text-align:center;font-size:14px;color:var(--text-secondary);margin-bottom:16px;">Your transaction has been confirmed.</p>
-      <div class="modal-tx">
-        <span style="font-size:12px;color:var(--text-muted);">Transaction Hash:</span>
-        <a id="modalTxLink" href="#" target="_blank" rel="noopener noreferrer" class="tx-hash" aria-label="View transaction on block explorer">—</a>
-      </div>
-      <button class="btn-primary full-width" id="modalCloseBtn" type="button" style="margin-top:16px;">Done 🎉</button>
+      <div class="modal-success-icon">✅</div>
+      <h3 id="modalTitle" style="font-family:var(--font-display);text-align:center;margin-bottom:10px;">Transaction Successful!</h3>
+      <p id="modalMessage" style="text-align:center;font-size:13px;color:var(--text-secondary);margin-bottom:14px;">Your transaction has been confirmed.</p>
+      <div class="modal-tx"><span style="font-size:11px;color:var(--text-muted);">Transaction Hash:</span><a id="modalTxLink" href="#" target="_blank" rel="noopener noreferrer" class="tx-hash">—</a></div>
+      <button class="btn-primary full-width" id="modalCloseBtn" type="button" style="margin-top:14px;">Done 🎉</button>
     </div>
   </div>
-
-  <!-- ═══════════════ NOTIFICATION TOAST ═══════════════ -->
   <div class="notification" id="notification" role="status" aria-live="polite" aria-atomic="true"></div>
 
-  <!-- ═══════════════ ETHERS.JS — MULTIPLE FALLBACKS ═══════════════ -->
-  <!-- Primary CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <!-- Fallback: jsDelivr -->
-  <script>
-    if (typeof ethers === 'undefined') {
-      var s = document.createElement('script');
-      s.src = 'https://cdn.jsdelivr.net/npm/ethers@6.7.0/dist/ethers.umd.min.js';
-      document.head.appendChild(s);
-    }
-  </script>
-  <!-- Fallback: unpkg -->
-  <script>
-    if (typeof ethers === 'undefined') {
-      var s2 = document.createElement('script');
-      s2.src = 'https://unpkg.com/ethers@6.7.0/dist/ethers.umd.min.js';
-      document.head.appendChild(s2);
-    }
-  </script>
+  <!-- ETHERS.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js" crossorigin="anonymous"></script>
+  <script>if(typeof ethers==='undefined'){var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/ethers@6.7.0/dist/ethers.umd.min.js';document.head.appendChild(s);}</script>
 
   <script>
     // ══════════════════════════════════════════
-    // GIFT VAULT PAGE LOGIC
+    // LANGUAGE SYSTEM
     // ══════════════════════════════════════════
-    const VAULT_TYPES = {
-      birthday: {
-        emoji: '🎂', label: 'Birthday Vault',
-        templates: ['Happy Birthday! 🎂', 'Many Happy Returns! 🎉', 'Wishing You Joy & Love 💕', 'To My Favourite Person 🌟', '— Custom Message —']
+    const TRANSLATIONS = {
+      es: {
+        nav_gift:"🎁 Bóveda de Regalos", nav_split:"Dividir", nav_biz:"Empresas", nav_shop:"Tienda", nav_travel:"Viajes", nav_arc:"Sobre Arc", nav_support:"Soporte", connect:"Conectar Billetera",
+        hero_tag:"En vivo en Arc Testnet · Nativo USDC · 6 Cadenas", hero_t1:"Regala. Divide. Ahorra.", hero_t2:"Entre Cadenas.", hero_sub:"Infraestructura de regalos USDC multicadena construida sobre Arc. Regala a cualquiera, en cualquier lugar.",
+        hero_cta1:"Enviar Regalo 🎁", hero_cta2:"Dividir Cuenta 💸", hero_cta3:"Empresas 🏢",
+        stat_chains:"Cadenas Soportadas", stat_finality:"Finalidad Arc",
+        hiw_tag:"Simple por Diseño", hiw_title:"Cómo Funciona", hiw_sub:"Desde conexión de billetera hasta entrega de regalo — cuatro pasos, segundos en Arc.",
+        step1_t:"Conectar Billetera", step1_p:"Conecta tu billetera MetaMask o Web3.", step2_t:"Elegir Tipo", step2_p:"Cumpleaños, Hito, Festivo, Familia.", step3_t:"Bloquear USDC", step3_p:"Ingresa monto y fecha. USDC bloqueado on-chain.", step4_t:"Compartir", step4_p:"Comparte vía WhatsApp, Telegram o SMS.",
+        gift_tag:"Regalos", gift_title:"Regalos con Significado", gift_sub:"Cinco tipos de bóveda para cada momento.",
+        bday_t:"Bóveda Cumpleaños", bday_d:"Bloquea USDC para el día especial de alguien.", mile_t:"Bóveda Hitos", mile_d:"Graduación, boda, ascenso — marca los grandes momentos.", fam_t:"Mesada Familiar", fam_d:"Regalos recurrentes para familiares.", mem_t:"Bóveda Recuerdos", mem_d:"Preserva un regalo y mensaje para el futuro.", hol_t:"Bóveda Festiva", hol_d:"Navidad, Eid, Diwali — regala USDC en cada celebración.", create_gift:"Crear Regalo →",
+        split_tag:"ChainSplit", split_title:"Divide Cualquier Cuenta.", split_sub:"Cena, alquiler, viajes — liquida en USDC en segundos.",
+        biz_tag:"Empresas", biz_title:"Infraestructura de Regalos", biz_sub:"Regalos masivos, campañas de marca, recompensas — a escala, on-chain.",
+        testnet_msg:"En Arc Testnet ahora — funciones adicionales próximamente",
+        mkt_tag:"Socios", mkt_title:"Marketplace de Gift Cards", mkt_sub:"Paga en USDC. Recibe vouchers de marcas mundiales.",
+        faq_tag:"FAQ", faq_title:"Preguntas Frecuentes", sup_tag:"Soporte", sup_title:"Estamos Aquí para Ayudar", sup_sub:"Contáctanos por cualquier canal."
       },
-      milestone: {
-        emoji: '🎓', label: 'Milestone Vault',
-        templates: ['Congratulations Graduate! 🎓', 'Wishing You Joy on Your Wedding Day 💍', 'Cheers to Your Promotion! 🚀', 'Happy Retirement — Enjoy Every Moment 🌅', '— Custom Message —']
+      fr: {
+        nav_gift:"🎁 Coffre-Cadeau", nav_split:"Partager", nav_biz:"Entreprises", nav_shop:"Boutique", nav_travel:"Voyage", nav_arc:"À propos d'Arc", nav_support:"Support", connect:"Connecter",
+        hero_tag:"En direct sur Arc Testnet · USDC-Natif · 6 Chaînes", hero_t1:"Offrir. Partager. Épargner.", hero_t2:"Entre Chaînes.", hero_sub:"Infrastructure de cadeaux USDC multi-chaînes construite sur Arc.",
+        hero_cta1:"Envoyer un Cadeau 🎁", hero_cta2:"Partager une Note 💸", hero_cta3:"Entreprises 🏢",
+        stat_chains:"Chaînes Supportées", stat_finality:"Finalité Arc",
+        hiw_tag:"Simple par Design", hiw_title:"Comment ça Marche", hiw_sub:"De la connexion du portefeuille à la livraison — quatre étapes.",
+        gift_tag:"Cadeaux", gift_title:"Des Cadeaux qui Comptent", gift_sub:"Cinq types de coffre pour chaque moment.",
+        create_gift:"Créer Cadeau →",
+        split_tag:"ChainSplit", split_title:"Partager N'importe quelle Note.", split_sub:"Dîner, loyer, voyages — réglez en USDC en secondes.",
+        biz_tag:"Entreprises", biz_title:"Infrastructure Cadeau Entreprise", biz_sub:"Cadeaux en masse, campagnes de marque, récompenses.",
+        testnet_msg:"Sur Arc Testnet maintenant — fonctionnalités supplémentaires bientôt",
+        faq_tag:"FAQ", faq_title:"Questions Fréquentes", sup_tag:"Support", sup_title:"Nous Sommes Là pour Vous", sup_sub:"Contactez-nous sur n'importe quel canal."
       },
-      family: {
-        emoji: '👨‍👩‍👧', label: 'Family Allowance',
-        templates: ['Your Weekly Allowance 💛', 'With Love from Home 🏡', 'For My Favourite Family ❤️', 'Keep Shining, Always 🌟', '— Custom Message —']
+      hi: {
+        nav_gift:"🎁 गिफ्ट वॉल्ट", nav_split:"बिल विभाजन", nav_biz:"व्यापार", nav_shop:"दुकान", nav_travel:"यात्रा", nav_arc:"Arc के बारे में", nav_support:"सहायता", connect:"वॉलेट कनेक्ट",
+        hero_tag:"Arc Testnet पर लाइव · USDC-नेटिव · 6 चेन", hero_t1:"गिफ्ट। बांटें। बचाएं।", hero_t2:"चेन के पार।", hero_sub:"Arc पर निर्मित क्रॉस-चेन USDC गिफ्टिंग इन्फ्रास्ट्रक्चर।",
+        hero_cta1:"गिफ्ट भेजें 🎁", hero_cta2:"बिल बांटें 💸", hero_cta3:"व्यापार 🏢",
+        stat_chains:"चेन समर्थित", stat_finality:"Arc अंतिमता",
+        hiw_tag:"सरल डिज़ाइन", hiw_title:"यह कैसे काम करता है", hiw_sub:"वॉलेट कनेक्शन से गिफ्ट डिलीवरी तक — चार कदम।",
+        gift_tag:"उपभोक्ता गिफ्टिंग", gift_title:"मायने रखने वाले गिफ्ट", gift_sub:"हर मील के पत्थर के लिए पांच वॉल्ट प्रकार।",
+        create_gift:"गिफ्ट बनाएं →",
+        faq_tag:"FAQ", faq_title:"अक्सर पूछे जाने वाले प्रश्न", sup_tag:"सहायता", sup_title:"हम मदद के लिए यहां हैं", sup_sub:"किसी भी चैनल पर संपर्क करें।"
       },
-      memory: {
-        emoji: '💌', label: 'Memory Vault',
-        templates: ['To Be Opened When You Need It 💌', 'A Gift From the Past with Love ❤️', 'Remember How Much You Are Loved 🌸', 'For the Future — From Today 🕰️', '— Custom Message —']
+      ar: {
+        nav_gift:"🎁 خزنة الهدايا", nav_split:"تقسيم", nav_biz:"للأعمال", nav_shop:"متجر", nav_travel:"سفر", nav_arc:"عن Arc", nav_support:"الدعم", connect:"ربط المحفظة",
+        hero_tag:"مباشر على Arc Testnet · USDC أصلي · 6 سلاسل", hero_t1:"أهدِ. اقسم. وفّر.", hero_t2:"عبر السلاسل.", hero_sub:"بنية تحتية للإهداء بـ USDC عبر السلاسل مبنية على Arc.",
+        hero_cta1:"أرسل هدية 🎁", hero_cta2:"اقسم فاتورة 💸", hero_cta3:"للأعمال 🏢",
+        stat_chains:"سلاسل مدعومة", stat_finality:"نهائية Arc",
+        hiw_tag:"بسيط بالتصميم", hiw_title:"كيف يعمل", hiw_sub:"من ربط المحفظة إلى تسليم الهدية — أربع خطوات.",
+        gift_tag:"الإهداء", gift_title:"هدايا ذات معنى", gift_sub:"خمسة أنواع خزنة لكل مناسبة.",
+        create_gift:"إنشاء هدية →",
+        faq_tag:"الأسئلة الشائعة", faq_title:"الأسئلة الشائعة", sup_tag:"الدعم", sup_title:"نحن هنا للمساعدة", sup_sub:"تواصل معنا عبر أي قناة."
       },
-      holiday: {
-        emoji: '🎄', label: 'Holiday Vault',
-        templates: ['Season\'s Greetings & Warmth 🎄', 'Eid Mubarak — May Joy Be With You ✨', 'Happy Diwali — Light & Prosperity 🪔', 'Merry Christmas with All My Love 🎁', '— Custom Message —']
+      pt: {
+        nav_gift:"🎁 Cofre de Presentes", nav_split:"Dividir", nav_biz:"Empresas", nav_shop:"Loja", nav_travel:"Viagem", nav_arc:"Sobre Arc", nav_support:"Suporte", connect:"Conectar Carteira",
+        hero_tag:"Ao vivo na Arc Testnet · USDC-Nativo · 6 Cadeias", hero_t1:"Presente. Divida. Economize.", hero_t2:"Entre Cadeias.", hero_sub:"Infraestrutura de presentes USDC cross-chain construída na Arc.",
+        hero_cta1:"Enviar Presente 🎁", hero_cta2:"Dividir Conta 💸", hero_cta3:"Empresas 🏢",
+        stat_chains:"Cadeias Suportadas", stat_finality:"Finalidade Arc",
+        hiw_tag:"Simples por Design", hiw_title:"Como Funciona", hiw_sub:"Da conexão da carteira à entrega — quatro passos.",
+        gift_tag:"Presentes", gift_title:"Presentes com Significado", gift_sub:"Cinco tipos de cofre para cada momento.",
+        create_gift:"Criar Presente →",
+        faq_tag:"FAQ", faq_title:"Perguntas Frequentes", sup_tag:"Suporte", sup_title:"Estamos Aqui para Ajudar", sup_sub:"Entre em contato por qualquer canal."
+      },
+      zh: {
+        nav_gift:"🎁 礼物金库", nav_split:"分账", nav_biz:"企业", nav_shop:"商店", nav_travel:"旅行", nav_arc:"关于Arc", nav_support:"支持", connect:"连接钱包",
+        hero_tag:"Arc测试网运行中 · USDC原生 · 6条链", hero_t1:"送礼。分账。储蓄。", hero_t2:"跨链进行。", hero_sub:"基于Arc构建的跨链USDC赠礼基础设施。",
+        hero_cta1:"发送礼物 🎁", hero_cta2:"分账 💸", hero_cta3:"企业方案 🏢",
+        stat_chains:"支持的链", stat_finality:"Arc确定性",
+        hiw_tag:"简约设计", hiw_title:"如何运作", hiw_sub:"从钱包连接到礼物送达——四步完成。",
+        gift_tag:"消费者赠礼", gift_title:"有意义的礼物", gift_sub:"五种金库类型，适用于每个里程碑。",
+        create_gift:"创建礼物 →",
+        faq_tag:"常见问题", faq_title:"常见问题", sup_tag:"支持", sup_title:"我们随时为您提供帮助", sup_sub:"通过任何渠道联系我们。"
       }
     };
 
-    function openGiftVault(type) {
-      const page = document.getElementById('giftVaultPage');
-      page.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      switchVaultType(type || 'birthday');
-      page.scrollTop = 0;
+    let currentLang = localStorage.getItem('gpv-lang') || 'en';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('gpv-lang', lang);
+      document.getElementById('langLabel').textContent = lang.toUpperCase();
+      if (lang === 'ar') { document.documentElement.dir = 'rtl'; } else { document.documentElement.dir = 'ltr'; }
+      document.querySelectorAll('.lang-option').forEach(o => o.classList.toggle('active', o.dataset.lang === lang));
+      if (lang === 'en') {
+        // Reset to original English content (stored in data-original)
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          if (el.dataset.original) el.textContent = el.dataset.original;
+        });
+        return;
+      }
+      const t = TRANSLATIONS[lang];
+      if (!t) return;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (!el.dataset.original) el.dataset.original = el.textContent;
+        if (t[key]) el.textContent = t[key];
+      });
     }
 
+    // Language panel
+    document.getElementById('langToggleBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.getElementById('langPanel').classList.toggle('open');
+      document.getElementById('themePanel').classList.remove('open');
+    });
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setLanguage(opt.dataset.lang);
+        document.getElementById('langPanel').classList.remove('open');
+      });
+    });
+
+    // Restore saved language
+    if (currentLang !== 'en') setLanguage(currentLang);
+
+    // ══════════════════════════════════════════
+    // GIFT VAULT PAGE LOGIC
+    // ══════════════════════════════════════════
+    const vaultData = {
+      birthday:  { emoji:'🎂', greeting:'Happy Birthday!', greetings:['Happy Birthday!','Wishing you the best!','Many happy returns!','It\'s your day!'] },
+      milestone: { emoji:'🎓', greeting:'Congratulations!', greetings:['Congratulations!','What an achievement!','You earned this!','Proud of you!'] },
+      family:    { emoji:'👨‍👩‍👧', greeting:'For the Family', greetings:['For the Family','With love, always','Family first','Here\'s a little something'] },
+      memory:    { emoji:'💌', greeting:'A Gift for Later', greetings:['A Gift for Later','Open when ready','From the past, with love','Time capsule gift'] },
+      holiday:   { emoji:'🎄', greeting:'Happy Holidays!', greetings:['Happy Holidays!','Season\'s Greetings!','Festive wishes!','Celebrate!'] }
+    };
+
+    function openGiftVault(type) {
+      document.getElementById('giftVaultPage').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      switchVaultType(type || 'birthday');
+    }
     function closeGiftVault() {
       document.getElementById('giftVaultPage').classList.remove('open');
       document.body.style.overflow = '';
     }
-
     function switchVaultType(type) {
-      const info = VAULT_TYPES[type];
-      // Update tabs
+      const d = vaultData[type] || vaultData.birthday;
+      document.getElementById('ecardEmoji').textContent = d.emoji;
+      document.getElementById('ecardGreeting').textContent = d.greeting;
       document.querySelectorAll('.vault-tab').forEach(t => {
         t.classList.toggle('active', t.dataset.vtype === type);
-        t.setAttribute('aria-selected', t.dataset.vtype === type ? 'true' : 'false');
+        t.setAttribute('aria-selected', t.dataset.vtype === type);
       });
-      // Update preview
-      document.getElementById('ecardEmoji').textContent = info.emoji;
-      document.getElementById('ecardGreeting').textContent = info.templates[0];
-      // Update template dropdown
       const sel = document.getElementById('greetingTemplate');
-      sel.innerHTML = info.templates.map(t => `<option value="${t}">${t}</option>`).join('');
+      sel.innerHTML = '<option value="">— Choose a template —</option>';
+      d.greetings.forEach(g => { const o = document.createElement('option'); o.value = g; o.textContent = g; sel.appendChild(o); });
+      sel.innerHTML += '<option value="__custom__">✏️ Custom greeting...</option>';
     }
 
-    // Vault tabs
     document.querySelectorAll('.vault-tab').forEach(tab => {
       tab.addEventListener('click', () => switchVaultType(tab.dataset.vtype));
     });
 
-    // Greeting template change
     document.getElementById('greetingTemplate').addEventListener('change', function() {
       const val = this.value;
-      if (val === '— Custom Message —') {
+      if (val === '__custom__') {
         const custom = prompt('Enter your custom greeting:');
         if (custom) {
           document.getElementById('ecardGreeting').textContent = custom;
           this.options[this.selectedIndex].textContent = custom;
           this.options[this.selectedIndex].value = custom;
         }
-      } else {
-        document.getElementById('ecardGreeting').textContent = val;
-      }
+      } else { document.getElementById('ecardGreeting').textContent = val; }
     });
-
-    // Body text live preview
     document.getElementById('ecardBodyText').addEventListener('input', function() {
       document.getElementById('ecardBody').textContent = this.value || 'Grandad left you a gift ❤️';
     });
-
-    // Signature live preview
     document.getElementById('ecardSignature').addEventListener('input', function() {
       document.getElementById('ecardSig').textContent = this.value || '— With love';
     });
 
-    // Upload tabs
     const uploadAccepts = { image:'image/*', voice:'audio/*', video:'video/*', note:null };
-    const uploadIcons   = { image:'📷', voice:'🎙', video:'🎬', note:'📝' };
-    const uploadHints   = { image:'PNG, JPG up to 10MB', voice:'MP3, WAV up to 20MB', video:'MP4 up to 50MB', note:'Type your note below' };
-
+    const uploadIcons = { image:'📷', voice:'🎙', video:'🎬', note:'📝' };
+    const uploadHints = { image:'PNG, JPG up to 10MB', voice:'MP3, WAV up to 20MB', video:'MP4 up to 50MB', note:'Type your note below' };
     document.querySelectorAll('.upload-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.upload-tab').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
         const type = tab.dataset.utype;
         const zone = document.getElementById('uploadZone');
-        const fi   = document.getElementById('fileInput');
+        const fi = document.getElementById('fileInput');
         const noteArea = document.getElementById('noteText');
         const noteLabel = document.getElementById('noteLabel');
-        if (type === 'note') {
-          zone.style.display = 'none';
-          noteArea.style.display = 'block';
-          noteLabel.style.display = 'block';
-        } else {
-          zone.style.display = 'block';
-          noteArea.style.display = 'none';
-          noteLabel.style.display = 'none';
-          fi.accept = uploadAccepts[type];
-          zone.querySelector('.upload-zone-icon').textContent = uploadIcons[type];
-          zone.querySelector('small').textContent = uploadHints[type];
-        }
+        if (type === 'note') { zone.style.display='none'; noteArea.style.display='block'; noteLabel.style.display='block'; }
+        else { zone.style.display='block'; noteArea.style.display='none'; noteLabel.style.display='none'; fi.accept=uploadAccepts[type]; zone.querySelector('.upload-zone-icon').textContent=uploadIcons[type]; zone.querySelector('small').textContent=uploadHints[type]; }
       });
     });
-
-    document.getElementById('uploadZone').addEventListener('click', () => {
-      document.getElementById('fileInput').click();
-    });
-
+    document.getElementById('uploadZone').addEventListener('click', () => document.getElementById('fileInput').click());
     document.getElementById('fileInput').addEventListener('change', function() {
-      const file = this.files[0];
-      if (!file) return;
+      const file = this.files[0]; if (!file) return;
       const preview = document.getElementById('uploadPreview');
       const url = URL.createObjectURL(file);
-      if (file.type.startsWith('image/')) {
-        preview.innerHTML = `<img src="${url}" style="max-width:100%;border-radius:10px;margin-top:8px;" alt="Preview" />`;
-      } else if (file.type.startsWith('video/')) {
-        preview.innerHTML = `<video src="${url}" controls style="max-width:100%;border-radius:10px;margin-top:8px;"></video>`;
-      } else if (file.type.startsWith('audio/')) {
-        preview.innerHTML = `<audio src="${url}" controls style="width:100%;margin-top:8px;"></audio>`;
-      } else {
-        preview.innerHTML = `<div style="padding:10px;background:var(--card-bg);border-radius:8px;font-size:13px;color:var(--text-secondary);">📎 ${file.name}</div>`;
-      }
+      if (file.type.startsWith('image/')) preview.innerHTML = '<img src="'+url+'" style="max-width:100%;border-radius:8px;margin-top:4px;" />';
+      else if (file.type.startsWith('video/')) preview.innerHTML = '<video src="'+url+'" controls style="max-width:100%;border-radius:8px;margin-top:4px;"></video>';
+      else if (file.type.startsWith('audio/')) preview.innerHTML = '<audio src="'+url+'" controls style="width:100%;margin-top:4px;"></audio>';
+      else preview.innerHTML = '<div style="padding:8px;background:var(--glass-bg);border-radius:6px;font-size:12px;">📎 '+file.name+'</div>';
       preview.style.display = 'block';
     });
 
-    // Back button
     document.getElementById('gvpBack').addEventListener('click', closeGiftVault);
-
-    // Hero gift vault button
     document.getElementById('heroGiftVaultBtn').addEventListener('click', () => openGiftVault('birthday'));
+    document.getElementById('navGiftVaultLink').addEventListener('click', (e) => { e.preventDefault(); openGiftVault('birthday'); });
+    document.getElementById('mobileGiftVaultLink').addEventListener('click', (e) => { e.preventDefault(); openGiftVault('birthday'); document.getElementById('mobileMenu').classList.remove('open'); });
 
-    // Nav gift vault link
-    document.getElementById('navGiftVaultLink').addEventListener('click', (e) => {
-      e.preventDefault(); openGiftVault('birthday');
-    });
-    document.getElementById('mobileGiftVaultLink').addEventListener('click', (e) => {
-      e.preventDefault(); openGiftVault('birthday');
-      document.getElementById('mobileMenu').classList.remove('open');
-    });
-
-    // Share functions
     function shareVia(platform) {
-      if (platform === 'whatsapp') {
-        showNotification('💬 WhatsApp sharing — Coming Soon!', 'info');
-        return;
-      }
+      if (platform === 'whatsapp') { showNotification('💬 WhatsApp sharing — Coming Soon!', 'info'); return; }
       const msg = encodeURIComponent('🎁 I sent you a GrandPay Vault gift! Check it out at https://marvellgregory.github.io/grandpay-vault/');
-      if (platform === 'telegram') window.open(`https://t.me/share/url?url=https://marvellgregory.github.io/grandpay-vault/&text=${encodeURIComponent('🎁 I sent you a GrandPay Vault gift!')}`, '_blank');
-      else if (platform === 'email') window.open(`mailto:?subject=You%20have%20a%20GrandPay%20Gift!&body=${msg}`);
-      else if (platform === 'sms') window.open(`sms:?body=${msg}`);
+      if (platform === 'telegram') window.open('https://t.me/share/url?url=https://marvellgregory.github.io/grandpay-vault/&text='+encodeURIComponent('🎁 I sent you a GrandPay Vault gift!'), '_blank');
+      else if (platform === 'email') window.open('mailto:?subject=You%20have%20a%20GrandPay%20Gift!&body='+msg);
+      else if (platform === 'sms') window.open('sms:?body='+msg);
     }
-
-    function downloadCard(type) {
-      showNotification('Download feature coming soon on Arc Mainnet', 'info');
-    }
+    function downloadCard(type) { showNotification('Download feature coming soon on Arc Mainnet', 'info'); }
 
     // ══════════════════════════════════════════
     // THEME SYSTEM
     // ══════════════════════════════════════════
-    const themeBtn   = document.getElementById('themeToggleBtn');
+    const themeBtn = document.getElementById('themeToggleBtn');
     const themePanel = document.getElementById('themePanel');
-
-    themeBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      themePanel.classList.toggle('open');
-    });
-    document.addEventListener('click', () => themePanel.classList.remove('open'));
-
+    themeBtn.addEventListener('click', (e) => { e.stopPropagation(); themePanel.classList.toggle('open'); document.getElementById('langPanel').classList.remove('open'); });
+    document.addEventListener('click', () => { themePanel.classList.remove('open'); document.getElementById('langPanel').classList.remove('open'); });
     document.querySelectorAll('.theme-opt').forEach(opt => {
       opt.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -1633,18 +1382,14 @@
         localStorage.setItem('gpv-theme', theme);
       });
     });
-
-    // Restore saved theme
     const savedTheme = localStorage.getItem('gpv-theme');
     if (savedTheme) {
       document.documentElement.setAttribute('data-theme', savedTheme);
-      document.querySelectorAll('.theme-opt').forEach(o => {
-        o.classList.toggle('active', o.dataset.theme === savedTheme);
-      });
+      document.querySelectorAll('.theme-opt').forEach(o => o.classList.toggle('active', o.dataset.theme === savedTheme));
     }
 
     // ══════════════════════════════════════════
-    // HAMBURGER MENU
+    // HAMBURGER
     // ══════════════════════════════════════════
     document.getElementById('hamburger').addEventListener('click', function() {
       const menu = document.getElementById('mobileMenu');
@@ -1652,8 +1397,6 @@
       this.setAttribute('aria-expanded', open);
       this.textContent = open ? '✕' : '☰';
     });
-
-    // Close mobile menu on link click
     document.querySelectorAll('.mobile-menu a').forEach(link => {
       link.addEventListener('click', () => {
         document.getElementById('mobileMenu').classList.remove('open');
@@ -1663,7 +1406,7 @@
     });
 
     // ══════════════════════════════════════════
-    // FAQ ACCORDION
+    // FAQ
     // ══════════════════════════════════════════
     document.querySelectorAll('.faq-q').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1675,30 +1418,20 @@
     });
 
     // ══════════════════════════════════════════
-    // NOTIFICATION TOAST
+    // NOTIFICATIONS & MODAL
     // ══════════════════════════════════════════
-    function showNotification(msg, type = 'info') {
+    function showNotification(msg, type) {
       const el = document.getElementById('notification');
       el.textContent = msg;
-      el.className = `notification ${type} show`;
+      el.className = 'notification ' + type + ' show';
       setTimeout(() => el.classList.remove('show'), 4000);
     }
+    document.getElementById('modalCloseBtn').addEventListener('click', () => { document.getElementById('successModal').style.display = 'none'; });
+    document.getElementById('successModal').addEventListener('click', (e) => { if (e.target.id === 'successModal') e.target.style.display = 'none'; });
 
-    // ══════════════════════════════════════════
-    // SUCCESS MODAL
-    // ══════════════════════════════════════════
-    document.getElementById('modalCloseBtn').addEventListener('click', () => {
-      document.getElementById('successModal').style.display = 'none';
-    });
-    document.getElementById('successModal').addEventListener('click', (e) => {
-      if (e.target.id === 'successModal') e.target.style.display = 'none';
-    });
-
-    // Init ecard preview
     switchVaultType('birthday');
   </script>
 
-  <!-- Main app.js (wallet connect, vault, chainsplit logic) -->
   <script src="app.js"></script>
 </body>
 </html>
