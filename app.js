@@ -1,6 +1,6 @@
 /**
  * GrandPay Vault — app.js  (fixed build)
- * Powered by Arc | Built by Youngest Grandad (@YoungestGrandad)
+ * Built on Arc | Built by Youngest Grandad (@YoungestGrandad)
  * ethers.js v6 | Pure Vanilla JS
  *
  * FIXES IN THIS BUILD:
