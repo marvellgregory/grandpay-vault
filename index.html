@@ -582,9 +582,69 @@
       cursor:pointer; font-family:var(--font); transition:all 0.15s; text-align:center;
     }
     .share-btn:hover { border-color:var(--accent); color:var(--accent); }
-    .vault-list { min-height:120px; }
+    .vault-list { min-height:120px; display:flex; flex-direction:column; gap:10px; }
     .empty-state { text-align:center; padding:32px 16px; color:var(--text-muted); }
     .empty-icon { font-size:36px; margin-bottom:8px; }
+
+    /* ── VAULT ITEMS (dynamically injected by app.js) ── */
+    .vault-item {
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      border-radius:var(--radius-sm); padding:16px; transition:border-color 0.2s;
+    }
+    .vault-item:hover { border-color:rgba(0,102,255,0.2); }
+    .vault-item-header {
+      display:flex; justify-content:space-between; align-items:center;
+      margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid var(--glass-border);
+    }
+    .vault-id {
+      font-family:var(--font-display); font-weight:700; font-size:13px; color:var(--accent);
+    }
+    .vault-status {
+      font-size:11px; font-weight:700; padding:3px 10px;
+      border-radius:50px; letter-spacing:0.03em;
+    }
+    .vault-status.locked {
+      background:rgba(245,158,11,0.1); color:var(--amber);
+      border:1px solid rgba(245,158,11,0.2);
+    }
+    .vault-status.unlocked {
+      background:rgba(16,185,129,0.1); color:var(--emerald);
+      border:1px solid rgba(16,185,129,0.2);
+    }
+    .vault-item-detail {
+      font-size:12px; color:var(--text-secondary); margin-bottom:4px; line-height:1.5;
+    }
+    .vault-item-detail strong { color:var(--text-primary); font-weight:600; }
+    .vault-message {
+      font-style:italic; color:var(--text-secondary); margin-top:8px;
+      padding:8px 12px; background:rgba(0,102,255,0.04);
+      border-left:2px solid var(--accent); border-radius:0 var(--radius-xs) var(--radius-xs) 0;
+      font-size:12px;
+    }
+    .vault-withdraw {
+      margin-top:12px; background:var(--emerald); color:#fff; border:none;
+      border-radius:var(--radius-xs); padding:8px 16px; font-size:12px; font-weight:700;
+      cursor:pointer; font-family:var(--font); transition:all 0.2s; width:100%;
+    }
+    .vault-withdraw:hover { opacity:0.88; transform:translateY(-1px); }
+
+    /* ── SPINNER (used during tx processing) ── */
+    .spinner {
+      display:inline-block; width:14px; height:14px;
+      border:2px solid rgba(255,255,255,0.3); border-top-color:#fff;
+      border-radius:50%; animation:spin 0.75s linear infinite; margin-right:6px;
+    }
+    @keyframes spin { to { transform:rotate(360deg); } }
+
+    /* ── NAVBAR SCROLLED STATE ── */
+    .navbar.scrolled { box-shadow:0 4px 24px rgba(0,102,255,0.12); }
+
+    /* ── CONNECT BUTTON CONNECTED STATE ── */
+    .btn-connect.connected {
+      background:var(--glass-bg); border:1px solid var(--accent);
+      color:var(--accent); font-size:11px;
+    }
+    .btn-connect.connected:hover { background:var(--glass-active); transform:none; }
 
     /* ── MODALS ── */
     .modal-overlay {
@@ -1431,6 +1491,18 @@
 
     switchVaultType('birthday');
   </script>
+
+  <!-- Hidden legacy elements: app.js references these IDs for the old vault form.
+       They are kept invisible so safeOn(), clearFields(), setMinDate(), and
+       disconnectWallet() can find them without errors. -->
+  <div style="display:none" aria-hidden="true">
+    <input id="vaultRecipient" />
+    <input id="vaultAmount" type="number" />
+    <input id="vaultUnlockDate" type="date" />
+    <textarea id="vaultMessage"></textarea>
+    <button id="createVaultBtn" type="button"></button>
+    <div id="vaultList"></div>
+  </div>
 
   <script src="app.js"></script>
 </body>
