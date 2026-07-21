@@ -116,9 +116,8 @@
     }
     .logo-icon {
       width:32px; height:32px; border-radius:8px;
-      background: linear-gradient(135deg, var(--accent), var(--violet));
       display:flex; align-items:center; justify-content:center;
-      font-size:16px; color:#fff;
+      flex-shrink:0;
     }
     .logo-text { line-height:1.2; }
     .logo-main { font-family:var(--font-display); font-weight:700; font-size:15px; color:var(--text-primary); letter-spacing:-0.02em; }
@@ -767,6 +766,44 @@
     .notification.error { border-color:rgba(220,38,38,0.3); color:var(--rose); }
     .notification.info { border-color:rgba(0,82,255,0.3); color:var(--accent); }
 
+    /* ── INTERACTIVE DEMO ── */
+    .demo-container {
+      max-width:480px; margin:0 auto;
+      background:var(--bg-elevated); border:1px solid var(--border);
+      border-radius:var(--radius); padding:32px 28px;
+      box-shadow:var(--shadow-md);
+    }
+    .demo-field { margin-bottom:16px; }
+    .demo-field label {
+      display:block; font-size:12px; font-weight:600;
+      color:var(--text-secondary); margin-bottom:5px;
+    }
+    .demo-field input, .demo-field select {
+      width:100%; padding:10px 12px;
+      background:var(--input-bg); border:1px solid var(--input-border);
+      border-radius:var(--radius-xs); color:var(--text-primary);
+      font-size:14px; font-family:var(--font); outline:none;
+      transition:border-color 0.2s;
+    }
+    .demo-field input:focus, .demo-field select:focus { border-color:var(--accent); }
+    .demo-btn {
+      width:100%; padding:12px; border:none; border-radius:var(--radius-sm);
+      background:var(--accent); color:#fff; font-size:15px; font-weight:600;
+      cursor:pointer; font-family:var(--font); transition:background 0.2s;
+      margin-top:8px;
+    }
+    .demo-btn:hover { background:var(--accent-light); }
+    .demo-result {
+      display:none; margin-top:20px; padding:20px;
+      background:var(--accent-surface); border:1px solid rgba(0,82,255,0.1);
+      border-radius:var(--radius-sm); text-align:center;
+    }
+    .demo-result.visible { display:block; animation:fadeUp 0.4s ease; }
+    .demo-result .dr-icon { font-size:36px; margin-bottom:8px; }
+    .demo-result .dr-title { font-family:var(--font-display); font-size:16px; font-weight:700; margin-bottom:4px; }
+    .demo-result .dr-detail { font-size:13px; color:var(--text-secondary); line-height:1.6; }
+    .demo-note { text-align:center; font-size:11px; color:var(--text-muted); margin-top:14px; }
+
     /* ── PROBLEM SECTION GRID ── */
     .problem-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; max-width:960px; margin:0 auto; }
     .problem-card {
@@ -833,7 +870,7 @@
   <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
       <a href="#home" class="nav-logo" aria-label="GrandPay Vault home">
-        <div class="logo-icon" aria-hidden="true">🎁</div>
+        <div class="logo-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="32" height="32"><defs><linearGradient id="gp-g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0052FF"/><stop offset="100%" stop-color="#6E56CF"/></linearGradient></defs><rect x="2" y="2" width="36" height="36" rx="10" ry="10" fill="url(#gp-g)"/><circle cx="20" cy="19" r="11" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.8"/><line x1="20" y1="8" x2="20" y2="30" stroke="rgba(255,255,255,0.85)" stroke-width="1.6" stroke-linecap="round"/><line x1="9" y1="19" x2="31" y2="19" stroke="rgba(255,255,255,0.85)" stroke-width="1.6" stroke-linecap="round"/><path d="M 12 30 A 14 14 0 0 1 28 30" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" stroke-linecap="round"/><circle cx="20" cy="19" r="2.2" fill="rgba(255,255,255,0.95)"/></svg></div>
         <div class="logo-text">
           <div class="logo-main">GrandPay Vault</div>
           <div class="logo-badge">Built on Arc</div>
@@ -1099,8 +1136,50 @@
     </div>
   </section>
 
+  <!-- ═══════════════ INTERACTIVE DEMO ═══════════════ -->
+  <section class="section section-alt" id="demo" aria-labelledby="demo-heading">
+    <div class="section-inner">
+      <header class="section-header">
+        <div class="section-tag">Try It</div>
+        <h2 class="section-title" id="demo-heading">See how a gift vault works.</h2>
+        <p class="section-sub">No wallet needed. No signup. Just fill in the fields and see what happens.</p>
+      </header>
+      <div class="demo-container">
+        <div class="demo-field">
+          <label for="demoRecipient">Recipient Name</label>
+          <input type="text" id="demoRecipient" placeholder="e.g. Emma" maxlength="40" />
+        </div>
+        <div class="demo-field">
+          <label for="demoAmount">USDC Amount</label>
+          <input type="number" id="demoAmount" placeholder="e.g. 250" min="1" max="999999" />
+        </div>
+        <div class="demo-field">
+          <label for="demoOccasion">Occasion</label>
+          <select id="demoOccasion">
+            <option value="🎂 Birthday">Birthday</option>
+            <option value="🎓 Graduation">Graduation</option>
+            <option value="💍 Wedding">Wedding</option>
+            <option value="🎄 Holiday">Holiday</option>
+            <option value="💌 Just Because">Just Because</option>
+          </select>
+        </div>
+        <div class="demo-field">
+          <label for="demoDate">Unlock Date</label>
+          <input type="date" id="demoDate" />
+        </div>
+        <button class="demo-btn" id="demoCreate" type="button">Create Preview Vault</button>
+        <div class="demo-result" id="demoResult">
+          <div class="dr-icon">✅</div>
+          <div class="dr-title" id="demoResultTitle">Vault Created</div>
+          <div class="dr-detail" id="demoResultDetail"></div>
+        </div>
+        <p class="demo-note">This is a preview only. No transaction is created. Connect your wallet to create a real vault.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════════════ GIFT TYPES ═══════════════ -->
-  <section class="section section-alt" id="gifting" aria-labelledby="gifting-heading">
+  <section class="section" id="gifting" aria-labelledby="gifting-heading">
     <div class="section-inner">
       <header class="section-header">
         <div class="section-tag" data-i18n="gift_tag">Gift Vaults</div>
@@ -1118,7 +1197,7 @@
   </section>
 
   <!-- ═══════════════ CHAINSPLIT ═══════════════ -->
-  <section class="section" id="chainsplit" aria-labelledby="split-heading">
+  <section class="section section-alt" id="chainsplit" aria-labelledby="split-heading">
     <div class="section-inner">
       <header class="section-header">
         <div class="section-tag" data-i18n="split_tag">ChainSplit</div>
@@ -1167,7 +1246,7 @@
   </section>
 
   <!-- ═══════════════ BUSINESS ═══════════════ -->
-  <section class="section section-alt" id="business" aria-labelledby="biz-heading">
+  <section class="section" id="business" aria-labelledby="biz-heading">
     <div class="section-inner">
       <header class="section-header">
         <div class="section-tag" data-i18n="biz_tag">For Business</div>
@@ -1190,7 +1269,7 @@
   </section>
 
   <!-- ═══════════════ ABOUT ARC ═══════════════ -->
-  <section class="section" id="about" aria-labelledby="about-heading">
+  <section class="section section-alt" id="about" aria-labelledby="about-heading">
     <div class="section-inner">
       <header class="section-header">
         <div class="section-tag">Built on Arc</div>
@@ -1207,7 +1286,7 @@
   </section>
 
   <!-- ═══════════════ TRUST & SECURITY ═══════════════ -->
-  <section class="section section-alt" id="trust" aria-labelledby="trust-heading">
+  <section class="section" id="trust" aria-labelledby="trust-heading">
     <div class="section-inner">
       <header class="section-header">
         <div class="section-tag">Trust & Security</div>
@@ -1300,7 +1379,7 @@
       <div class="footer-grid">
         <div class="footer-col">
           <div class="footer-logo">
-            <div class="logo-icon" style="width:28px;height:28px;font-size:14px;">🎁</div>
+            <div class="logo-icon" style="width:28px;height:28px;font-size:14px;background:none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="28" height="28"><defs><linearGradient id="gp-g2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0052FF"/><stop offset="100%" stop-color="#6E56CF"/></linearGradient></defs><rect x="2" y="2" width="36" height="36" rx="10" ry="10" fill="url(#gp-g2)"/><circle cx="20" cy="19" r="11" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.8"/><line x1="20" y1="8" x2="20" y2="30" stroke="rgba(255,255,255,0.85)" stroke-width="1.6" stroke-linecap="round"/><line x1="9" y1="19" x2="31" y2="19" stroke="rgba(255,255,255,0.85)" stroke-width="1.6" stroke-linecap="round"/><path d="M 12 30 A 14 14 0 0 1 28 30" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" stroke-linecap="round"/><circle cx="20" cy="19" r="2.2" fill="rgba(255,255,255,0.95)"/></svg></div>
             <div>
               <div style="font-family:var(--font-display);font-size:14px;font-weight:700;">GrandPay Vault</div>
               <div style="font-size:10px;color:var(--accent);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;">Built on Arc</div>
@@ -1704,6 +1783,36 @@
     document.getElementById('ggInput').addEventListener('keydown', (e) => {
       if (e.key === 'Enter') document.getElementById('ggSend').click();
     });
+
+    // ══════════════════════════════════════════
+    // INTERACTIVE DEMO
+    // ══════════════════════════════════════════
+    (function() {
+      const demoDate = document.getElementById('demoDate');
+      if (demoDate) {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        demoDate.min = tomorrow.toISOString().split('T')[0];
+        demoDate.value = '';
+      }
+      const demoBtn = document.getElementById('demoCreate');
+      if (demoBtn) {
+        demoBtn.addEventListener('click', () => {
+          const name = document.getElementById('demoRecipient').value.trim() || 'Someone Special';
+          const amount = document.getElementById('demoAmount').value || '100';
+          const occasion = document.getElementById('demoOccasion').value;
+          const date = document.getElementById('demoDate').value;
+          const formatted = date ? new Date(date + 'T00:00:00').toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' }) : 'a future date';
+          const result = document.getElementById('demoResult');
+          const title = document.getElementById('demoResultTitle');
+          const detail = document.getElementById('demoResultDetail');
+          title.textContent = occasion + ' Vault Preview';
+          detail.innerHTML = '<strong>' + amount + ' USDC</strong> locked for <strong>' + name + '</strong><br>Unlocks on <strong>' + formatted + '</strong><br><br><span style="font-size:11px;color:var(--text-muted);">Connect your wallet to create this vault for real.</span>';
+          result.classList.add('visible');
+          result.scrollIntoView({ behavior:'smooth', block:'nearest' });
+        });
+      }
+    })();
 
     document.getElementById('ggFab').addEventListener('click', () => {
       document.getElementById('ggPanel').classList.toggle('open');
