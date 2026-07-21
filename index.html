@@ -1,68 +1,83 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GrandPay Vault — Gift. Split. Save. Across Chains.</title>
-  <meta name="description" content="A cross-chain USDC gifting infrastructure built on Arc. Gift, split bills, shop, and travel — all powered by USDC." />
+  <title>GrandPay Vault — Secure today's gift. Delivered exactly when it matters.</title>
+  <meta name="description" content="Create time-locked USDC vaults that unlock exactly when you choose. Built on Arc." />
   <meta property="og:title" content="GrandPay Vault — Built on Arc" />
-  <meta property="og:description" content="Gift anyone, anywhere, with USDC. A cross-chain gifting infrastructure layer built on Arc." />
+  <meta property="og:description" content="Create time-locked USDC vaults that unlock exactly when you choose. Built on Arc." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
   <style>
-    /* ── DESIGN SYSTEM ── */
+    /* ══════════════════════════════════════════
+       DESIGN SYSTEM — GrandPay Vault v2
+       40% Stripe · 30% Apple · 20% Arc · 10% Family
+       ══════════════════════════════════════════ */
     :root {
-      --bg-primary: #060B18;
-      --bg-secondary: #0A1128;
-      --bg-tertiary: #0F1935;
-      --bg-elevated: #141E3C;
-      --accent: #0066FF;
-      --accent-light: #3388FF;
-      --accent-glow: rgba(0,102,255,0.3);
-      --cyan: #00C2FF;
-      --violet: #7B61FF;
-      --emerald: #10B981;
-      --amber: #F59E0B;
-      --rose: #F43F5E;
-      --text-primary: #F0F2F8;
-      --text-secondary: rgba(240,242,248,0.65);
-      --text-muted: rgba(240,242,248,0.38);
-      --glass-bg: rgba(255,255,255,0.03);
-      --glass-border: rgba(255,255,255,0.06);
-      --glass-hover: rgba(255,255,255,0.08);
-      --glass-active: rgba(0,102,255,0.08);
-      --input-bg: rgba(255,255,255,0.04);
-      --input-border: rgba(255,255,255,0.1);
-      --nav-bg: rgba(6,11,24,0.85);
-      --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
-      --shadow-md: 0 8px 32px rgba(0,0,0,0.4);
-      --shadow-glow: 0 0 40px rgba(0,102,255,0.15);
-      --radius: 20px;
-      --radius-sm: 12px;
-      --radius-xs: 8px;
-      --font: 'Inter', -apple-system, sans-serif;
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F7F8FB;
+      --bg-tertiary: #EEF0F6;
+      --bg-elevated: #FFFFFF;
+      --accent: #0052FF;
+      --accent-light: #3373FF;
+      --accent-glow: rgba(0,82,255,0.12);
+      --accent-surface: rgba(0,82,255,0.04);
+      --cyan: #00A3FF;
+      --violet: #6E56CF;
+      --emerald: #0D9B52;
+      --amber: #D97706;
+      --rose: #DC2626;
+      --text-primary: #111827;
+      --text-secondary: #4B5563;
+      --text-muted: #9CA3AF;
+      --border: #E5E7EB;
+      --border-hover: #D1D5DB;
+      --glass-bg: rgba(255,255,255,0.8);
+      --glass-border: #E5E7EB;
+      --glass-hover: rgba(0,82,255,0.03);
+      --glass-active: rgba(0,82,255,0.06);
+      --input-bg: #F9FAFB;
+      --input-border: #D1D5DB;
+      --nav-bg: rgba(255,255,255,0.92);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 24px rgba(0,0,0,0.06);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.08);
+      --shadow-glow: 0 0 0 1px var(--accent), 0 4px 24px rgba(0,82,255,0.12);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-xs: 6px;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-display: 'Syne', sans-serif;
     }
-    [data-theme="light"] {
-      --bg-primary: #F4F6FB;
-      --bg-secondary: #EBEEF6;
-      --bg-tertiary: #E2E6F2;
-      --bg-elevated: #FFFFFF;
-      --text-primary: #0A1128;
-      --text-secondary: rgba(10,17,40,0.65);
-      --text-muted: rgba(10,17,40,0.38);
-      --glass-bg: rgba(255,255,255,0.7);
-      --glass-border: rgba(0,102,255,0.1);
-      --glass-hover: rgba(255,255,255,0.9);
-      --glass-active: rgba(0,102,255,0.06);
-      --input-bg: rgba(0,102,255,0.03);
-      --input-border: rgba(0,102,255,0.15);
-      --nav-bg: rgba(244,246,251,0.9);
-      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
-      --shadow-md: 0 8px 32px rgba(0,102,255,0.08);
-      --shadow-glow: 0 0 40px rgba(0,102,255,0.08);
+
+    [data-theme="dark"] {
+      --bg-primary: #0B0F1A;
+      --bg-secondary: #111827;
+      --bg-tertiary: #1F2937;
+      --bg-elevated: #1F2937;
+      --accent: #3B82F6;
+      --accent-light: #60A5FA;
+      --accent-glow: rgba(59,130,246,0.2);
+      --accent-surface: rgba(59,130,246,0.08);
+      --text-primary: #F9FAFB;
+      --text-secondary: #9CA3AF;
+      --text-muted: #6B7280;
+      --border: #1F2937;
+      --border-hover: #374151;
+      --glass-bg: rgba(17,24,39,0.8);
+      --glass-border: #1F2937;
+      --glass-hover: rgba(59,130,246,0.06);
+      --glass-active: rgba(59,130,246,0.1);
+      --input-bg: #1F2937;
+      --input-border: #374151;
+      --nav-bg: rgba(11,15,26,0.92);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 24px rgba(0,0,0,0.3);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.4);
+      --shadow-glow: 0 0 0 1px var(--accent), 0 4px 24px rgba(59,130,246,0.2);
     }
 
     /* ── RESET ── */
@@ -75,6 +90,7 @@
       line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0; }
     a { color: inherit; text-decoration: none; }
@@ -84,124 +100,136 @@
     .navbar {
       position:fixed; top:0; left:0; right:0; z-index:1000;
       background:var(--nav-bg);
-      backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
-      border-bottom:1px solid var(--glass-border);
+      backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+      transition: box-shadow 0.3s;
     }
+    .navbar.scrolled { box-shadow: var(--shadow-md); }
     .nav-inner {
-      max-width:1340px; margin:0 auto;
-      padding:0 24px; height:64px;
+      max-width:1200px; margin:0 auto;
+      padding:0 24px; height:60px;
       display:flex; align-items:center; gap:12px;
     }
     .nav-logo {
       display:flex; align-items:center; gap:10px;
       text-decoration:none; flex-shrink:0;
     }
-    .logo-icon { font-size:24px; }
+    .logo-icon {
+      width:32px; height:32px; border-radius:8px;
+      background: linear-gradient(135deg, var(--accent), var(--violet));
+      display:flex; align-items:center; justify-content:center;
+      font-size:16px; color:#fff;
+    }
     .logo-text { line-height:1.2; }
     .logo-main { font-family:var(--font-display); font-weight:700; font-size:15px; color:var(--text-primary); letter-spacing:-0.02em; }
-    .logo-badge { font-size:9px; color:var(--accent); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; }
+    .logo-badge { font-size:9px; color:var(--accent); font-weight:600; letter-spacing:0.06em; text-transform:uppercase; }
 
     .nav-links {
-      display:flex; align-items:center; gap:2px;
+      display:flex; align-items:center; gap:0;
       list-style:none; flex:1; justify-content:center;
     }
     .nav-links a {
       text-decoration:none; color:var(--text-secondary); font-size:13px; font-weight:500;
-      padding:7px 12px; border-radius:var(--radius-xs);
-      transition: all 0.2s; white-space:nowrap;
+      padding:6px 12px; border-radius:var(--radius-xs);
+      transition: color 0.2s; white-space:nowrap;
     }
-    .nav-links a:hover { color:var(--text-primary); background:var(--glass-bg); }
-    .nav-links .nav-gift-vault { color:var(--accent); }
+    .nav-links a:hover { color:var(--text-primary); }
+    .nav-links .nav-gift-vault { color:var(--accent); font-weight:600; }
 
-    .nav-right { display:flex; align-items:center; gap:8px; flex-shrink:0; }
+    .nav-right { display:flex; align-items:center; gap:6px; flex-shrink:0; }
 
-    /* Language selector */
     .lang-btn {
-      background:var(--glass-bg); border:1px solid var(--glass-border);
+      background:transparent; border:1px solid var(--border);
       color:var(--text-secondary); border-radius:var(--radius-xs);
-      padding:6px 10px; font-size:12px; font-weight:600; cursor:pointer;
-      display:flex; align-items:center; gap:5px; min-height:36px;
+      padding:5px 10px; font-size:12px; font-weight:600; cursor:pointer;
+      display:flex; align-items:center; gap:4px; min-height:34px;
       font-family:var(--font); transition:all 0.2s;
     }
     .lang-btn:hover { border-color:var(--accent); color:var(--accent); }
     .lang-panel {
-      position:absolute; top:68px; right:80px;
-      background:var(--bg-secondary); border:1px solid var(--glass-border);
-      border-radius:var(--radius-sm); padding:8px; width:180px;
-      box-shadow:var(--shadow-md); z-index:1001; display:none;
+      position:absolute; top:64px; right:80px;
+      background:var(--bg-elevated); border:1px solid var(--border);
+      border-radius:var(--radius-sm); padding:6px; width:170px;
+      box-shadow:var(--shadow-lg); z-index:1001; display:none;
     }
     .lang-panel.open { display:block; }
     .lang-option {
       display:block; width:100%; text-align:left;
-      padding:9px 12px; border-radius:var(--radius-xs); border:none;
+      padding:8px 12px; border-radius:var(--radius-xs); border:none;
       background:none; color:var(--text-secondary); font-size:13px;
       font-weight:500; cursor:pointer; font-family:var(--font); transition:all 0.15s;
     }
     .lang-option:hover, .lang-option.active { background:var(--glass-active); color:var(--accent); }
 
     .chain-selector {
-      background:var(--glass-bg); border:1px solid var(--glass-border);
+      background:var(--input-bg); border:1px solid var(--border);
       color:var(--text-primary); border-radius:var(--radius-xs);
-      padding:6px 10px; font-size:12px; font-family:var(--font);
-      cursor:pointer; outline:none; max-width:140px; min-height:36px;
+      padding:5px 8px; font-size:12px; font-family:var(--font);
+      cursor:pointer; outline:none; max-width:130px; min-height:34px;
     }
-    select.chain-selector { color-scheme:dark; appearance:auto; }
     [data-theme="light"] select.chain-selector { color-scheme:light; }
+    [data-theme="dark"] select.chain-selector { color-scheme:dark; }
     .chain-badge {
-      background:rgba(0,102,255,0.1); color:var(--accent);
-      border:1px solid rgba(0,102,255,0.2);
-      padding:6px 10px; border-radius:var(--radius-xs); font-size:11px; font-weight:700;
+      background:var(--accent-surface); color:var(--accent);
+      border:1px solid rgba(0,82,255,0.15);
+      padding:5px 10px; border-radius:var(--radius-xs); font-size:11px; font-weight:600;
       white-space:nowrap;
     }
     .btn-connect {
       background:var(--accent); color:#fff; border:none;
-      padding:8px 16px; border-radius:var(--radius-xs); font-size:13px; font-weight:600;
-      cursor:pointer; min-height:36px; font-family:var(--font);
+      padding:7px 16px; border-radius:var(--radius-xs); font-size:13px; font-weight:600;
+      cursor:pointer; min-height:34px; font-family:var(--font);
       transition:all 0.2s; white-space:nowrap;
     }
-    .btn-connect:hover { background:var(--accent-light); transform:translateY(-1px); }
+    .btn-connect:hover { background:var(--accent-light); }
+    .btn-connect.connected {
+      background:var(--accent-surface); border:1px solid var(--accent);
+      color:var(--accent); font-size:11px;
+    }
+    .btn-connect.connected:hover { background:var(--glass-active); transform:none; }
+
     .theme-toggle-btn {
-      background:var(--glass-bg); border:1px solid var(--glass-border);
+      background:transparent; border:1px solid var(--border);
       color:var(--text-primary); border-radius:var(--radius-xs);
-      padding:6px 10px; font-size:15px; cursor:pointer; min-height:36px;
+      padding:5px 10px; font-size:15px; cursor:pointer; min-height:34px;
       transition:all 0.2s;
     }
     .theme-toggle-btn:hover { border-color:var(--accent); }
     .theme-panel {
-      position:absolute; top:68px; right:24px;
-      background:var(--bg-secondary); border:1px solid var(--glass-border);
-      border-radius:var(--radius-sm); padding:14px; width:200px;
-      box-shadow:var(--shadow-md); z-index:1001; display:none;
+      position:absolute; top:64px; right:24px;
+      background:var(--bg-elevated); border:1px solid var(--border);
+      border-radius:var(--radius-sm); padding:12px; width:180px;
+      box-shadow:var(--shadow-lg); z-index:1001; display:none;
     }
     .theme-panel.open { display:block; }
-    .theme-panel h4 { font-size:11px; font-weight:700; color:var(--text-muted); margin-bottom:8px; letter-spacing:0.08em; text-transform:uppercase; }
+    .theme-panel h4 { font-size:11px; font-weight:700; color:var(--text-muted); margin-bottom:8px; letter-spacing:0.06em; text-transform:uppercase; }
     .theme-options { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
     .theme-opt {
       display:flex; flex-direction:column; align-items:center; gap:4px;
-      padding:8px; border-radius:var(--radius-xs); border:1px solid var(--glass-border);
-      background:var(--glass-bg); cursor:pointer; transition:all 0.15s;
+      padding:8px; border-radius:var(--radius-xs); border:1px solid var(--border);
+      background:transparent; cursor:pointer; transition:all 0.15s;
       font-size:11px; font-weight:600; color:var(--text-secondary); font-family:var(--font);
     }
-    .theme-opt:hover, .theme-opt.active { border-color:var(--accent); color:var(--accent); background:var(--glass-active); }
-    .theme-opt .theme-swatch { width:24px; height:24px; border-radius:50%; }
+    .theme-opt:hover, .theme-opt.active { border-color:var(--accent); color:var(--accent); }
+    .theme-opt .theme-swatch { width:22px; height:22px; border-radius:50%; }
 
     .hamburger {
       display:none; background:none; border:none; color:var(--text-primary);
       font-size:22px; cursor:pointer; padding:8px; min-height:44px;
     }
     .mobile-menu {
-      display:none; flex-direction:column; gap:4px;
-      padding:12px 20px 16px; border-top:1px solid var(--glass-border);
-      background:var(--bg-secondary);
+      display:none; flex-direction:column; gap:2px;
+      padding:12px 20px 16px; border-top:1px solid var(--border);
+      background:var(--bg-elevated);
     }
     .mobile-menu.open { display:flex; }
-    .mobile-menu a { text-decoration:none; color:var(--text-secondary); font-size:14px; font-weight:500; padding:10px 8px; border-radius:var(--radius-xs); transition:all 0.15s; }
-    .mobile-menu a:hover { background:var(--glass-bg); color:var(--text-primary); }
+    .mobile-menu a { text-decoration:none; color:var(--text-secondary); font-size:14px; font-weight:500; padding:10px 8px; border-radius:var(--radius-xs); transition:color 0.15s; }
+    .mobile-menu a:hover { color:var(--text-primary); }
 
     /* ── HERO ── */
     .hero {
-      min-height:100vh; display:flex; align-items:center; justify-content:center;
-      padding:120px 24px 80px;
+      min-height:92vh; display:flex; align-items:center; justify-content:center;
+      padding:140px 24px 100px;
       position:relative; overflow:hidden;
       background:var(--bg-primary);
     }
@@ -209,41 +237,42 @@
     .hero-grid {
       position:absolute; inset:0;
       background-image:
-        linear-gradient(rgba(0,102,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,102,255,0.03) 1px, transparent 1px);
-      background-size:60px 60px;
-      mask-image:radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
-      -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size:80px 80px;
+      opacity:0.4;
+      mask-image:radial-gradient(ellipse 60% 50% at 50% 40%, black 20%, transparent 70%);
+      -webkit-mask-image:radial-gradient(ellipse 60% 50% at 50% 40%, black 20%, transparent 70%);
     }
     .orb {
-      position:absolute; border-radius:50%; filter:blur(100px); opacity:0.2;
-      animation:float 10s ease-in-out infinite;
+      position:absolute; border-radius:50%; filter:blur(120px);
+      animation:float 12s ease-in-out infinite;
     }
-    .orb1 { width:700px;height:700px; background:var(--accent); top:-250px; right:-200px; }
-    .orb2 { width:500px;height:500px; background:var(--violet); bottom:-200px; left:-150px; animation-delay:-4s; }
-    .orb3 { width:350px;height:350px; background:var(--cyan); top:35%; left:25%; animation-delay:-7s; opacity:0.12; }
-    @keyframes float { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-25px) scale(1.02)} }
+    .orb1 { width:600px;height:600px; background:var(--accent); top:-300px; right:-200px; opacity:0.06; }
+    .orb2 { width:400px;height:400px; background:var(--violet); bottom:-200px; left:-100px; animation-delay:-5s; opacity:0.05; }
+    .orb3 { width:300px;height:300px; background:var(--cyan); top:30%; left:20%; animation-delay:-8s; opacity:0.04; }
+    @keyframes float { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-20px) scale(1.01)} }
 
-    .hero-content { max-width:720px; text-align:center; position:relative; z-index:1; }
+    .hero-content { max-width:680px; text-align:center; position:relative; z-index:1; }
     .hero-tag {
-      display:inline-flex; align-items:center; gap:8px;
-      background:rgba(0,102,255,0.08); border:1px solid rgba(0,102,255,0.18);
-      color:var(--accent); font-size:12px; font-weight:600; letter-spacing:0.03em;
-      padding:8px 20px; border-radius:50px; margin-bottom:32px;
+      display:inline-flex; align-items:center; gap:6px;
+      background:var(--accent-surface); border:1px solid rgba(0,82,255,0.12);
+      color:var(--accent); font-size:12px; font-weight:600; letter-spacing:0.02em;
+      padding:7px 18px; border-radius:50px; margin-bottom:28px;
       animation:fadeUp 0.6s ease both;
     }
     .hero-title {
-      font-family:var(--font-display); font-size:clamp(40px,7.5vw,76px); font-weight:800;
-      line-height:1.02; margin-bottom:24px; letter-spacing:-0.03em;
+      font-family:var(--font-display); font-size:clamp(36px,7vw,68px); font-weight:800;
+      line-height:1.05; margin-bottom:20px; letter-spacing:-0.03em;
       animation:fadeUp 0.7s ease 0.1s both;
     }
     .gradient-text {
-      background:linear-gradient(135deg, var(--accent) 0%, var(--cyan) 50%, var(--violet) 100%);
+      background:linear-gradient(135deg, var(--accent) 0%, var(--violet) 100%);
       -webkit-background-clip:text; background-clip:text; color:transparent;
     }
     .hero-sub {
-      font-size:clamp(15px,2.2vw,18px); color:var(--text-secondary);
-      line-height:1.7; margin-bottom:40px; max-width:540px; margin-left:auto; margin-right:auto;
+      font-size:clamp(16px,2.2vw,19px); color:var(--text-secondary);
+      line-height:1.65; margin-bottom:36px; max-width:520px; margin-left:auto; margin-right:auto;
       font-weight:400; animation:fadeUp 0.7s ease 0.2s both;
     }
     .hero-ctas {
@@ -252,271 +281,287 @@
     }
     .btn-primary {
       background:var(--accent); color:#fff; border:none;
-      padding:14px 28px; border-radius:var(--radius-sm); font-size:15px; font-weight:600;
-      cursor:pointer; min-height:50px; font-family:var(--font); text-decoration:none;
+      padding:13px 28px; border-radius:var(--radius-sm); font-size:15px; font-weight:600;
+      cursor:pointer; min-height:48px; font-family:var(--font); text-decoration:none;
       display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      transition:all 0.25s; box-shadow:0 4px 20px rgba(0,102,255,0.3);
+      transition:all 0.2s; box-shadow:0 2px 12px rgba(0,82,255,0.2);
     }
-    .btn-primary:hover { background:var(--accent-light); transform:translateY(-2px); box-shadow:0 8px 30px rgba(0,102,255,0.4); }
+    .btn-primary:hover { background:var(--accent-light); transform:translateY(-1px); box-shadow:0 4px 20px rgba(0,82,255,0.25); }
     .btn-secondary {
-      background:var(--glass-bg); color:var(--text-primary); border:1px solid var(--glass-border);
-      padding:14px 28px; border-radius:var(--radius-sm); font-size:15px; font-weight:600;
-      cursor:pointer; min-height:50px; font-family:var(--font); text-decoration:none;
+      background:transparent; color:var(--text-primary); border:1px solid var(--border);
+      padding:13px 28px; border-radius:var(--radius-sm); font-size:15px; font-weight:600;
+      cursor:pointer; min-height:48px; font-family:var(--font); text-decoration:none;
       display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      transition:all 0.25s; backdrop-filter:blur(8px);
+      transition:all 0.2s;
     }
-    .btn-secondary:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-2px); }
+    .btn-secondary:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-1px); }
 
     .hero-stats {
       display:flex; align-items:center; justify-content:center; gap:0;
-      background:var(--glass-bg); border:1px solid var(--glass-border);
+      background:var(--bg-elevated); border:1px solid var(--border);
       border-radius:var(--radius); padding:20px 40px;
-      backdrop-filter:blur(12px);
+      box-shadow: var(--shadow-sm);
       animation:fadeUp 0.7s ease 0.4s both;
     }
     .stat { text-align:center; padding:0 28px; }
-    .stat-num { display:block; font-family:var(--font-display); font-size:28px; font-weight:800; color:var(--accent); }
-    .stat-label { font-size:11px; color:var(--text-muted); font-weight:500; letter-spacing:0.03em; }
-    .stat-divider { width:1px; height:36px; background:var(--glass-border); flex-shrink:0; }
+    .stat-num { display:block; font-family:var(--font-display); font-size:26px; font-weight:800; color:var(--accent); }
+    .stat-label { font-size:11px; color:var(--text-muted); font-weight:500; letter-spacing:0.02em; }
+    .stat-divider { width:1px; height:32px; background:var(--border); flex-shrink:0; }
 
-    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
 
     /* ── CHAIN BADGES ── */
     .chain-badges-row {
       display:flex; flex-wrap:wrap; gap:8px; justify-content:center;
-      padding:28px 24px 48px; max-width:800px; margin:0 auto;
+      padding:20px 24px 48px; max-width:700px; margin:0 auto;
     }
     .chain-badge-pill {
-      background:var(--glass-bg); border:1px solid var(--glass-border);
-      padding:8px 16px; border-radius:50px; font-size:12px; font-weight:600;
-      color:var(--text-secondary); display:flex; align-items:center; gap:6px;
-      transition:all 0.2s; backdrop-filter:blur(4px);
+      background:var(--bg-elevated); border:1px solid var(--border);
+      padding:6px 14px; border-radius:50px; font-size:12px; font-weight:500;
+      color:var(--text-secondary); display:flex; align-items:center; gap:5px;
+      transition:border-color 0.2s;
     }
-    .chain-badge-pill:hover { border-color:var(--accent); color:var(--accent); }
+    .chain-badge-pill:hover { border-color:var(--accent); }
 
     /* ── SECTIONS ── */
     .section { padding:100px 24px; }
     .section-alt { background:var(--bg-secondary); }
-    .section-inner { max-width:1200px; margin:0 auto; }
+    .section-inner { max-width:1080px; margin:0 auto; }
     .section-header { text-align:center; margin-bottom:56px; }
     .section-tag {
-      display:inline-block; background:rgba(0,102,255,0.06); color:var(--accent);
-      border:1px solid rgba(0,102,255,0.12); padding:6px 16px; border-radius:50px;
-      font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
-      margin-bottom:16px;
+      display:inline-block; background:var(--accent-surface); color:var(--accent);
+      border:1px solid rgba(0,82,255,0.1); padding:5px 14px; border-radius:50px;
+      font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
+      margin-bottom:14px;
     }
     .section-title {
-      font-family:var(--font-display); font-size:clamp(26px,4.5vw,42px); font-weight:800;
-      margin-bottom:14px; letter-spacing:-0.02em;
+      font-family:var(--font-display); font-size:clamp(24px,4vw,38px); font-weight:800;
+      margin-bottom:12px; letter-spacing:-0.02em;
     }
-    .section-sub { font-size:15px; color:var(--text-secondary); max-width:520px; margin:0 auto; line-height:1.7; font-weight:400; }
+    .section-sub { font-size:15px; color:var(--text-secondary); max-width:500px; margin:0 auto; line-height:1.7; font-weight:400; }
 
-    /* ── GLASS CARDS ── */
-    .cards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
-    .cards-grid-5 { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:16px; }
+    /* ── CARDS ── */
+    .cards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:16px; }
+    .cards-grid-5 { display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:16px; }
     .gift-card {
-      background:var(--glass-bg); border:1px solid var(--glass-border);
-      border-radius:var(--radius); padding:28px 24px;
-      cursor:pointer; transition:all 0.3s;
+      background:var(--bg-elevated); border:1px solid var(--border);
+      border-radius:var(--radius); padding:24px;
+      cursor:pointer; transition:all 0.25s;
       text-decoration:none; color:inherit; display:block;
-      backdrop-filter:blur(6px); position:relative; overflow:hidden;
+      position:relative; overflow:hidden;
     }
     .gift-card::before {
       content:''; position:absolute; inset:0;
-      background:linear-gradient(135deg, rgba(0,102,255,0.04) 0%, transparent 60%);
-      opacity:0; transition:opacity 0.3s;
+      background:linear-gradient(135deg, rgba(0,82,255,0.03) 0%, transparent 60%);
+      opacity:0; transition:opacity 0.25s;
     }
-    .gift-card:hover { border-color:rgba(0,102,255,0.3); transform:translateY(-4px); box-shadow:var(--shadow-glow); }
+    .gift-card:hover { border-color:var(--accent); transform:translateY(-2px); box-shadow:var(--shadow-md); }
     .gift-card:hover::before { opacity:1; }
-    .gift-card-icon { font-size:32px; margin-bottom:14px; position:relative; }
-    .gift-card-title { font-family:var(--font-display); font-size:17px; font-weight:700; margin-bottom:8px; position:relative; }
+    .gift-card-icon { font-size:28px; margin-bottom:12px; position:relative; }
+    .gift-card-title { font-family:var(--font-display); font-size:16px; font-weight:700; margin-bottom:6px; position:relative; }
     .gift-card-desc { font-size:13px; color:var(--text-secondary); line-height:1.6; position:relative; }
-    .gift-card-arrow { display:flex; align-items:center; justify-content:space-between; margin-top:14px; position:relative; }
+    .gift-card-arrow { display:flex; align-items:center; justify-content:space-between; margin-top:12px; position:relative; }
     .gift-card-cta { color:var(--accent); font-size:12px; font-weight:600; }
     .coming-soon-tag {
-      display:inline-block; background:rgba(245,158,11,0.1); color:var(--amber);
-      border:1px solid rgba(245,158,11,0.2); padding:4px 10px; border-radius:50px;
-      font-size:10px; font-weight:700; margin-top:10px;
+      display:inline-block; background:rgba(217,119,6,0.08); color:var(--amber);
+      border:1px solid rgba(217,119,6,0.15); padding:3px 10px; border-radius:50px;
+      font-size:10px; font-weight:600; margin-top:8px;
     }
     .testnet-banner {
-      background:rgba(0,102,255,0.05); border:1px solid rgba(0,102,255,0.12);
-      border-radius:var(--radius-sm); padding:12px 20px; text-align:center;
-      font-size:12px; color:var(--accent); font-weight:600; margin-bottom:32px;
+      background:var(--accent-surface); border:1px solid rgba(0,82,255,0.1);
+      border-radius:var(--radius-sm); padding:10px 20px; text-align:center;
+      font-size:12px; color:var(--accent); font-weight:600; margin-bottom:28px;
     }
 
     /* ── TWO COL + FORMS ── */
     .two-col { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
     .glass-card {
-      background:var(--glass-bg); border:1px solid var(--glass-border);
-      border-radius:var(--radius); padding:28px;
-      backdrop-filter:blur(8px);
+      background:var(--bg-elevated); border:1px solid var(--border);
+      border-radius:var(--radius); padding:24px;
     }
-    .card-header { display:flex; align-items:center; gap:12px; margin-bottom:24px; }
-    .card-icon { font-size:20px; }
-    .card-header h3 { font-family:var(--font-display); font-size:17px; font-weight:700; }
-    .form-group { margin-bottom:16px; }
-    .form-group label { display:block; font-size:12px; font-weight:600; color:var(--text-secondary); margin-bottom:6px; letter-spacing:0.02em; }
+    .card-header { display:flex; align-items:center; gap:10px; margin-bottom:20px; }
+    .card-icon { font-size:18px; }
+    .card-header h3 { font-family:var(--font-display); font-size:16px; font-weight:700; }
+    .form-group { margin-bottom:14px; }
+    .form-group label { display:block; font-size:12px; font-weight:600; color:var(--text-secondary); margin-bottom:5px; letter-spacing:0.01em; }
     .input-field {
-      width:100%; padding:10px 14px;
+      width:100%; padding:9px 12px;
       background:var(--input-bg); border:1px solid var(--input-border);
       border-radius:var(--radius-xs); color:var(--text-primary);
       font-size:14px; font-family:var(--font); outline:none;
-      transition:border-color 0.2s, box-shadow 0.2s; min-height:42px;
+      transition:border-color 0.2s, box-shadow 0.2s; min-height:40px;
     }
-    .input-field:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,102,255,0.1); }
-    .input-field.textarea { resize:vertical; min-height:80px; }
-    select.input-field { color-scheme:dark; appearance:auto; }
+    .input-field:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,82,255,0.08); }
+    .input-field.textarea { resize:vertical; min-height:76px; }
     [data-theme="light"] select.input-field { color-scheme:light; }
+    [data-theme="dark"] select.input-field { color-scheme:dark; }
     .input-with-badge { position:relative; }
-    .input-with-badge .input-field { padding-right:60px; }
+    .input-with-badge .input-field { padding-right:56px; }
     .input-badge { position:absolute; right:12px; top:50%; transform:translateY(-50%); color:var(--accent); font-size:12px; font-weight:700; }
     .optional { font-weight:400; color:var(--text-muted); font-size:11px; }
     .form-note { font-size:11px; color:var(--text-muted); text-align:center; margin-top:10px; }
     .full-width { width:100%; }
 
     /* ── SPLIT ── */
-    .split-type-toggle { display:flex; gap:0; margin-bottom:16px; border-radius:var(--radius-xs); overflow:hidden; border:1px solid var(--glass-border); }
+    .split-type-toggle { display:flex; gap:0; margin-bottom:14px; border-radius:var(--radius-xs); overflow:hidden; border:1px solid var(--border); }
     .toggle-btn {
-      flex:1; padding:10px; border:none; border-right:1px solid var(--glass-border);
-      background:var(--bg-tertiary); color:var(--text-muted); font-size:12px; font-weight:600;
-      cursor:pointer; font-family:var(--font); min-height:40px; transition:all 0.2s;
+      flex:1; padding:9px; border:none; border-right:1px solid var(--border);
+      background:var(--bg-secondary); color:var(--text-muted); font-size:12px; font-weight:600;
+      cursor:pointer; font-family:var(--font); min-height:38px; transition:all 0.2s;
     }
     .toggle-btn:last-child { border-right:none; }
     .toggle-btn.active { background:var(--accent); color:#fff; }
-    .recipient-list { display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
-    .recipient-row { display:grid; grid-template-columns:1fr 0.4fr 36px; gap:8px; align-items:center; }
+    .recipient-list { display:flex; flex-direction:column; gap:8px; margin-bottom:10px; }
+    .recipient-row { display:grid; grid-template-columns:1fr 0.4fr 34px; gap:8px; align-items:center; }
     .remove-btn {
-      background:rgba(244,63,94,0.1); border:none; color:var(--rose); border-radius:var(--radius-xs);
-      width:36px;height:36px; cursor:pointer; font-size:14px; transition:background 0.2s;
+      background:rgba(220,38,38,0.06); border:none; color:var(--rose); border-radius:var(--radius-xs);
+      width:34px;height:34px; cursor:pointer; font-size:13px; transition:background 0.2s;
     }
-    .remove-btn:hover { background:rgba(244,63,94,0.2); }
+    .remove-btn:hover { background:rgba(220,38,38,0.12); }
     .btn-ghost {
-      background:transparent; border:1px dashed var(--glass-border); color:var(--text-secondary);
-      padding:10px; border-radius:var(--radius-xs); font-size:13px; font-weight:500;
-      cursor:pointer; font-family:var(--font); min-height:40px; width:100%; transition:all 0.2s;
+      background:transparent; border:1px dashed var(--border); color:var(--text-secondary);
+      padding:9px; border-radius:var(--radius-xs); font-size:13px; font-weight:500;
+      cursor:pointer; font-family:var(--font); min-height:38px; width:100%; transition:all 0.2s;
     }
     .btn-ghost:hover { border-color:var(--accent); color:var(--accent); }
     .split-summary {
-      background:rgba(0,102,255,0.04); border:1px solid rgba(0,102,255,0.1);
-      border-radius:var(--radius-xs); padding:14px; margin-top:12px;
+      background:var(--accent-surface); border:1px solid rgba(0,82,255,0.08);
+      border-radius:var(--radius-xs); padding:12px; margin-top:10px;
     }
-    .summary-row { display:flex; justify-content:space-between; padding:3px 0; font-size:12px; }
+    .summary-row { display:flex; justify-content:space-between; padding:2px 0; font-size:12px; }
     .summary-row span:last-child { font-weight:700; color:var(--accent); }
     .bill-upload-zone {
       display:flex; align-items:center; gap:10px;
-      border:1px dashed var(--glass-border); border-radius:var(--radius-xs);
-      padding:12px 14px; cursor:pointer; transition:all 0.2s; min-height:46px;
+      border:1px dashed var(--border); border-radius:var(--radius-xs);
+      padding:10px 12px; cursor:pointer; transition:all 0.2s; min-height:42px;
       background:var(--input-bg);
     }
     .bill-upload-zone:hover { border-color:var(--accent); }
 
     /* ── STEPS ── */
-    .steps-row { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:20px; }
+    .steps-row { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; }
     .step-card {
       text-align:center; padding:28px 20px;
-      background:var(--glass-bg); border:1px solid var(--glass-border);
-      border-radius:var(--radius); transition:all 0.25s;
+      background:var(--bg-elevated); border:1px solid var(--border);
+      border-radius:var(--radius); transition:all 0.2s;
     }
-    .step-card:hover { border-color:rgba(0,102,255,0.2); transform:translateY(-2px); }
+    .step-card:hover { border-color:var(--accent); transform:translateY(-2px); }
     .step-num {
-      display:inline-flex; width:44px;height:44px; align-items:center; justify-content:center;
-      background:rgba(0,102,255,0.08); border:1px solid rgba(0,102,255,0.15);
+      display:inline-flex; width:40px;height:40px; align-items:center; justify-content:center;
+      background:var(--accent-surface); border:1px solid rgba(0,82,255,0.1);
       border-radius:50%; font-size:13px; font-weight:700; color:var(--accent);
-      margin-bottom:14px;
+      margin-bottom:12px;
     }
     .step-card h4 { font-family:var(--font-display); font-size:15px; font-weight:700; margin-bottom:6px; }
-    .step-card p { font-size:13px; color:var(--text-secondary); line-height:1.6; }
+    .step-card p { font-size:13px; color:var(--text-secondary); line-height:1.55; }
 
     /* ── BUSINESS ── */
-    .biz-features { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; margin-bottom:40px; }
+    .biz-features { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:12px; margin-bottom:36px; }
     .biz-feature {
-      display:flex; align-items:flex-start; gap:14px; padding:20px;
-      background:var(--glass-bg); border:1px solid var(--glass-border);
-      border-radius:var(--radius-sm); transition:all 0.25s;
+      display:flex; align-items:flex-start; gap:12px; padding:18px;
+      background:var(--bg-elevated); border:1px solid var(--border);
+      border-radius:var(--radius-sm); transition:border-color 0.2s;
     }
-    .biz-feature:hover { border-color:rgba(0,102,255,0.2); }
-    .biz-feature-icon { font-size:20px; flex-shrink:0; padding-top:2px; }
-    .biz-feature-text h5 { font-size:13px; font-weight:700; margin-bottom:4px; }
-    .biz-feature-text p { font-size:12px; color:var(--text-secondary); line-height:1.55; }
+    .biz-feature:hover { border-color:var(--accent); }
+    .biz-feature-icon { font-size:18px; flex-shrink:0; padding-top:2px; }
+    .biz-feature-text h5 { font-size:13px; font-weight:700; margin-bottom:3px; }
+    .biz-feature-text p { font-size:12px; color:var(--text-secondary); line-height:1.5; }
 
     /* ── MARKETPLACE ── */
-    .partner-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:12px; }
+    .partner-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:10px; }
     .partner-tile {
-      background:var(--glass-bg); border:1px solid var(--glass-border);
-      border-radius:var(--radius-sm); padding:20px 14px; text-align:center;
-      transition:all 0.25s; display:flex; flex-direction:column; align-items:center; gap:6px;
+      background:var(--bg-elevated); border:1px solid var(--border);
+      border-radius:var(--radius-sm); padding:18px 12px; text-align:center;
+      transition:border-color 0.2s; display:flex; flex-direction:column; align-items:center; gap:5px;
     }
-    .partner-tile:hover { border-color:rgba(0,102,255,0.2); transform:translateY(-2px); }
-    .partner-tile-icon { font-size:24px; }
-    .partner-tile-name { font-size:12px; font-weight:700; }
+    .partner-tile:hover { border-color:var(--accent); }
+    .partner-tile-icon { font-size:22px; }
+    .partner-tile-name { font-size:12px; font-weight:600; }
 
     /* ── ARC INFO ── */
-    .arc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
+    .arc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; }
     .arc-card {
-      background:var(--glass-bg); border:1px solid var(--glass-border);
-      border-radius:var(--radius); padding:24px; transition:all 0.25s;
+      background:var(--bg-elevated); border:1px solid var(--border);
+      border-radius:var(--radius); padding:22px; transition:all 0.2s;
     }
-    .arc-card:hover { border-color:rgba(0,102,255,0.25); transform:translateY(-2px); box-shadow:var(--shadow-glow); }
-    .arc-card-icon { font-size:24px; margin-bottom:12px; }
-    .arc-card h4 { font-family:var(--font-display); font-size:15px; font-weight:700; margin-bottom:8px; }
-    .arc-card p { font-size:13px; color:var(--text-secondary); line-height:1.6; }
+    .arc-card:hover { border-color:var(--accent); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+    .arc-card-icon { font-size:22px; margin-bottom:10px; }
+    .arc-card h4 { font-family:var(--font-display); font-size:15px; font-weight:700; margin-bottom:6px; }
+    .arc-card p { font-size:13px; color:var(--text-secondary); line-height:1.55; }
 
-    /* ── TRUST STATS ── */
-    .trust-row {
-      display:flex; flex-wrap:wrap; gap:48px; justify-content:center; align-items:center;
-      padding:40px; background:var(--glass-bg); border:1px solid var(--glass-border);
-      border-radius:var(--radius); backdrop-filter:blur(8px);
+    /* ── TRUST ── */
+    .trust-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; }
+    .trust-card {
+      background:var(--bg-elevated); border:1px solid var(--border);
+      border-radius:var(--radius); padding:24px; text-align:center; transition:border-color 0.2s;
     }
-    .trust-stat { text-align:center; }
-    .trust-stat-num { font-family:var(--font-display); font-size:36px; font-weight:800; color:var(--accent); }
-    .trust-stat-label { font-size:12px; color:var(--text-muted); margin-top:4px; letter-spacing:0.03em; }
+    .trust-card:hover { border-color:var(--accent); }
+    .trust-card-icon { font-size:28px; margin-bottom:10px; }
+    .trust-card h4 { font-size:14px; font-weight:700; margin-bottom:6px; }
+    .trust-card p { font-size:13px; color:var(--text-secondary); line-height:1.55; }
+
+    /* ── ROADMAP ── */
+    .roadmap-list { max-width:600px; margin:0 auto; }
+    .roadmap-item {
+      display:flex; align-items:flex-start; gap:14px; padding:14px 0;
+      border-bottom:1px solid var(--border);
+    }
+    .roadmap-item:last-child { border-bottom:none; }
+    .roadmap-status { font-size:18px; flex-shrink:0; padding-top:1px; }
+    .roadmap-text h4 { font-size:14px; font-weight:600; margin-bottom:2px; }
+    .roadmap-text p { font-size:13px; color:var(--text-secondary); }
 
     /* ── SUPPORT ── */
-    .support-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; }
+    .support-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; }
     .support-card {
-      background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:var(--radius);
-      padding:24px; text-align:center; text-decoration:none; color:inherit; transition:all 0.25s;
+      background:var(--bg-elevated); border:1px solid var(--border); border-radius:var(--radius);
+      padding:22px; text-align:center; text-decoration:none; color:inherit; transition:all 0.2s;
     }
-    .support-card:hover { border-color:rgba(0,102,255,0.3); transform:translateY(-3px); box-shadow:var(--shadow-glow); }
-    .support-card-icon { font-size:32px; margin-bottom:10px; }
-    .support-card-title { font-weight:700; font-size:14px; margin-bottom:4px; }
+    .support-card:hover { border-color:var(--accent); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+    .support-card-icon { font-size:28px; margin-bottom:8px; }
+    .support-card-title { font-weight:700; font-size:14px; margin-bottom:3px; }
     .support-card-sub { font-size:11px; color:var(--text-muted); line-height:1.5; }
 
     /* ── FAQ ── */
-    .faq-list { display:flex; flex-direction:column; gap:10px; max-width:780px; margin:0 auto; }
-    .faq-item { background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:var(--radius-sm); overflow:hidden; }
+    .faq-list { display:flex; flex-direction:column; gap:8px; max-width:720px; margin:0 auto; }
+    .faq-item { background:var(--bg-elevated); border:1px solid var(--border); border-radius:var(--radius-sm); overflow:hidden; }
     .faq-q {
       width:100%; background:none; border:none; text-align:left;
-      padding:16px 20px; font-size:14px; font-weight:600; color:var(--text-primary);
+      padding:14px 18px; font-size:14px; font-weight:600; color:var(--text-primary);
       cursor:pointer; font-family:var(--font); display:flex; justify-content:space-between; align-items:center;
-      min-height:52px; transition:color 0.15s;
+      min-height:48px; transition:color 0.15s;
     }
     .faq-q:hover { color:var(--accent); }
     .faq-icon { font-size:16px; transition:transform 0.3s; flex-shrink:0; color:var(--text-muted); }
     .faq-item.open .faq-icon { transform:rotate(45deg); color:var(--accent); }
-    .faq-a { padding:0 20px; max-height:0; overflow:hidden; transition:max-height 0.3s ease, padding 0.3s; }
-    .faq-item.open .faq-a { max-height:300px; padding:0 20px 16px; }
+    .faq-a { padding:0 18px; max-height:0; overflow:hidden; transition:max-height 0.3s ease, padding 0.3s; }
+    .faq-item.open .faq-a { max-height:300px; padding:0 18px 14px; }
     .faq-a p { font-size:13px; color:var(--text-secondary); line-height:1.7; }
 
     /* ── FOOTER ── */
     .footer {
-      border-top:1px solid var(--glass-border); padding:56px 24px 32px;
+      border-top:1px solid var(--border); padding:56px 24px 28px;
       background:var(--bg-secondary);
     }
-    .footer-inner { max-width:1200px; margin:0 auto; }
-    .footer-grid { display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px; }
-    .footer-logo { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+    .footer-inner { max-width:1080px; margin:0 auto; }
+    .footer-grid { display:grid; grid-template-columns:1.8fr 1fr 1fr 1fr; gap:40px; margin-bottom:44px; }
+    .footer-logo { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
     .footer-col h5 {
       font-family:var(--font-display); font-size:11px; font-weight:700;
-      letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:14px;
+      letter-spacing:0.08em; text-transform:uppercase; color:var(--text-muted); margin-bottom:12px;
     }
     .footer-col a {
       display:block; color:var(--text-secondary); font-size:13px;
-      padding:4px 0; transition:color 0.15s; text-decoration:none;
+      padding:3px 0; transition:color 0.15s; text-decoration:none;
     }
     .footer-col a:hover { color:var(--accent); }
-    .footer-bottom { border-top:1px solid var(--glass-border); padding-top:24px; text-align:center; }
+    .footer-bottom { border-top:1px solid var(--border); padding-top:20px; text-align:center; }
     .footer-credit { font-size:11px; color:var(--text-muted); line-height:1.8; }
+    .disclaimer {
+      max-width:720px; margin:24px auto 0; padding:16px 20px;
+      background:var(--accent-surface); border:1px solid rgba(0,82,255,0.08);
+      border-radius:var(--radius-sm); font-size:11px; color:var(--text-secondary); line-height:1.7;
+    }
 
     /* ── GIFT VAULT PAGE ── */
     .gift-vault-page {
@@ -525,110 +570,92 @@
     }
     .gift-vault-page.open { display:block; }
     .gvp-header {
-      display:flex; align-items:center; gap:16px;
-      padding:14px 24px; border-bottom:1px solid var(--glass-border);
-      background:var(--bg-secondary); position:sticky; top:0; z-index:1;
+      display:flex; align-items:center; gap:14px;
+      padding:12px 24px; border-bottom:1px solid var(--border);
+      background:var(--bg-elevated); position:sticky; top:0; z-index:1;
     }
     .gvp-back {
-      background:none; border:1px solid var(--glass-border); color:var(--text-secondary);
-      padding:8px 16px; border-radius:var(--radius-xs); cursor:pointer;
+      background:none; border:1px solid var(--border); color:var(--text-secondary);
+      padding:7px 14px; border-radius:var(--radius-xs); cursor:pointer;
       font-size:13px; font-weight:500; font-family:var(--font); transition:all 0.15s;
     }
     .gvp-back:hover { border-color:var(--accent); color:var(--accent); }
-    .gvp-inner { max-width:1100px; margin:0 auto; padding:32px 24px 80px; }
+    .gvp-inner { max-width:1060px; margin:0 auto; padding:28px 24px 80px; }
     .vault-type-tabs {
-      display:flex; flex-wrap:wrap; gap:6px; margin-bottom:28px;
-      padding-bottom:20px; border-bottom:1px solid var(--glass-border);
+      display:flex; flex-wrap:wrap; gap:6px; margin-bottom:24px;
+      padding-bottom:18px; border-bottom:1px solid var(--border);
     }
     .vault-tab {
-      padding:8px 16px; border-radius:50px; border:1px solid var(--glass-border);
-      background:var(--glass-bg); color:var(--text-secondary); font-size:12px; font-weight:600;
+      padding:7px 14px; border-radius:50px; border:1px solid var(--border);
+      background:transparent; color:var(--text-secondary); font-size:12px; font-weight:600;
       cursor:pointer; font-family:var(--font); transition:all 0.2s;
     }
     .vault-tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
     .ecard-preview {
-      background:linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
-      border:1px solid var(--glass-border); border-radius:var(--radius);
-      padding:40px 24px; text-align:center; margin-bottom:20px;
+      background:var(--bg-secondary);
+      border:1px solid var(--border); border-radius:var(--radius);
+      padding:36px 20px; text-align:center; margin-bottom:16px;
       position:relative; overflow:hidden;
     }
-    .ecard-preview::before {
-      content:''; position:absolute; inset:0;
-      background:radial-gradient(circle at 30% 20%, rgba(0,102,255,0.06), transparent 60%);
-    }
-    .ecard-emoji { font-size:48px; margin-bottom:14px; position:relative; }
-    .ecard-greeting { font-family:var(--font-display); font-size:22px; font-weight:700; margin-bottom:8px; position:relative; }
-    .ecard-body { font-size:14px; color:var(--text-secondary); margin-bottom:8px; position:relative; }
+    .ecard-emoji { font-size:44px; margin-bottom:12px; position:relative; }
+    .ecard-greeting { font-family:var(--font-display); font-size:20px; font-weight:700; margin-bottom:6px; position:relative; }
+    .ecard-body { font-size:14px; color:var(--text-secondary); margin-bottom:6px; position:relative; }
     .ecard-sig { font-size:12px; color:var(--text-muted); font-style:italic; position:relative; }
-    .upload-tabs { display:flex; gap:6px; margin-bottom:12px; }
+    .upload-tabs { display:flex; gap:5px; margin-bottom:10px; }
     .upload-tab {
-      padding:6px 12px; border-radius:var(--radius-xs); border:1px solid var(--glass-border);
-      background:var(--glass-bg); color:var(--text-secondary); font-size:11px; font-weight:600;
+      padding:5px 10px; border-radius:var(--radius-xs); border:1px solid var(--border);
+      background:transparent; color:var(--text-secondary); font-size:11px; font-weight:600;
       cursor:pointer; font-family:var(--font); transition:all 0.15s;
     }
     .upload-tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
     .upload-zone {
-      border:1px dashed var(--glass-border); border-radius:var(--radius-xs);
-      padding:24px; text-align:center; cursor:pointer; transition:all 0.2s;
+      border:1px dashed var(--border); border-radius:var(--radius-xs);
+      padding:20px; text-align:center; cursor:pointer; transition:border-color 0.2s;
     }
     .upload-zone:hover { border-color:var(--accent); }
     .upload-zone input[type="file"] { display:none; }
-    .upload-zone-icon { font-size:28px; margin-bottom:6px; }
+    .upload-zone-icon { font-size:24px; margin-bottom:4px; }
     .upload-zone-text { font-size:12px; color:var(--text-muted); }
-    .share-row { display:grid; grid-template-columns:repeat(auto-fill,minmax(100px,1fr)); gap:8px; }
+    .share-row { display:grid; grid-template-columns:repeat(auto-fill,minmax(100px,1fr)); gap:6px; }
     .share-btn {
-      padding:10px 8px; border-radius:var(--radius-xs); border:1px solid var(--glass-border);
-      background:var(--glass-bg); color:var(--text-secondary); font-size:12px; font-weight:600;
+      padding:9px 8px; border-radius:var(--radius-xs); border:1px solid var(--border);
+      background:transparent; color:var(--text-secondary); font-size:12px; font-weight:600;
       cursor:pointer; font-family:var(--font); transition:all 0.15s; text-align:center;
     }
     .share-btn:hover { border-color:var(--accent); color:var(--accent); }
-    .vault-list { min-height:120px; display:flex; flex-direction:column; gap:10px; }
-    .empty-state { text-align:center; padding:32px 16px; color:var(--text-muted); }
-    .empty-icon { font-size:36px; margin-bottom:8px; }
-
-    /* ── VAULT ITEMS (dynamically injected by app.js) ── */
+    .vault-list { min-height:100px; display:flex; flex-direction:column; gap:8px; }
+    .empty-state { text-align:center; padding:28px 16px; color:var(--text-muted); }
+    .empty-icon { font-size:32px; margin-bottom:6px; }
     .vault-item {
-      background:var(--glass-bg); border:1px solid var(--glass-border);
-      border-radius:var(--radius-sm); padding:16px; transition:border-color 0.2s;
+      background:var(--bg-elevated); border:1px solid var(--border);
+      border-radius:var(--radius-sm); padding:14px; transition:border-color 0.2s;
     }
-    .vault-item:hover { border-color:rgba(0,102,255,0.2); }
+    .vault-item:hover { border-color:var(--accent); }
     .vault-item-header {
       display:flex; justify-content:space-between; align-items:center;
-      margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid var(--glass-border);
+      margin-bottom:8px; padding-bottom:8px; border-bottom:1px solid var(--border);
     }
-    .vault-id {
-      font-family:var(--font-display); font-weight:700; font-size:13px; color:var(--accent);
-    }
+    .vault-id { font-family:var(--font-display); font-weight:700; font-size:13px; color:var(--accent); }
     .vault-status {
-      font-size:11px; font-weight:700; padding:3px 10px;
-      border-radius:50px; letter-spacing:0.03em;
+      font-size:11px; font-weight:600; padding:2px 8px;
+      border-radius:50px; letter-spacing:0.02em;
     }
-    .vault-status.locked {
-      background:rgba(245,158,11,0.1); color:var(--amber);
-      border:1px solid rgba(245,158,11,0.2);
-    }
-    .vault-status.unlocked {
-      background:rgba(16,185,129,0.1); color:var(--emerald);
-      border:1px solid rgba(16,185,129,0.2);
-    }
-    .vault-item-detail {
-      font-size:12px; color:var(--text-secondary); margin-bottom:4px; line-height:1.5;
-    }
+    .vault-status.locked { background:rgba(217,119,6,0.08); color:var(--amber); border:1px solid rgba(217,119,6,0.15); }
+    .vault-status.unlocked { background:rgba(13,155,82,0.08); color:var(--emerald); border:1px solid rgba(13,155,82,0.15); }
+    .vault-item-detail { font-size:12px; color:var(--text-secondary); margin-bottom:3px; line-height:1.5; }
     .vault-item-detail strong { color:var(--text-primary); font-weight:600; }
     .vault-message {
-      font-style:italic; color:var(--text-secondary); margin-top:8px;
-      padding:8px 12px; background:rgba(0,102,255,0.04);
+      font-style:italic; color:var(--text-secondary); margin-top:6px;
+      padding:6px 10px; background:var(--accent-surface);
       border-left:2px solid var(--accent); border-radius:0 var(--radius-xs) var(--radius-xs) 0;
       font-size:12px;
     }
     .vault-withdraw {
-      margin-top:12px; background:var(--emerald); color:#fff; border:none;
-      border-radius:var(--radius-xs); padding:8px 16px; font-size:12px; font-weight:700;
-      cursor:pointer; font-family:var(--font); transition:all 0.2s; width:100%;
+      margin-top:10px; background:var(--emerald); color:#fff; border:none;
+      border-radius:var(--radius-xs); padding:7px 14px; font-size:12px; font-weight:700;
+      cursor:pointer; font-family:var(--font); transition:opacity 0.2s; width:100%;
     }
-    .vault-withdraw:hover { opacity:0.88; transform:translateY(-1px); }
-
-    /* ── SPINNER (used during tx processing) ── */
+    .vault-withdraw:hover { opacity:0.9; }
     .spinner {
       display:inline-block; width:14px; height:14px;
       border:2px solid rgba(255,255,255,0.3); border-top-color:#fff;
@@ -636,63 +663,167 @@
     }
     @keyframes spin { to { transform:rotate(360deg); } }
 
-    /* ── NAVBAR SCROLLED STATE ── */
-    .navbar.scrolled { box-shadow:0 4px 24px rgba(0,102,255,0.12); }
-
-    /* ── CONNECT BUTTON CONNECTED STATE ── */
-    .btn-connect.connected {
-      background:var(--glass-bg); border:1px solid var(--accent);
-      color:var(--accent); font-size:11px;
+    /* ── TRUST STATS ROW ── */
+    .trust-row {
+      display:flex; flex-wrap:wrap; gap:40px; justify-content:center; align-items:center;
+      padding:32px; background:var(--bg-elevated); border:1px solid var(--border);
+      border-radius:var(--radius);
     }
-    .btn-connect.connected:hover { background:var(--glass-active); transform:none; }
+    .trust-stat { text-align:center; }
+    .trust-stat-num { font-family:var(--font-display); font-size:32px; font-weight:800; color:var(--accent); }
+    .trust-stat-label { font-size:12px; color:var(--text-muted); margin-top:3px; }
+
+    /* ── GRANDGUIDE AI ── */
+    .gg-fab {
+      position:fixed; bottom:24px; right:24px; z-index:2000;
+      width:56px; height:56px; border-radius:50%;
+      background:var(--accent); color:#fff; border:none;
+      font-size:22px; cursor:pointer;
+      box-shadow:0 4px 20px rgba(0,82,255,0.3);
+      transition:transform 0.2s, box-shadow 0.2s;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .gg-fab:hover { transform:scale(1.06); box-shadow:0 6px 28px rgba(0,82,255,0.4); }
+    .gg-fab.open { border-radius:var(--radius-sm); }
+    .gg-panel {
+      position:fixed; bottom:90px; right:24px; z-index:2001;
+      width:360px; max-height:520px;
+      background:var(--bg-elevated); border:1px solid var(--border);
+      border-radius:var(--radius); box-shadow:var(--shadow-lg);
+      display:none; flex-direction:column; overflow:hidden;
+    }
+    .gg-panel.open { display:flex; }
+    .gg-header {
+      padding:16px 18px; border-bottom:1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .gg-header h4 { font-family:var(--font-display); font-size:15px; font-weight:700; }
+    .gg-header span { font-size:11px; color:var(--text-muted); }
+    .gg-close {
+      background:none; border:none; color:var(--text-muted); font-size:18px;
+      cursor:pointer; padding:4px; transition:color 0.15s;
+    }
+    .gg-close:hover { color:var(--text-primary); }
+    .gg-body { flex:1; overflow-y:auto; padding:14px 18px; }
+    .gg-welcome {
+      font-size:13px; color:var(--text-secondary); line-height:1.6; margin-bottom:14px;
+    }
+    .gg-topics { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+    .gg-topic {
+      padding:6px 12px; border-radius:50px; border:1px solid var(--border);
+      background:transparent; color:var(--text-secondary); font-size:12px; font-weight:500;
+      cursor:pointer; font-family:var(--font); transition:all 0.15s;
+    }
+    .gg-topic:hover { border-color:var(--accent); color:var(--accent); }
+    .gg-answer {
+      display:none; background:var(--bg-secondary); border-radius:var(--radius-sm);
+      padding:12px 14px; font-size:13px; color:var(--text-secondary); line-height:1.65;
+      margin-top:10px;
+    }
+    .gg-answer.visible { display:block; }
+    .gg-footer {
+      padding:12px 18px; border-top:1px solid var(--border);
+      display:flex; gap:8px;
+    }
+    .gg-input {
+      flex:1; padding:8px 12px; border:1px solid var(--border);
+      border-radius:var(--radius-xs); font-size:13px; font-family:var(--font);
+      background:var(--input-bg); color:var(--text-primary); outline:none;
+    }
+    .gg-input:focus { border-color:var(--accent); }
+    .gg-send {
+      background:var(--accent); color:#fff; border:none;
+      border-radius:var(--radius-xs); padding:8px 14px; font-size:13px;
+      font-weight:600; cursor:pointer; font-family:var(--font);
+      transition:background 0.15s;
+    }
+    .gg-send:hover { background:var(--accent-light); }
 
     /* ── MODALS ── */
     .modal-overlay {
       position:fixed; inset:0; z-index:2000;
-      background:rgba(0,0,0,0.6); backdrop-filter:blur(4px);
+      background:rgba(0,0,0,0.5); backdrop-filter:blur(4px);
       display:flex; align-items:center; justify-content:center; padding:24px;
     }
     .modal {
-      background:var(--bg-elevated); border:1px solid var(--glass-border);
-      border-radius:var(--radius); padding:32px; max-width:420px; width:100%;
-      box-shadow:var(--shadow-md);
+      background:var(--bg-elevated); border:1px solid var(--border);
+      border-radius:var(--radius); padding:28px; max-width:400px; width:100%;
+      box-shadow:var(--shadow-lg);
     }
-    .modal-success-icon { font-size:48px; text-align:center; margin-bottom:14px; }
+    .modal-success-icon { font-size:44px; text-align:center; margin-bottom:12px; }
     .tx-hash { font-size:11px; color:var(--accent); word-break:break-all; display:block; margin-top:4px; }
-    .modal-tx { background:var(--glass-bg); border-radius:var(--radius-xs); padding:12px; margin-top:12px; }
+    .modal-tx { background:var(--bg-secondary); border-radius:var(--radius-xs); padding:10px; margin-top:10px; }
 
     /* ── NOTIFICATION ── */
     .notification {
       position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px);
-      padding:14px 24px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
+      padding:12px 22px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
       z-index:3000; transition:transform 0.3s ease; pointer-events:none;
-      background:var(--bg-elevated); border:1px solid var(--glass-border);
-      box-shadow:var(--shadow-md); white-space:nowrap; max-width:90vw;
+      background:var(--bg-elevated); border:1px solid var(--border);
+      box-shadow:var(--shadow-lg); white-space:nowrap; max-width:90vw;
     }
     .notification.show { transform:translateX(-50%) translateY(0); pointer-events:auto; }
-    .notification.success { border-color:rgba(16,185,129,0.4); color:var(--emerald); }
-    .notification.error { border-color:rgba(244,63,94,0.4); color:var(--rose); }
-    .notification.info { border-color:rgba(0,102,255,0.4); color:var(--accent); }
+    .notification.success { border-color:rgba(13,155,82,0.3); color:var(--emerald); }
+    .notification.error { border-color:rgba(220,38,38,0.3); color:var(--rose); }
+    .notification.info { border-color:rgba(0,82,255,0.3); color:var(--accent); }
+
+    /* ── PROBLEM SECTION GRID ── */
+    .problem-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; max-width:960px; margin:0 auto; }
+    .problem-card {
+      background:var(--bg-elevated); border:1px solid var(--border);
+      border-radius:var(--radius-sm); padding:20px; text-align:center;
+      transition:border-color 0.2s;
+    }
+    .problem-card:hover { border-color:var(--rose); }
+    .problem-card .pc-icon { font-size:24px; margin-bottom:8px; }
+    .problem-card h4 { font-size:13px; font-weight:700; margin-bottom:4px; }
+    .problem-card p { font-size:12px; color:var(--text-secondary); line-height:1.5; }
+
+    /* ── IDENTITY CARD ── */
+    .identity-card {
+      background:var(--bg-elevated); border:1px solid var(--border);
+      border-radius:var(--radius); padding:28px; max-width:600px; margin:24px auto 0;
+      display:flex; gap:20px; align-items:center;
+    }
+    .identity-avatar {
+      width:56px; height:56px; border-radius:50%;
+      background:linear-gradient(135deg, var(--accent), var(--violet));
+      display:flex; align-items:center; justify-content:center;
+      font-size:24px; color:#fff; flex-shrink:0;
+    }
+    .identity-info h4 { font-size:15px; font-weight:700; margin-bottom:2px; }
+    .identity-info p { font-size:13px; color:var(--text-secondary); line-height:1.5; }
+    .identity-links { display:flex; gap:12px; margin-top:6px; }
+    .identity-links a { font-size:12px; color:var(--accent); font-weight:600; }
 
     /* ── RESPONSIVE ── */
     @media(max-width:900px) {
       .two-col { grid-template-columns:1fr; }
       .footer-grid { grid-template-columns:1fr 1fr; }
       .nav-links { display:none; }
-      .lang-panel { right:20px; }
+      .lang-panel { right:16px; }
+      .gg-panel { width:calc(100vw - 32px); right:16px; bottom:88px; }
+      .identity-card { flex-direction:column; text-align:center; }
+      .identity-links { justify-content:center; }
     }
     @media(max-width:640px) {
       .hamburger { display:flex; align-items:center; justify-content:center; }
       .nav-right .chain-selector, .nav-right .chain-badge, .nav-right .btn-connect { display:none; }
-      .hero-stats { flex-direction:column; gap:16px; padding:20px; }
+      .hero-stats { flex-direction:column; gap:14px; padding:18px; }
       .stat-divider { width:60px; height:1px; }
       .footer-grid { grid-template-columns:1fr; }
       .recipient-row { grid-template-columns:1fr; }
       .hero-ctas { flex-direction:column; align-items:stretch; }
       .section { padding:70px 20px; }
+      .gg-panel { width:calc(100vw - 16px); right:8px; bottom:86px; max-height:70vh; }
+      .gg-fab { bottom:16px; right:16px; width:52px; height:52px; }
     }
     @media(max-width:390px) {
-      .gvp-inner { padding:20px 16px 60px; }
+      .gvp-inner { padding:18px 16px 60px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
     }
   </style>
 </head>
@@ -702,7 +833,7 @@
   <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
       <a href="#home" class="nav-logo" aria-label="GrandPay Vault home">
-        <span class="logo-icon" aria-hidden="true">🏦</span>
+        <div class="logo-icon" aria-hidden="true">🎁</div>
         <div class="logo-text">
           <div class="logo-main">GrandPay Vault</div>
           <div class="logo-badge">Built on Arc</div>
@@ -710,25 +841,24 @@
       </a>
 
       <ul class="nav-links" role="list">
-        <li><a href="#" class="nav-gift-vault" id="navGiftVaultLink" data-i18n="nav_gift">🎁 Gift Vault</a></li>
+        <li><a href="#" class="nav-gift-vault" id="navGiftVaultLink" data-i18n="nav_gift">Gift Vault</a></li>
+        <li><a href="#how-it-works" data-i18n="hiw_title">How It Works</a></li>
         <li><a href="#chainsplit" data-i18n="nav_split">ChainSplit</a></li>
-        <li><a href="#business" data-i18n="nav_biz">For Business</a></li>
-        <li><a href="#marketplace" data-i18n="nav_shop">Shop</a></li>
-        <li><a href="#travel" data-i18n="nav_travel">Travel</a></li>
         <li><a href="#about" data-i18n="nav_arc">About Arc</a></li>
-        <li><a href="#support" data-i18n="nav_support">Support</a></li>
+        <li><a href="#trust">Trust</a></li>
+        <li><a href="#faq">FAQ</a></li>
       </ul>
 
       <div class="nav-right">
         <button class="lang-btn" id="langToggleBtn" aria-label="Change language" title="Language">🌐 <span id="langLabel">EN</span></button>
         <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Change theme" title="Theme">🎨</button>
         <select id="chainSelector" class="chain-selector" aria-label="Select network">
-          <option value="arc">🔵 Arc Testnet</option>
-          <option value="ethereum">Ξ Ethereum</option>
-          <option value="base">🔵 Base</option>
-          <option value="polygon">🟣 Polygon</option>
-          <option value="arbitrum">🔷 Arbitrum</option>
-          <option value="optimism">🔴 Optimism (OP)</option>
+          <option value="arc">Arc Testnet</option>
+          <option value="ethereum">Ethereum</option>
+          <option value="base">Base</option>
+          <option value="polygon">Polygon</option>
+          <option value="arbitrum">Arbitrum</option>
+          <option value="optimism">Optimism</option>
         </select>
         <div id="chainBadge" class="chain-badge" aria-live="polite">Arc Testnet</div>
         <button id="connectBtn" class="btn-connect" type="button" data-i18n="connect">Connect Wallet</button>
@@ -739,47 +869,46 @@
 
     <!-- Language Panel -->
     <div class="lang-panel" id="langPanel" role="dialog" aria-label="Language options">
-      <button class="lang-option active" data-lang="en">🇬🇧 English</button>
-      <button class="lang-option" data-lang="es">🇪🇸 Español</button>
-      <button class="lang-option" data-lang="fr">🇫🇷 Français</button>
-      <button class="lang-option" data-lang="hi">🇮🇳 हिन्दी</button>
-      <button class="lang-option" data-lang="ar">🇸🇦 العربية</button>
-      <button class="lang-option" data-lang="pt">🇧🇷 Português</button>
-      <button class="lang-option" data-lang="zh">🇨🇳 中文</button>
+      <button class="lang-option active" data-lang="en">English</button>
+      <button class="lang-option" data-lang="es">Español</button>
+      <button class="lang-option" data-lang="fr">Français</button>
+      <button class="lang-option" data-lang="hi">हिन्दी</button>
+      <button class="lang-option" data-lang="ar">العربية</button>
+      <button class="lang-option" data-lang="pt">Português</button>
+      <button class="lang-option" data-lang="zh">中文</button>
     </div>
 
     <!-- Theme Panel -->
     <div class="theme-panel" id="themePanel" role="dialog" aria-label="Theme options">
       <h4>Theme</h4>
       <div class="theme-options">
-        <button class="theme-opt active" data-theme="dark">
-          <div class="theme-swatch" style="background:#060B18;border:2px solid #0066FF"></div>
-          Dark
-        </button>
-        <button class="theme-opt" data-theme="light">
-          <div class="theme-swatch" style="background:#F4F6FB;border:2px solid #0066FF"></div>
+        <button class="theme-opt active" data-theme="light">
+          <div class="theme-swatch" style="background:#F7F8FB;border:2px solid #0052FF"></div>
           Light
+        </button>
+        <button class="theme-opt" data-theme="dark">
+          <div class="theme-swatch" style="background:#0B0F1A;border:2px solid #3B82F6"></div>
+          Dark
         </button>
       </div>
     </div>
 
     <!-- Mobile menu -->
     <div class="mobile-menu" id="mobileMenu" role="menu">
-      <a href="#" id="mobileGiftVaultLink">🎁 Gift Vault</a>
-      <a href="#chainsplit">💸 ChainSplit</a>
-      <a href="#business">🏢 For Business</a>
-      <a href="#marketplace">🛍 Shop</a>
-      <a href="#travel">✈️ Travel</a>
-      <a href="#about">🔵 About Arc</a>
-      <a href="#support">💬 Support</a>
+      <a href="#" id="mobileGiftVaultLink">Gift Vault</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#chainsplit">ChainSplit</a>
+      <a href="#about">About Arc</a>
+      <a href="#trust">Trust</a>
+      <a href="#faq">FAQ</a>
       <div style="display:flex;gap:8px;padding-top:8px;flex-wrap:wrap;">
         <select id="chainSelectorMobile" class="chain-selector" aria-label="Select network" style="flex:1">
-          <option value="arc">🔵 Arc Testnet</option>
-          <option value="ethereum">Ξ Ethereum</option>
-          <option value="base">🔵 Base</option>
-          <option value="polygon">🟣 Polygon</option>
-          <option value="arbitrum">🔷 Arbitrum</option>
-          <option value="optimism">🔴 Optimism (OP)</option>
+          <option value="arc">Arc Testnet</option>
+          <option value="ethereum">Ethereum</option>
+          <option value="base">Base</option>
+          <option value="polygon">Polygon</option>
+          <option value="arbitrum">Arbitrum</option>
+          <option value="optimism">Optimism</option>
         </select>
         <button id="connectBtnMobile" class="btn-connect" type="button" style="flex:1">Connect Wallet</button>
       </div>
@@ -791,20 +920,20 @@
     <div class="gvp-header">
       <button class="gvp-back" id="gvpBack" type="button">← Back</button>
       <div class="logo-text" style="flex:1; text-align:center;">
-        <div class="logo-main" style="font-family:var(--font-display);font-size:16px;font-weight:700;">🎁 Gift Vault</div>
-        <div class="logo-badge">Send gifts that wait for the right moment</div>
+        <div class="logo-main" style="font-family:var(--font-display);font-size:16px;font-weight:700;">Gift Vault</div>
+        <div class="logo-badge">Gifts that wait for the right moment</div>
       </div>
       <select id="chainSelectorGVP" class="chain-selector" aria-label="Select network">
-        <option value="arc">🔵 Arc</option>
-        <option value="ethereum">Ξ ETH</option>
-        <option value="base">🔵 Base</option>
-        <option value="polygon">🟣 Poly</option>
-        <option value="arbitrum">🔷 Arb</option>
-        <option value="optimism">🔴 OP</option>
+        <option value="arc">Arc</option>
+        <option value="ethereum">ETH</option>
+        <option value="base">Base</option>
+        <option value="polygon">Polygon</option>
+        <option value="arbitrum">Arbitrum</option>
+        <option value="optimism">OP</option>
       </select>
     </div>
     <div class="gvp-inner">
-      <div class="testnet-banner">Running on Arc Testnet — <strong>Make sure your wallet is set to Arc Testnet</strong> to create gifts.</div>
+      <div class="testnet-banner">Running on Arc Testnet. Make sure your wallet is set to Arc Testnet to create gifts.</div>
       <div class="vault-type-tabs" role="tablist" aria-label="Gift vault types">
         <button class="vault-tab active" role="tab" aria-selected="true" data-vtype="birthday">🎂 Birthday</button>
         <button class="vault-tab" role="tab" data-vtype="milestone">🎓 Milestone</button>
@@ -817,7 +946,7 @@
           <div class="ecard-preview" id="ecardPreview">
             <div class="ecard-emoji" id="ecardEmoji">🎂</div>
             <div class="ecard-greeting" id="ecardGreeting">Happy Birthday!</div>
-            <div class="ecard-body" id="ecardBody">Grandad left you a gift ❤️</div>
+            <div class="ecard-body" id="ecardBody">Grandad left you a gift</div>
             <div class="ecard-sig" id="ecardSig">— With love</div>
           </div>
           <div class="glass-card">
@@ -828,7 +957,7 @@
             </div>
             <div class="form-group">
               <label for="ecardBodyText">Personal Message</label>
-              <textarea id="ecardBodyText" class="input-field textarea" placeholder='e.g. "Grandad left you a gift ❤️"' rows="3" maxlength="300"></textarea>
+              <textarea id="ecardBodyText" class="input-field textarea" placeholder="e.g. Grandad left you a gift" rows="3" maxlength="300"></textarea>
             </div>
             <div class="form-group">
               <label for="ecardSignature">Signature</label>
@@ -837,17 +966,17 @@
             <div class="form-group">
               <label>Attach Media</label>
               <div class="upload-tabs">
-                <button class="upload-tab active" data-utype="image">📷 Image</button>
-                <button class="upload-tab" data-utype="voice">🎙 Voice</button>
-                <button class="upload-tab" data-utype="video">🎬 Video</button>
-                <button class="upload-tab" data-utype="note">📝 Note</button>
+                <button class="upload-tab active" data-utype="image">Image</button>
+                <button class="upload-tab" data-utype="voice">Voice</button>
+                <button class="upload-tab" data-utype="video">Video</button>
+                <button class="upload-tab" data-utype="note">Note</button>
               </div>
               <div class="upload-zone" id="uploadZone">
                 <input type="file" id="fileInput" accept="image/*" />
                 <div class="upload-zone-icon">📷</div>
                 <div class="upload-zone-text">Click to upload<br><small>PNG, JPG up to 10MB</small></div>
               </div>
-              <div id="uploadPreview" style="display:none;margin-top:8px;"></div>
+              <div id="uploadPreview" style="display:none;margin-top:6px;"></div>
             </div>
             <div class="form-group">
               <label for="noteText" id="noteLabel" style="display:none;">Note Content</label>
@@ -856,40 +985,40 @@
           </div>
         </div>
         <div>
-          <div class="glass-card" style="margin-bottom:16px;">
+          <div class="glass-card" style="margin-bottom:14px;">
             <div class="card-header"><span class="card-icon">🔐</span><h3>Lock USDC Gift</h3></div>
             <div class="form-group"><label for="gvpRecipient">Recipient Wallet</label><input type="text" id="gvpRecipient" class="input-field" placeholder="0x..." autocomplete="off" spellcheck="false" /></div>
             <div class="form-group"><label for="gvpAmount">USDC Amount</label><div class="input-with-badge"><input type="number" id="gvpAmount" class="input-field" placeholder="0.00" min="0.01" step="0.01" /><span class="input-badge">USDC</span></div></div>
-            <div class="form-group"><label for="gvpUnlockDate">Send / Unlock Date</label><input type="date" id="gvpUnlockDate" class="input-field" /></div>
+            <div class="form-group"><label for="gvpUnlockDate">Unlock Date</label><input type="date" id="gvpUnlockDate" class="input-field" /></div>
             <div class="form-group"><label for="gvpUnlockTime">Time</label><input type="time" id="gvpUnlockTime" class="input-field" /></div>
             <div class="form-group"><label for="gvpTimezone">Timezone</label>
               <select id="gvpTimezone" class="input-field">
                 <option value="UTC">UTC</option><option value="Asia/Kolkata">India (IST)</option><option value="America/New_York">US Eastern</option><option value="America/Los_Angeles">US Pacific</option><option value="Europe/London">London</option><option value="Europe/Paris">Paris</option><option value="Asia/Dubai">Dubai</option><option value="Asia/Singapore">Singapore</option><option value="Australia/Sydney">Sydney</option>
               </select>
             </div>
-            <button class="btn-primary full-width" id="gvpCreateBtn" type="button">🎁 Create Gift Vault</button>
-            <p class="form-note">Contract must be deployed. <a href="#" id="gvpLearnMoreArc" style="color:var(--accent)">Learn more about Arc ↓</a></p>
+            <button class="btn-primary full-width" id="gvpCreateBtn" type="button">Create Gift Vault</button>
+            <p class="form-note">Contract must be deployed. <a href="#" id="gvpLearnMoreArc" style="color:var(--accent)">Learn more about Arc</a></p>
           </div>
           <div class="glass-card">
             <div class="card-header"><span class="card-icon">📤</span><h3>Share Gift Card</h3></div>
-            <p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px;">Once created, share your gift via:</p>
+            <p style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">Once created, share your gift via:</p>
             <div class="share-row">
-              <button class="share-btn" onclick="shareVia('whatsapp')">💬 WhatsApp</button>
-              <button class="share-btn" onclick="shareVia('telegram')">✈️ Telegram</button>
-              <button class="share-btn" onclick="shareVia('email')">📧 Email</button>
-              <button class="share-btn" onclick="shareVia('sms')">💬 SMS</button>
+              <button class="share-btn" onclick="shareVia('whatsapp')">WhatsApp</button>
+              <button class="share-btn" onclick="shareVia('telegram')">Telegram</button>
+              <button class="share-btn" onclick="shareVia('email')">Email</button>
+              <button class="share-btn" onclick="shareVia('sms')">SMS</button>
             </div>
-            <div class="share-row" style="margin-top:8px;">
-              <button class="share-btn" onclick="downloadCard('png')">⬇️ PNG</button>
-              <button class="share-btn" onclick="downloadCard('mp4')">🎬 Video</button>
+            <div class="share-row" style="margin-top:6px;">
+              <button class="share-btn" onclick="downloadCard('png')">PNG</button>
+              <button class="share-btn" onclick="downloadCard('mp4')">Video</button>
             </div>
           </div>
         </div>
       </div>
-      <div class="glass-card" style="margin-top:20px;">
+      <div class="glass-card" style="margin-top:16px;">
         <div class="card-header">
           <span class="card-icon">📦</span><h3>Your Active Vaults</h3>
-          <button class="btn-secondary" id="gvpLoadVaults" type="button" style="margin-left:auto;padding:6px 14px;font-size:12px;min-height:32px;">↻ Refresh</button>
+          <button class="btn-secondary" id="gvpLoadVaults" type="button" style="margin-left:auto;padding:5px 12px;font-size:12px;min-height:30px;">Refresh</button>
         </div>
         <div id="gvpVaultList" class="vault-list" aria-live="polite">
           <div class="empty-state"><div class="empty-icon">🔐</div><p>Connect your wallet to see your gift vaults</p></div>
@@ -907,76 +1036,94 @@
       <div class="orb orb3"></div>
     </div>
     <div class="hero-content">
-      <div class="hero-tag" data-i18n="hero_tag">Live on Arc Testnet · USDC-Native · 6 Chains</div>
+      <div class="hero-tag" data-i18n="hero_tag">Live on Arc Testnet</div>
       <h1 class="hero-title">
-        <span data-i18n="hero_t1">Gift. Split. Save.</span><br />
-        <span class="gradient-text" data-i18n="hero_t2">Across Chains.</span>
+        <span data-i18n="hero_t1">Programmable Gifts</span><br />
+        <span class="gradient-text" data-i18n="hero_t2">for Life's Biggest Moments.</span>
       </h1>
-      <p class="hero-sub" data-i18n="hero_sub">A cross-chain USDC gifting infrastructure built on Arc. Gift anyone, anywhere — powered by programmable dollars.</p>
+      <p class="hero-sub" data-i18n="hero_sub">Create time-locked USDC vaults that unlock exactly when you choose. Birthdays, graduations, weddings. Built on Arc.</p>
       <div class="hero-ctas">
-        <button class="btn-primary" id="heroGiftVaultBtn" type="button" data-i18n="hero_cta1">Send a Gift 🎁</button>
-        <a href="#chainsplit" class="btn-secondary" data-i18n="hero_cta2">Split a Bill 💸</a>
-        <a href="#business" class="btn-secondary" data-i18n="hero_cta3">For Business 🏢</a>
+        <button class="btn-primary" id="heroGiftVaultBtn" type="button" data-i18n="hero_cta1">Create a Gift Vault</button>
+        <a href="#how-it-works" class="btn-secondary" data-i18n="hero_cta2">See How It Works</a>
       </div>
       <div class="hero-stats" aria-label="Key statistics">
         <div class="stat"><span class="stat-num">6</span><span class="stat-label" data-i18n="stat_chains">Chains Supported</span></div>
         <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat"><span class="stat-num">&lt;1s</span><span class="stat-label" data-i18n="stat_finality">Arc Finality</span></div>
+        <div class="stat"><span class="stat-num">&lt;1s</span><span class="stat-label" data-i18n="stat_finality">Finality on Arc</span></div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat"><span class="stat-num">USDC</span><span class="stat-label">Stable Value</span></div>
       </div>
     </div>
   </section>
 
   <div class="chain-badges-row" aria-label="Supported networks">
-    <div class="chain-badge-pill">🔵 Arc Testnet</div>
-    <div class="chain-badge-pill">Ξ Ethereum</div>
-    <div class="chain-badge-pill">🔵 Base</div>
-    <div class="chain-badge-pill">🟣 Polygon</div>
-    <div class="chain-badge-pill">🔷 Arbitrum</div>
-    <div class="chain-badge-pill">🔴 Optimism</div>
+    <div class="chain-badge-pill">Arc Testnet</div>
+    <div class="chain-badge-pill">Ethereum</div>
+    <div class="chain-badge-pill">Base</div>
+    <div class="chain-badge-pill">Polygon</div>
+    <div class="chain-badge-pill">Arbitrum</div>
+    <div class="chain-badge-pill">Optimism</div>
   </div>
 
-  <!-- ═══════════════ HOW IT WORKS ═══════════════ -->
-  <section class="section section-alt" aria-labelledby="hiw-heading">
+  <!-- ═══════════════ THE PROBLEM ═══════════════ -->
+  <section class="section section-alt" aria-labelledby="problem-heading">
     <div class="section-inner">
       <header class="section-header">
-        <div class="section-tag" data-i18n="hiw_tag">Simple by Design</div>
-        <h2 class="section-title" id="hiw-heading" data-i18n="hiw_title">How It Works</h2>
-        <p class="section-sub" data-i18n="hiw_sub">From wallet connection to gift delivery — four steps, seconds on Arc.</p>
+        <div class="section-tag">The Problem</div>
+        <h2 class="section-title" id="problem-heading">Traditional gifting has limits.</h2>
+        <p class="section-sub">When you want to give money for a future moment, your options fall short. Families deserve something better.</p>
       </header>
-      <div class="steps-row">
-        <div class="step-card"><div class="step-num">01</div><h4 data-i18n="step1_t">Connect Wallet</h4><p data-i18n="step1_p">Link your MetaMask or Web3 wallet. Switch to any supported chain in one click.</p></div>
-        <div class="step-card"><div class="step-num">02</div><h4 data-i18n="step2_t">Choose Gift Type</h4><p data-i18n="step2_p">Birthday, Milestone, Holiday, Family — pick what fits the moment. Add a personal card.</p></div>
-        <div class="step-card"><div class="step-num">03</div><h4 data-i18n="step3_t">Lock USDC</h4><p data-i18n="step3_p">Enter amount and unlock date. USDC is locked on-chain. No middlemen.</p></div>
-        <div class="step-card"><div class="step-num">04</div><h4 data-i18n="step4_t">Share & Schedule</h4><p data-i18n="step4_p">Share via WhatsApp, Telegram, or SMS. Schedule for the perfect moment across timezones.</p></div>
+      <div class="problem-grid">
+        <div class="problem-card"><div class="pc-icon">🏦</div><h4>Bank Transfers</h4><p>Arrive immediately. No way to time delivery for a birthday or graduation.</p></div>
+        <div class="problem-card"><div class="pc-icon">💵</div><h4>Cash</h4><p>Gets spent instantly. No programmability, no personal message attached.</p></div>
+        <div class="problem-card"><div class="pc-icon">🎫</div><h4>Gift Cards</h4><p>Expire, carry fees, and are locked to one retailer. Not programmable.</p></div>
+        <div class="problem-card"><div class="pc-icon">🏧</div><h4>Savings Accounts</h4><p>Not programmable. Cannot schedule unlocks or attach a personal story.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════ CONSUMER GIFTING ═══════════════ -->
-  <section class="section" id="gifting" aria-labelledby="gifting-heading">
+  <!-- ═══════════════ HOW IT WORKS ═══════════════ -->
+  <section class="section" id="how-it-works" aria-labelledby="hiw-heading">
     <div class="section-inner">
       <header class="section-header">
-        <div class="section-tag" data-i18n="gift_tag">Consumer Gifting</div>
-        <h2 class="section-title" id="gifting-heading" data-i18n="gift_title">Gift That Means Something</h2>
-        <p class="section-sub" data-i18n="gift_sub">Five vault types for every milestone. Lock USDC, add a personal e-card, schedule delivery.</p>
+        <div class="section-tag" data-i18n="hiw_tag">Simple by Design</div>
+        <h2 class="section-title" id="hiw-heading" data-i18n="hiw_title">How It Works</h2>
+        <p class="section-sub" data-i18n="hiw_sub">Four steps. Seconds on Arc. No middlemen.</p>
+      </header>
+      <div class="steps-row">
+        <div class="step-card"><div class="step-num">01</div><h4 data-i18n="step1_t">Connect Wallet</h4><p data-i18n="step1_p">Link MetaMask or any Web3 wallet. Switch to any supported chain in one click.</p></div>
+        <div class="step-card"><div class="step-num">02</div><h4 data-i18n="step2_t">Choose Gift Type</h4><p data-i18n="step2_p">Birthday, Milestone, Holiday, Family, or Memory. Add a personal e-card.</p></div>
+        <div class="step-card"><div class="step-num">03</div><h4 data-i18n="step3_t">Lock USDC</h4><p data-i18n="step3_p">Enter amount and unlock date. USDC is locked onchain. No intermediary controls it.</p></div>
+        <div class="step-card"><div class="step-num">04</div><h4 data-i18n="step4_t">Share & Deliver</h4><p data-i18n="step4_p">Share via WhatsApp, Telegram, or SMS. The recipient claims when it unlocks.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ GIFT TYPES ═══════════════ -->
+  <section class="section section-alt" id="gifting" aria-labelledby="gifting-heading">
+    <div class="section-inner">
+      <header class="section-header">
+        <div class="section-tag" data-i18n="gift_tag">Gift Vaults</div>
+        <h2 class="section-title" id="gifting-heading" data-i18n="gift_title">Five vault types for every occasion.</h2>
+        <p class="section-sub" data-i18n="gift_sub">Lock USDC with a personal message. Schedule delivery for the exact right moment.</p>
       </header>
       <div class="cards-grid">
-        <button class="gift-card" onclick="openGiftVault('birthday')"><div class="gift-card-icon">🎂</div><div class="gift-card-title" data-i18n="bday_t">Birthday Vault</div><div class="gift-card-desc" data-i18n="bday_d">Lock USDC for someone's special day. Add a custom e-card, photos, voice, or video.</div><div class="gift-card-arrow"><span class="gift-card-cta" data-i18n="create_gift">Create Gift →</span></div></button>
-        <button class="gift-card" onclick="openGiftVault('milestone')"><div class="gift-card-icon">🎓</div><div class="gift-card-title" data-i18n="mile_t">Milestone Vault</div><div class="gift-card-desc" data-i18n="mile_d">Graduation, wedding, promotion, retirement — mark life's big moments with USDC.</div><div class="gift-card-arrow"><span class="gift-card-cta" data-i18n="create_gift">Create Gift →</span></div></button>
+        <button class="gift-card" onclick="openGiftVault('birthday')"><div class="gift-card-icon">🎂</div><div class="gift-card-title" data-i18n="bday_t">Birthday Vault</div><div class="gift-card-desc" data-i18n="bday_d">Lock USDC for someone's special day. Add a custom e-card with photos, voice, or video.</div><div class="gift-card-arrow"><span class="gift-card-cta" data-i18n="create_gift">Create Gift →</span></div></button>
+        <button class="gift-card" onclick="openGiftVault('milestone')"><div class="gift-card-icon">🎓</div><div class="gift-card-title" data-i18n="mile_t">Milestone Vault</div><div class="gift-card-desc" data-i18n="mile_d">Graduation, wedding, promotion, retirement. Mark life's milestones with USDC.</div><div class="gift-card-arrow"><span class="gift-card-cta" data-i18n="create_gift">Create Gift →</span></div></button>
         <button class="gift-card" onclick="openGiftVault('family')"><div class="gift-card-icon">👨‍👩‍👧</div><div class="gift-card-title" data-i18n="fam_t">Family Allowance</div><div class="gift-card-desc" data-i18n="fam_d">Set recurring gifts for family members. Schedule weekly, monthly, or on any date.</div><div class="gift-card-arrow"><span class="gift-card-cta" data-i18n="create_gift">Create Gift →</span></div></button>
         <button class="gift-card" onclick="openGiftVault('memory')"><div class="gift-card-icon">💌</div><div class="gift-card-title" data-i18n="mem_t">Memory Vault</div><div class="gift-card-desc" data-i18n="mem_d">Preserve a gift and a message for the future. Open it when the time is right.</div><div class="gift-card-arrow"><span class="gift-card-cta" data-i18n="create_gift">Create Gift →</span></div></button>
-        <button class="gift-card" onclick="openGiftVault('holiday')"><div class="gift-card-icon">🎄</div><div class="gift-card-title" data-i18n="hol_t">Holiday Vault</div><div class="gift-card-desc" data-i18n="hol_d">Christmas, Eid, Diwali, Easter — gift USDC for every celebration.</div><div class="gift-card-arrow"><span class="gift-card-cta" data-i18n="create_gift">Create Gift →</span></div></button>
+        <button class="gift-card" onclick="openGiftVault('holiday')"><div class="gift-card-icon">🎄</div><div class="gift-card-title" data-i18n="hol_t">Holiday Vault</div><div class="gift-card-desc" data-i18n="hol_d">Christmas, Eid, Diwali, Easter. Gift USDC for every celebration.</div><div class="gift-card-arrow"><span class="gift-card-cta" data-i18n="create_gift">Create Gift →</span></div></button>
       </div>
     </div>
   </section>
 
   <!-- ═══════════════ CHAINSPLIT ═══════════════ -->
-  <section class="section section-alt" id="chainsplit" aria-labelledby="split-heading">
+  <section class="section" id="chainsplit" aria-labelledby="split-heading">
     <div class="section-inner">
       <header class="section-header">
         <div class="section-tag" data-i18n="split_tag">ChainSplit</div>
-        <h2 class="section-title" id="split-heading" data-i18n="split_title">Split Any Bill. Instantly.</h2>
-        <p class="section-sub" data-i18n="split_sub">Dinner, rent, trips — settle it in USDC on any chain in seconds. Equal or custom splits.</p>
+        <h2 class="section-title" id="split-heading" data-i18n="split_title">Split any bill in USDC.</h2>
+        <p class="section-sub" data-i18n="split_sub">Dinner, rent, trips. Settle in USDC on any chain in under a second on Arc.</p>
       </header>
       <div class="two-col">
         <div class="glass-card">
@@ -984,16 +1131,16 @@
           <div class="form-group"><label for="billAmount" data-i18n="split_amount">Total Bill Amount</label><div class="input-with-badge"><input type="number" id="billAmount" class="input-field" placeholder="0.00" min="0.01" step="0.01" /><span class="input-badge">USDC</span></div></div>
           <div class="form-group"><label data-i18n="split_upload">Upload Bill <span class="optional">(optional)</span></label>
             <input type="file" id="billFileInput" accept="image/*,.pdf" style="display:none" />
-            <div class="bill-upload-zone" id="billUploadZone"><span>🧾</span><span style="font-size:12px;color:var(--text-muted)" data-i18n="split_receipt">Click to attach receipt — PNG, JPG, PDF</span></div>
-            <div id="billFilePreview" style="display:none;font-size:12px;color:var(--emerald);margin-top:6px;"></div>
+            <div class="bill-upload-zone" id="billUploadZone"><span>🧾</span><span style="font-size:12px;color:var(--text-muted)" data-i18n="split_receipt">Click to attach receipt</span></div>
+            <div id="billFilePreview" style="display:none;font-size:12px;color:var(--emerald);margin-top:5px;"></div>
           </div>
           <div class="split-type-toggle">
-            <button class="toggle-btn active" id="equalBtn" type="button">⚖️ Equal Split</button>
-            <button class="toggle-btn" id="customBtn" type="button">✏️ Custom Split</button>
+            <button class="toggle-btn active" id="equalBtn" type="button">Equal Split</button>
+            <button class="toggle-btn" id="customBtn" type="button">Custom Split</button>
           </div>
           <div class="recipient-list" id="recipientList">
             <div class="recipient-row">
-              <input type="text" class="input-field recipient-addr" placeholder="Wallet address 0x…" autocomplete="off" spellcheck="false" />
+              <input type="text" class="input-field recipient-addr" placeholder="Wallet address 0x..." autocomplete="off" spellcheck="false" />
               <input type="number" class="input-field recipient-amount" placeholder="0.00" min="0.01" step="0.01" readonly />
               <button class="remove-btn" type="button" title="Remove">✕</button>
             </div>
@@ -1004,205 +1151,216 @@
             <div class="summary-row"><span>Recipients:</span><span id="summaryCount">0</span></div>
             <div class="summary-row"><span>Each Pays:</span><span id="summaryEach">$0.00</span></div>
           </div>
-          <button class="btn-primary full-width" id="splitBtn" type="button" style="margin-top:14px" data-i18n="split_btn">Split Bill 💸</button>
-          <p class="form-note">Contract required. <a href="#about" id="splitLearnMoreLink" style="color:var(--accent);text-decoration:none;">Deploy on Arc Testnet — Learn more ↓</a></p>
+          <button class="btn-primary full-width" id="splitBtn" type="button" style="margin-top:12px" data-i18n="split_btn">Split Bill</button>
+          <p class="form-note">Contract required. <a href="#about" id="splitLearnMoreLink" style="color:var(--accent);text-decoration:none;">Deploy on Arc Testnet</a></p>
         </div>
         <div class="glass-card">
           <div class="card-header"><span class="card-icon">⚡</span><h3 data-i18n="split_how">How ChainSplit Works</h3></div>
           <ol style="list-style:none;">
-            <li style="display:flex;gap:12px;margin-bottom:18px;align-items:flex-start;"><div class="step-num" style="flex-shrink:0">01</div><div><h4 style="font-size:13px;font-weight:700;margin-bottom:3px;" data-i18n="sh1_t">Enter Bill Amount</h4><p style="font-size:12px;color:var(--text-secondary)" data-i18n="sh1_p">Type the total in USDC. Stable. No price guessing.</p></div></li>
-            <li style="display:flex;gap:12px;margin-bottom:18px;align-items:flex-start;"><div class="step-num" style="flex-shrink:0">02</div><div><h4 style="font-size:13px;font-weight:700;margin-bottom:3px;" data-i18n="sh2_t">Add Wallets</h4><p style="font-size:12px;color:var(--text-secondary)" data-i18n="sh2_p">Paste friends' wallet addresses. Equal or custom split.</p></div></li>
-            <li style="display:flex;gap:12px;margin-bottom:18px;align-items:flex-start;"><div class="step-num" style="flex-shrink:0">03</div><div><h4 style="font-size:13px;font-weight:700;margin-bottom:3px;" data-i18n="sh3_t">One-Click Split</h4><p style="font-size:12px;color:var(--text-secondary)" data-i18n="sh3_p">One transaction. Everyone paid instantly. Arc finality in under a second.</p></div></li>
-            <li style="display:flex;gap:12px;align-items:flex-start;"><div class="step-num" style="flex-shrink:0">04</div><div><h4 style="font-size:13px;font-weight:700;margin-bottom:3px;" data-i18n="sh4_t">6 Chains</h4><p style="font-size:12px;color:var(--text-secondary)" data-i18n="sh4_p">Arc, Ethereum, Base, Polygon, Arbitrum, Optimism — your choice.</p></div></li>
+            <li style="display:flex;gap:12px;margin-bottom:16px;align-items:flex-start;"><div class="step-num" style="flex-shrink:0">01</div><div><h4 style="font-size:13px;font-weight:700;margin-bottom:3px;" data-i18n="sh1_t">Enter Bill Amount</h4><p style="font-size:12px;color:var(--text-secondary)" data-i18n="sh1_p">Type the total in USDC. Stable value, no price guessing.</p></div></li>
+            <li style="display:flex;gap:12px;margin-bottom:16px;align-items:flex-start;"><div class="step-num" style="flex-shrink:0">02</div><div><h4 style="font-size:13px;font-weight:700;margin-bottom:3px;" data-i18n="sh2_t">Add Wallets</h4><p style="font-size:12px;color:var(--text-secondary)" data-i18n="sh2_p">Paste wallet addresses. Equal or custom split.</p></div></li>
+            <li style="display:flex;gap:12px;margin-bottom:16px;align-items:flex-start;"><div class="step-num" style="flex-shrink:0">03</div><div><h4 style="font-size:13px;font-weight:700;margin-bottom:3px;" data-i18n="sh3_t">One Transaction</h4><p style="font-size:12px;color:var(--text-secondary)" data-i18n="sh3_p">Everyone paid instantly. Arc settles in under a second.</p></div></li>
           </ol>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════ FOR BUSINESS ═══════════════ -->
-  <section class="section" id="business" aria-labelledby="biz-heading">
+  <!-- ═══════════════ BUSINESS ═══════════════ -->
+  <section class="section section-alt" id="business" aria-labelledby="biz-heading">
     <div class="section-inner">
       <header class="section-header">
         <div class="section-tag" data-i18n="biz_tag">For Business</div>
-        <h2 class="section-title" id="biz-heading" data-i18n="biz_title">Enterprise Gift Infrastructure</h2>
-        <p class="section-sub" data-i18n="biz_sub">Bulk gifting, brand campaigns, employee rewards — at scale, on-chain, in USDC.</p>
+        <h2 class="section-title" id="biz-heading" data-i18n="biz_title">Corporate Gifting Infrastructure</h2>
+        <p class="section-sub" data-i18n="biz_sub">Bulk gifting, branded campaigns, employee rewards. Settle onchain.</p>
       </header>
-      <div class="testnet-banner" data-i18n="testnet_msg">Running on Arc Testnet now — additional features coming soon</div>
       <div class="biz-features">
-        <div class="biz-feature"><div class="biz-feature-icon">📋</div><div class="biz-feature-text"><h5>CSV / XLSX Upload</h5><p>Bulk upload recipient emails or wallet addresses. Send thousands of gifts in one batch.</p></div></div>
-        <div class="biz-feature"><div class="biz-feature-icon">📅</div><div class="biz-feature-text"><h5>Campaign Scheduling</h5><p>Schedule gift campaigns for birthdays, loyalty milestones, or seasonal events.</p></div></div>
-        <div class="biz-feature"><div class="biz-feature-icon">📦</div><div class="biz-feature-text"><h5>Delivery Tracking</h5><p>Monitor delivery status in real time. On-chain transparency, enterprise dashboard.</p></div></div>
-        <div class="biz-feature"><div class="biz-feature-icon">🎨</div><div class="biz-feature-text"><h5>Custom Branding</h5><p>Upload your logo. Customise gift card colours and messaging to match your brand.</p></div></div>
-        <div class="biz-feature"><div class="biz-feature-icon">👥</div><div class="biz-feature-text"><h5>Team Accounts</h5><p>Multi-user access with role-based permissions. Finance, HR, and marketing teams.</p></div></div>
+        <div class="biz-feature"><div class="biz-feature-icon">📊</div><div class="biz-feature-text"><h5>Bulk Upload</h5><p>Upload recipients via CSV/XLSX. Send hundreds of gifts in one transaction.</p></div></div>
+        <div class="biz-feature"><div class="biz-feature-icon">🎨</div><div class="biz-feature-text"><h5>Custom Branding</h5><p>Your logo, your colors, your messaging on every gift card.</p></div></div>
+        <div class="biz-feature"><div class="biz-feature-icon">📅</div><div class="biz-feature-text"><h5>Campaign Scheduling</h5><p>Schedule gifts for holidays, performance cycles, or company milestones.</p></div></div>
         <div class="biz-feature"><div class="biz-feature-icon">💰</div><div class="biz-feature-text"><h5>Budget Controls</h5><p>Set spending limits per department, campaign, or recipient.</p></div></div>
         <div class="biz-feature"><div class="biz-feature-icon">✅</div><div class="biz-feature-text"><h5>Approval Workflows</h5><p>Multi-step approval chains. Compliance-ready for enterprise procurement.</p></div></div>
         <div class="biz-feature"><div class="biz-feature-icon">🔗</div><div class="biz-feature-text"><h5>API Integration</h5><p>Connect GrandPay Vault to your HRMS, CRM, or loyalty platform via REST API.</p></div></div>
       </div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:16px;">
-        <a href="mailto:marvellgregory85@gmail.com?subject=GrandPay%20Business%20Enquiry" class="btn-primary">📧 Contact for Business</a>
-        <a href="https://t.me/Minerbtc1985" target="_blank" rel="noopener noreferrer" class="btn-secondary">✈️ Talk on Telegram</a>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <a href="mailto:marvellgregory85@gmail.com?subject=GrandPay%20Business%20Enquiry" class="btn-primary">Contact for Business</a>
+        <a href="https://t.me/Minerbtc1985" target="_blank" rel="noopener noreferrer" class="btn-secondary">Talk on Telegram</a>
       </div>
-      <div style="margin-top:48px;">
-        <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;text-align:center;margin-bottom:24px;" data-i18n="biz_uc">Use Cases</h3>
-        <div class="cards-grid">
-          <div class="arc-card"><div class="arc-card-icon">🏆</div><h4>Employee Rewards</h4><p>Recognise performance with instant USDC gifts. Stable, transparent, instant.</p></div>
-          <div class="arc-card"><div class="arc-card-icon">📈</div><h4>Sales Incentives</h4><p>Automate commission payments and sales bonuses on-chain.</p></div>
-          <div class="arc-card"><div class="arc-card-icon">❤️</div><h4>Loyalty Rewards</h4><p>Reward loyal customers with USDC gifts redeemable anywhere.</p></div>
-          <div class="arc-card"><div class="arc-card-icon">🙏</div><h4>Thank-You Gifts</h4><p>Send personalised gift cards to clients, partners, and collaborators at scale.</p></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ ABOUT ARC ═══════════════ -->
+  <section class="section" id="about" aria-labelledby="about-heading">
+    <div class="section-inner">
+      <header class="section-header">
+        <div class="section-tag">Built on Arc</div>
+        <h2 class="section-title" id="about-heading">Why Arc?</h2>
+        <p class="section-sub">Arc is Circle's open Layer-1 blockchain, purpose-built for programmable money and stablecoin-native finance.</p>
+      </header>
+      <div class="arc-grid">
+        <article class="arc-card"><div class="arc-card-icon">⚡</div><h4>Sub-Second Finality</h4><p>Arc delivers deterministic finality in under 1 second. Your gift settles before the moment passes.</p></article>
+        <article class="arc-card"><div class="arc-card-icon">💵</div><h4>USDC for Gas</h4><p>No volatile native token for fees. Arc uses USDC, so you always know what you are paying.</p></article>
+        <article class="arc-card"><div class="arc-card-icon">🔗</div><h4>EVM Compatible</h4><p>Full Solidity support. Deploy with Remix, Hardhat, or Foundry. Standard tooling, new infrastructure.</p></article>
+        <article class="arc-card"><div class="arc-card-icon">🌐</div><h4>Circle Integration</h4><p>Integrated with Circle's full-stack platform including USDC, CCTP, Gateway, and developer services. See <a href="https://www.arc.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">arc.io</a>.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ TRUST & SECURITY ═══════════════ -->
+  <section class="section section-alt" id="trust" aria-labelledby="trust-heading">
+    <div class="section-inner">
+      <header class="section-header">
+        <div class="section-tag">Trust & Security</div>
+        <h2 class="section-title" id="trust-heading">Transparency, not hype.</h2>
+        <p class="section-sub">We only claim what we can demonstrate. Here is what is actually true about GrandPay Vault.</p>
+      </header>
+      <div class="trust-grid">
+        <div class="trust-card"><div class="trust-card-icon">🔐</div><h4>Non-Custodial</h4><p>GrandPay Vault never holds your funds. USDC is locked in a smart contract. Only the designated recipient can withdraw after the unlock date.</p></div>
+        <div class="trust-card"><div class="trust-card-icon">🔓</div><h4>Open Source</h4><p>All smart contract code is publicly available on GitHub. Review, audit, and verify the implementation yourself.</p></div>
+        <div class="trust-card"><div class="trust-card-icon">⚠️</div><h4>Testnet Project</h4><p>GrandPay Vault is currently deployed on Arc Testnet. This is not a production application. Do not use real funds.</p></div>
+        <div class="trust-card"><div class="trust-card-icon">🧾</div><h4>Not Audited</h4><p>The smart contracts have not been formally audited by a third-party security firm. Use at your own risk during the testnet phase.</p></div>
+      </div>
+
+      <!-- Creator Identity -->
+      <div class="identity-card">
+        <div class="identity-avatar">MG</div>
+        <div class="identity-info">
+          <h4>Marvell Darlyn Gregory</h4>
+          <p>Builder and founder of GrandPay Vault. Built because families deserve a better way to give programmable money to the people they love.</p>
+          <div class="identity-links">
+            <a href="https://github.com/marvellgregory" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://x.com/YoungestGrandad" target="_blank" rel="noopener noreferrer">@YoungestGrandad</a>
+            <a href="https://t.me/Minerbtc1985" target="_blank" rel="noopener noreferrer">Telegram</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MARKETPLACE -->
-  <section class="section section-alt" id="marketplace" aria-labelledby="market-heading">
+  <!-- ═══════════════ ROADMAP ═══════════════ -->
+  <section class="section" aria-labelledby="roadmap-heading">
     <div class="section-inner">
       <header class="section-header">
-        <div class="section-tag" data-i18n="mkt_tag">Spend with Partners</div>
-        <h2 class="section-title" id="market-heading" data-i18n="mkt_title">Gift Cards Marketplace</h2>
-        <p class="section-sub" data-i18n="mkt_sub">Pay in USDC. Receive gift vouchers from world-class brands. Simple.</p>
+        <div class="section-tag">Roadmap</div>
+        <h2 class="section-title" id="roadmap-heading">What we have shipped and what is next.</h2>
       </header>
-      <div class="testnet-banner" data-i18n="testnet_msg">Running on Arc Testnet now — additional features coming soon</div>
-      <div class="partner-grid">
-        <div class="partner-tile"><div class="partner-tile-icon">🛒</div><div class="partner-tile-name">Amazon</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="partner-tile"><div class="partner-tile-icon">🍔</div><div class="partner-tile-name">DoorDash</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="partner-tile"><div class="partner-tile-icon">🚗</div><div class="partner-tile-name">Uber</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="partner-tile"><div class="partner-tile-icon">🍏</div><div class="partner-tile-name">Apple</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="partner-tile"><div class="partner-tile-icon">🏪</div><div class="partner-tile-name">Walmart</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="partner-tile"><div class="partner-tile-icon">🎯</div><div class="partner-tile-name">Target</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="partner-tile"><div class="partner-tile-icon">🖥</div><div class="partner-tile-name">Best Buy</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="partner-tile"><div class="partner-tile-icon">🛍</div><div class="partner-tile-name">eBay</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="partner-tile"><div class="partner-tile-icon">🏠</div><div class="partner-tile-name">Airbnb</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="partner-tile"><div class="partner-tile-icon">👟</div><div class="partner-tile-name">Nike</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="partner-tile"><div class="partner-tile-icon">☕</div><div class="partner-tile-name">Starbucks</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="partner-tile"><div class="partner-tile-icon">🎮</div><div class="partner-tile-name">Steam</div><div class="coming-soon-tag">Coming Soon</div></div>
-      </div>
-      <div style="text-align:center;margin-top:24px;">
-        <p style="font-size:13px;color:var(--text-secondary);">Planned integrations via <strong>Bitrefill</strong> &amp; <strong>Tremendous</strong> — <span class="coming-soon-tag" style="margin:0 4px;">Coming Soon</span></p>
+      <div class="roadmap-list">
+        <div class="roadmap-item"><div class="roadmap-status">✅</div><div class="roadmap-text"><h4>MVP Gift Vault</h4><p>Time-locked USDC vaults with personal e-cards and media attachments.</p></div></div>
+        <div class="roadmap-item"><div class="roadmap-status">✅</div><div class="roadmap-text"><h4>Wallet Connect</h4><p>MetaMask integration with multi-chain support (6 chains).</p></div></div>
+        <div class="roadmap-item"><div class="roadmap-status">✅</div><div class="roadmap-text"><h4>ChainSplit</h4><p>Equal and custom bill splitting with USDC across wallets.</p></div></div>
+        <div class="roadmap-item"><div class="roadmap-status">✅</div><div class="roadmap-text"><h4>Arc Testnet Deployment</h4><p>Smart contracts deployed and live on Arc Testnet.</p></div></div>
+        <div class="roadmap-item"><div class="roadmap-status">🔲</div><div class="roadmap-text"><h4>Mobile Experience</h4><p>Responsive mobile app experience with push notifications.</p></div></div>
+        <div class="roadmap-item"><div class="roadmap-status">🔲</div><div class="roadmap-text"><h4>Recurring Gifts</h4><p>Automated weekly, monthly, or yearly gift scheduling.</p></div></div>
+        <div class="roadmap-item"><div class="roadmap-status">🔲</div><div class="roadmap-text"><h4>Family Accounts</h4><p>Multi-user family dashboards with shared gift management.</p></div></div>
+        <div class="roadmap-item"><div class="roadmap-status">🔲</div><div class="roadmap-text"><h4>Arc Mainnet Launch</h4><p>Production deployment when Arc mainnet is available.</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- TRAVEL -->
-  <section class="section" id="travel" aria-labelledby="travel-heading">
+  <!-- ═══════════════ FAQ ═══════════════ -->
+  <section class="section section-alt" id="faq" aria-labelledby="faq-heading">
     <div class="section-inner">
       <header class="section-header">
-        <div class="section-tag">Travel Gift</div>
-        <h2 class="section-title" id="travel-heading">Book Travel. Pay in USDC. Gift Memories.</h2>
-        <p class="section-sub">Flights, hotels, holiday packages, honeymoons, pilgrimages — gift the world to your loved ones.</p>
+        <div class="section-tag">FAQ</div>
+        <h2 class="section-title" id="faq-heading">Questions and Answers</h2>
       </header>
-      <div class="testnet-banner">Running on Arc Testnet now — additional features coming soon</div>
-      <div class="cards-grid-5" style="margin-bottom:40px;">
-        <div class="gift-card" style="cursor:default;"><div class="gift-card-icon">✈️</div><div class="gift-card-title">Flights</div><div class="gift-card-desc">Gift a flight ticket anywhere in the world, paid in USDC.</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="gift-card" style="cursor:default;"><div class="gift-card-icon">🏨</div><div class="gift-card-title">Hotels</div><div class="gift-card-desc">Book a hotel stay as a gift. Surprise someone with a weekend away.</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="gift-card" style="cursor:default;"><div class="gift-card-icon">🌴</div><div class="gift-card-title">Holiday Packages</div><div class="gift-card-desc">Complete vacation bundles — flights, hotels, transfers — all in USDC.</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="gift-card" style="cursor:default;"><div class="gift-card-icon">💍</div><div class="gift-card-title">Honeymoon Gift</div><div class="gift-card-desc">The most romantic gift you can give. A honeymoon funded by USDC.</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="gift-card" style="cursor:default;"><div class="gift-card-icon">🕌</div><div class="gift-card-title">Pilgrimage Gift</div><div class="gift-card-desc">Fund a loved one&#39;s sacred journey — Hajj, Umrah, Camino, or any pilgrimage.</div><div class="coming-soon-tag">Coming Soon</div></div>
-      </div>
-      <h3 style="font-family:var(--font-display);font-size:17px;font-weight:700;text-align:center;margin-bottom:16px;">Travel Partners</h3>
-      <div class="partner-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr));">
-        <div class="partner-tile"><div class="partner-tile-icon">🌐</div><div class="partner-tile-name">Travala</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="partner-tile"><div class="partner-tile-icon">✈️</div><div class="partner-tile-name">Alternative Airlines</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="partner-tile"><div class="partner-tile-icon">💸</div><div class="partner-tile-name">CheapAir</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="partner-tile"><div class="partner-tile-icon">🏨</div><div class="partner-tile-name">Booking.com</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="partner-tile"><div class="partner-tile-icon">🔍</div><div class="partner-tile-name">Skyscanner</div><div class="coming-soon-tag">Coming Soon</div></div>
-        <div class="partner-tile"><div class="partner-tile-icon">🌍</div><div class="partner-tile-name">Expedia</div><div class="coming-soon-tag">Coming Soon</div></div>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q" type="button">What is GrandPay Vault? <span class="faq-icon">+</span></button><div class="faq-a"><p>GrandPay Vault lets you create time-locked USDC vaults as programmable gifts. Lock USDC with a personal message, set an unlock date, and share the gift. The recipient can claim the funds after the unlock date. Built on Arc, Circle's Layer-1 blockchain.</p></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">What is Arc? <span class="faq-icon">+</span></button><div class="faq-a"><p>Arc is Circle's open Layer-1 blockchain designed for programmable money. It offers sub-second finality and uses USDC for gas fees. Arc is currently in public testnet. See <a href="https://www.arc.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">arc.io</a> for the latest on mainnet timing and ecosystem partners.</p></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">Is this a production application or a demo? <span class="faq-icon">+</span></button><div class="faq-a"><p>GrandPay Vault is currently deployed on Arc Testnet. This is a testnet application, not a production product. Do not send real funds. A mainnet deployment is planned when Arc mainnet launches.</p></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">Which wallets are supported? <span class="faq-icon">+</span></button><div class="faq-a"><p>MetaMask is the primary supported wallet. Any Web3 wallet that supports custom EVM chains can be used. You will need to add Arc Testnet to your wallet manually or it will be added automatically when you connect.</p></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">Does GrandPay hold my funds? <span class="faq-icon">+</span></button><div class="faq-a"><p>No. GrandPay Vault is non-custodial. Your USDC is locked in a smart contract onchain. Only the designated recipient can withdraw after the unlock date. The platform never takes custody of your funds.</p></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">Which networks are supported? <span class="faq-icon">+</span></button><div class="faq-a"><p>Arc Testnet (primary), Ethereum, Base, Polygon, Arbitrum, and Optimism. Smart contracts are currently deployed only on Arc Testnet. Other chains are planned for future deployment.</p></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">Is this open source? <span class="faq-icon">+</span></button><div class="faq-a"><p>Yes. The smart contract code and frontend are publicly available on <a href="https://github.com/marvellgregory" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">GitHub</a>. You can review, fork, and verify the implementation.</p></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">Are there any fees? <span class="faq-icon">+</span></button><div class="faq-a"><p>GrandPay Vault does not charge platform fees during the testnet phase. You will pay standard Arc Testnet gas fees (in USDC) when creating vaults or splitting bills. Get testnet USDC from the Arc faucet.</p></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">Can I cancel a gift after creating it? <span class="faq-icon">+</span></button><div class="faq-a"><p>Once a vault is created onchain, it cannot be cancelled or modified. The USDC is locked until the unlock date. Make sure you have entered the correct recipient address and amount before confirming the transaction.</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT ARC -->
-  <section class="section section-alt" id="about" aria-labelledby="about-heading">
-    <div class="section-inner">
-      <header class="section-header">
-        <div class="section-tag">About Arc</div>
-        <h2 class="section-title" id="about-heading">Built on Arc Testnet</h2>
-        <p class="section-sub">Arc is Circle&#39;s Layer-1 blockchain, built for USDC-native finance.</p>
-      </header>
-      <div class="arc-grid">
-        <article class="arc-card"><div class="arc-card-icon">⚡</div><h4>Sub-Second Finality</h4><p>Arc delivers deterministic finality in under 1 second. Your gift arrives before the moment ends.</p></article>
-        <article class="arc-card"><div class="arc-card-icon">💵</div><h4>USDC for Gas</h4><p>No volatile native token for fees. Arc uses USDC — so you always know exactly what you&#39;re paying.</p></article>
-        <article class="arc-card"><div class="arc-card-icon">🏛️</div><h4>Institutional Backing</h4><p>Arc is backed by leading global financial institutions and technology partners. See <a href="https://www.arc.io/ecosystem" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">arc.io/ecosystem</a> for the current partner list.</p></article>
-        <article class="arc-card"><div class="arc-card-icon">🔗</div><h4>EVM Compatible</h4><p>Full Solidity support. Deploy with Remix, Hardhat, or Foundry. Familiar tooling, new chain.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRUST STATS -->
-  <section class="section" aria-label="Trust statistics">
-    <div class="section-inner">
-      <div class="trust-row">
-        <div class="trust-stat"><div class="trust-stat-num">6</div><div class="trust-stat-label">Chains Supported</div></div>
-        <div class="trust-stat"><div class="trust-stat-num">&lt;1s</div><div class="trust-stat-label">Arc Finality</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SUPPORT -->
-  <section class="section section-alt" id="support" aria-labelledby="support-heading">
+  <!-- ═══════════════ SUPPORT ═══════════════ -->
+  <section class="section" id="support" aria-labelledby="support-heading">
     <div class="section-inner">
       <header class="section-header">
         <div class="section-tag">Support</div>
-        <h2 class="section-title" id="support-heading">We&#39;re Here to Help</h2>
-        <p class="section-sub">Reach out via any channel. We&#39;ll respond quickly.</p>
+        <h2 class="section-title" id="support-heading">Get in touch.</h2>
       </header>
       <div class="support-cards">
         <a class="support-card" href="mailto:marvellgregory85@gmail.com?subject=GrandPay%20Vault%20Support"><div class="support-card-icon">📧</div><div class="support-card-title">Email</div><div class="support-card-sub">marvellgregory85@gmail.com</div></a>
         <a class="support-card" href="https://t.me/Minerbtc1985" target="_blank" rel="noopener noreferrer"><div class="support-card-icon">✈️</div><div class="support-card-title">Telegram</div><div class="support-card-sub">@Minerbtc1985</div></a>
-        <a class="support-card" href="https://wa.me/message/placeholder" target="_blank" rel="noopener noreferrer"><div class="support-card-icon">💬</div><div class="support-card-title">WhatsApp</div><div class="support-card-sub">Quick response</div></a>
         <a class="support-card" href="https://x.com/YoungestGrandad" target="_blank" rel="noopener noreferrer"><div class="support-card-icon">𝕏</div><div class="support-card-title">X / Twitter</div><div class="support-card-sub">@YoungestGrandad</div></a>
+        <a class="support-card" href="https://github.com/marvellgregory" target="_blank" rel="noopener noreferrer"><div class="support-card-icon">💻</div><div class="support-card-title">GitHub</div><div class="support-card-sub">View Source Code</div></a>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="section" id="faq" aria-labelledby="faq-heading">
-    <div class="section-inner">
-      <header class="section-header">
-        <div class="section-tag">FAQ</div>
-        <h2 class="section-title" id="faq-heading">Frequently Asked Questions</h2>
-      </header>
-      <div class="faq-list">
-        <div class="faq-item"><button class="faq-q" type="button">What is GrandPay Vault? <span class="faq-icon">+</span></button><div class="faq-a"><p>GrandPay Vault is a Web3 gifting platform built on Arc — Circle&#39;s Layer-1 blockchain. You can lock USDC as a gift, split bills, shop with partners, and book travel — all powered by stable USDC across 6 chains.</p></div></div>
-        <div class="faq-item"><button class="faq-q" type="button">What is Arc? <span class="faq-icon">+</span></button><div class="faq-a"><p>Arc is Circle&#39;s Layer-1 blockchain, designed for USDC-native finance. It offers sub-second finality and USDC for gas fees. See <a href="https://www.arc.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">arc.io</a> for the latest on institutional backing and mainnet timing.</p></div></div>
-        <div class="faq-item"><button class="faq-q" type="button">Do I need crypto knowledge? <span class="faq-icon">+</span></button><div class="faq-a"><p>You&#39;ll need a Web3 wallet like MetaMask and some USDC to get started. Once connected, the experience is as simple as any payment app. We&#39;re working on a fiat on-ramp to make it even easier.</p></div></div>
-        <div class="faq-item"><button class="faq-q" type="button">Is GrandPay Vault live? <span class="faq-icon">+</span></button><div class="faq-a"><p>Yes — the core Gift Vault and ChainSplit features are live on Arc Testnet right now. The marketplace, travel, and corporate gifting features are planned for Arc Mainnet. See <a href="https://www.arc.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">arc.io</a> for the latest on mainnet timing.</p></div></div>
-        <div class="faq-item"><button class="faq-q" type="button">What chains are supported? <span class="faq-icon">+</span></button><div class="faq-a"><p>Arc Testnet, Ethereum, Base, Polygon, Arbitrum, and Optimism. Switch chains from the dropdown in the navbar. Arc is the primary chain.</p></div></div>
-        <div class="faq-item"><button class="faq-q" type="button">How is my USDC kept safe? <span class="faq-icon">+</span></button><div class="faq-a"><p>USDC is locked in a non-custodial smart contract. Only the designated recipient can withdraw it after the unlock date. No platform intermediary controls your funds at any time.</p></div></div>
-        <div class="faq-item"><button class="faq-q" type="button">How can my business use GrandPay Vault? <span class="faq-icon">+</span></button><div class="faq-a"><p>The Business section offers bulk gifting via CSV/XLSX upload, custom branding, campaign scheduling, budget controls, and approval workflows. Contact us via email or Telegram to discuss enterprise onboarding.</p></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
+  <!-- ═══════════════ FOOTER ═══════════════ -->
   <footer class="footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-grid">
         <div class="footer-col">
-          <div class="footer-logo"><span style="font-size:24px">🏦</span><div><div style="font-family:var(--font-display);font-size:15px;font-weight:700;">GrandPay Vault</div><div style="font-size:10px;color:var(--accent);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Built on Arc</div></div></div>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7;margin-bottom:12px;">A cross-chain USDC gifting infrastructure layer. Built by the Youngest Grandad in Web3.</p>
-          <p style="font-size:11px;color:var(--text-muted);">Built on Arc</p>
+          <div class="footer-logo">
+            <div class="logo-icon" style="width:28px;height:28px;font-size:14px;">🎁</div>
+            <div>
+              <div style="font-family:var(--font-display);font-size:14px;font-weight:700;">GrandPay Vault</div>
+              <div style="font-size:10px;color:var(--accent);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;">Built on Arc</div>
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.65;margin-bottom:10px;">Secure today's gift. Delivered exactly when it matters. A programmable USDC gifting layer built on Arc.</p>
+          <p style="font-size:11px;color:var(--text-muted);">v1.0 · Testnet</p>
         </div>
-        <div class="footer-col"><h5>Products</h5><a href="#" onclick="openGiftVault(&#39;birthday&#39;);return false;">Gift Vault</a><a href="#chainsplit">ChainSplit</a><a href="#marketplace">Marketplace</a><a href="#travel">Travel Gift</a><a href="#business">For Business</a></div>
-        <div class="footer-col"><h5>Resources</h5><a href="#about">About Arc</a><a href="#faq">FAQ</a><a href="https://www.arc.io" target="_blank" rel="noopener noreferrer">arc.io ↗</a><a href="https://github.com/marvellgregory" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
-        <div class="footer-col"><h5>Contact</h5><a href="mailto:marvellgregory85@gmail.com">📧 Email Us</a><a href="https://t.me/Minerbtc1985" target="_blank" rel="noopener noreferrer">✈️ Telegram</a><a href="https://x.com/YoungestGrandad" target="_blank" rel="noopener noreferrer">𝕏 @YoungestGrandad</a><a href="#support">💬 Support</a></div>
+        <div class="footer-col"><h5>Product</h5><a href="#" onclick="openGiftVault('birthday');return false;">Gift Vault</a><a href="#chainsplit">ChainSplit</a><a href="#business">For Business</a><a href="#how-it-works">How It Works</a></div>
+        <div class="footer-col"><h5>Resources</h5><a href="#about">About Arc</a><a href="#faq">FAQ</a><a href="https://www.arc.io" target="_blank" rel="noopener noreferrer">arc.io</a><a href="https://github.com/marvellgregory" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+        <div class="footer-col"><h5>Contact</h5><a href="mailto:marvellgregory85@gmail.com">Email</a><a href="https://t.me/Minerbtc1985" target="_blank" rel="noopener noreferrer">Telegram</a><a href="https://x.com/YoungestGrandad" target="_blank" rel="noopener noreferrer">@YoungestGrandad</a></div>
       </div>
+
+      <!-- DISCLAIMER -->
+      <div class="disclaimer">
+        <strong>Disclaimer:</strong> GrandPay Vault is a testnet application deployed on Arc Testnet. It has not been audited by a third-party security firm. Do not use real funds. The smart contracts are provided as-is without warranty. GrandPay Vault is not affiliated with, endorsed by, or officially partnered with Circle or Arc. "Built on Arc" indicates the application is deployed on Arc's public testnet infrastructure. USDC is issued by regulated affiliates of Circle. This is not financial advice. Use at your own risk. See <a href="https://www.arc.io" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">arc.io</a> for official Arc documentation.
+      </div>
+
       <div class="footer-bottom">
-        <p class="footer-credit">© 2025–2026 GrandPay Vault · Built by the Youngest Grandad in Web3 · USDC-Native · Multi-Chain</p>
-        <p class="footer-credit">Built on Arc</p>
+        <p class="footer-credit">&copy; 2025–2026 GrandPay Vault &middot; Built by Marvell Darlyn Gregory &middot; Deployed on Arc Testnet</p>
       </div>
     </div>
   </footer>
 
-  <!-- MODALS -->
+  <!-- ═══════════════ GRANDGUIDE AI WIDGET ═══════════════ -->
+  <button class="gg-fab" id="ggFab" type="button" aria-label="Open GrandGuide assistant">💬</button>
+  <div class="gg-panel" id="ggPanel" role="dialog" aria-label="GrandGuide FAQ Assistant">
+    <div class="gg-header">
+      <div>
+        <h4>GrandGuide</h4>
+        <span>Instant FAQ lookup</span>
+      </div>
+      <button class="gg-close" id="ggClose" type="button" aria-label="Close">&times;</button>
+    </div>
+    <div class="gg-body" id="ggBody">
+      <div class="gg-welcome">Hi there! I can answer questions about GrandPay Vault, Arc, security, and how the platform works. Tap a topic or type a question below.</div>
+      <div class="gg-topics">
+        <button class="gg-topic" data-topic="what">What is GrandPay Vault?</button>
+        <button class="gg-topic" data-topic="arc">Why Arc?</button>
+        <button class="gg-topic" data-topic="safe">Is my USDC safe?</button>
+        <button class="gg-topic" data-topic="wallets">Supported wallets</button>
+        <button class="gg-topic" data-topic="fees">Any fees?</button>
+        <button class="gg-topic" data-topic="testnet">Is this live?</button>
+      </div>
+      <div class="gg-answer" id="ggAnswer"></div>
+    </div>
+    <div class="gg-footer">
+      <input type="text" class="gg-input" id="ggInput" placeholder="Ask a question..." autocomplete="off" />
+      <button class="gg-send" id="ggSend" type="button">Ask</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════ MODALS ═══════════════ -->
   <div class="modal-overlay" id="successModal" style="display:none" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal">
       <div class="modal-success-icon">✅</div>
-      <h3 id="modalTitle" style="font-family:var(--font-display);text-align:center;margin-bottom:10px;">Transaction Successful!</h3>
-      <p id="modalMessage" style="text-align:center;font-size:13px;color:var(--text-secondary);margin-bottom:14px;">Your transaction has been confirmed.</p>
+      <h3 id="modalTitle" style="font-family:var(--font-display);text-align:center;margin-bottom:8px;">Transaction Successful</h3>
+      <p id="modalMessage" style="text-align:center;font-size:13px;color:var(--text-secondary);margin-bottom:12px;">Your transaction has been confirmed.</p>
       <div class="modal-tx"><span style="font-size:11px;color:var(--text-muted);">Transaction Hash:</span><a id="modalTxLink" href="#" target="_blank" rel="noopener noreferrer" class="tx-hash">—</a></div>
-      <button class="btn-primary full-width" id="modalCloseBtn" type="button" style="margin-top:14px;">Done 🎉</button>
+      <button class="btn-primary full-width" id="modalCloseBtn" type="button" style="margin-top:12px;">Done</button>
     </div>
   </div>
   <div class="notification" id="notification" role="status" aria-live="polite" aria-atomic="true"></div>
@@ -1217,72 +1375,60 @@
     // ══════════════════════════════════════════
     const TRANSLATIONS = {
       es: {
-        nav_gift:"🎁 Bóveda de Regalos", nav_split:"Dividir", nav_biz:"Empresas", nav_shop:"Tienda", nav_travel:"Viajes", nav_arc:"Sobre Arc", nav_support:"Soporte", connect:"Conectar Billetera",
-        hero_tag:"En vivo en Arc Testnet · Nativo USDC · 6 Cadenas", hero_t1:"Regala. Divide. Ahorra.", hero_t2:"Entre Cadenas.", hero_sub:"Infraestructura de regalos USDC multicadena construida sobre Arc. Regala a cualquiera, en cualquier lugar.",
-        hero_cta1:"Enviar Regalo 🎁", hero_cta2:"Dividir Cuenta 💸", hero_cta3:"Empresas 🏢",
-        stat_chains:"Cadenas Soportadas", stat_finality:"Finalidad Arc",
-        hiw_tag:"Simple por Diseño", hiw_title:"Cómo Funciona", hiw_sub:"Desde conexión de billetera hasta entrega de regalo — cuatro pasos, segundos en Arc.",
-        step1_t:"Conectar Billetera", step1_p:"Conecta tu billetera MetaMask o Web3.", step2_t:"Elegir Tipo", step2_p:"Cumpleaños, Hito, Festivo, Familia.", step3_t:"Bloquear USDC", step3_p:"Ingresa monto y fecha. USDC bloqueado on-chain.", step4_t:"Compartir", step4_p:"Comparte vía WhatsApp, Telegram o SMS.",
-        gift_tag:"Regalos", gift_title:"Regalos con Significado", gift_sub:"Cinco tipos de bóveda para cada momento.",
-        bday_t:"Bóveda Cumpleaños", bday_d:"Bloquea USDC para el día especial de alguien.", mile_t:"Bóveda Hitos", mile_d:"Graduación, boda, ascenso — marca los grandes momentos.", fam_t:"Mesada Familiar", fam_d:"Regalos recurrentes para familiares.", mem_t:"Bóveda Recuerdos", mem_d:"Preserva un regalo y mensaje para el futuro.", hol_t:"Bóveda Festiva", hol_d:"Navidad, Eid, Diwali — regala USDC en cada celebración.", create_gift:"Crear Regalo →",
-        split_tag:"ChainSplit", split_title:"Divide Cualquier Cuenta.", split_sub:"Cena, alquiler, viajes — liquida en USDC en segundos.",
-        biz_tag:"Empresas", biz_title:"Infraestructura de Regalos", biz_sub:"Regalos masivos, campañas de marca, recompensas — a escala, on-chain.",
-        testnet_msg:"En Arc Testnet ahora — funciones adicionales próximamente",
-        mkt_tag:"Socios", mkt_title:"Marketplace de Gift Cards", mkt_sub:"Paga en USDC. Recibe vouchers de marcas mundiales.",
-        faq_tag:"FAQ", faq_title:"Preguntas Frecuentes", sup_tag:"Soporte", sup_title:"Estamos Aquí para Ayudar", sup_sub:"Contáctanos por cualquier canal."
+        nav_gift:"Bóveda de Regalos", nav_split:"Dividir", nav_arc:"Sobre Arc", connect:"Conectar",
+        hero_tag:"En vivo en Arc Testnet", hero_t1:"Regalos Programables", hero_t2:"para los Grandes Momentos.", hero_sub:"Crea bóvedas USDC con tiempo de desbloqueo que tú eliges. Cumpleaños, graduaciones, bodas. Construido en Arc.",
+        hero_cta1:"Crear una Bóveda", hero_cta2:"Ver Cómo Funciona",
+        stat_chains:"Cadenas Soportadas", stat_finality:"Finalidad en Arc",
+        hiw_tag:"Simple por Diseño", hiw_title:"Cómo Funciona", hiw_sub:"Cuatro pasos. Segundos en Arc. Sin intermediarios.",
+        step1_t:"Conectar Billetera", step1_p:"Conecta MetaMask o cualquier billetera Web3.", step2_t:"Elegir Tipo", step2_p:"Cumpleaños, Hito, Festivo, Familia o Recuerdo.", step3_t:"Bloquear USDC", step3_p:"Ingresa monto y fecha. USDC bloqueado onchain.", step4_t:"Compartir", step4_p:"Comparte vía WhatsApp, Telegram o SMS.",
+        gift_tag:"Bóvedas de Regalo", gift_title:"Cinco tipos para cada ocasión.", gift_sub:"Bloquea USDC con un mensaje personal.",
+        bday_t:"Bóveda Cumpleaños", bday_d:"Bloquea USDC para el día especial.", mile_t:"Bóveda Hitos", mile_d:"Graduación, boda, ascenso.", fam_t:"Mesada Familiar", fam_d:"Regalos recurrentes para familiares.", mem_t:"Bóveda Recuerdos", mem_d:"Preserva un regalo para el futuro.", hol_t:"Bóveda Festiva", hol_d:"Navidad, Eid, Diwali, Pascua.", create_gift:"Crear Regalo →",
+        split_tag:"ChainSplit", split_title:"Divide cualquier cuenta en USDC.", split_sub:"Cena, alquiler, viajes. Liquida en segundos en Arc.",
+        biz_tag:"Empresas", biz_title:"Infraestructura de Regalos Corporativos", biz_sub:"Regalos masivos, campañas de marca. Liquida onchain.",
       },
       fr: {
-        nav_gift:"🎁 Coffre-Cadeau", nav_split:"Partager", nav_biz:"Entreprises", nav_shop:"Boutique", nav_travel:"Voyage", nav_arc:"À propos d'Arc", nav_support:"Support", connect:"Connecter",
-        hero_tag:"En direct sur Arc Testnet · USDC-Natif · 6 Chaînes", hero_t1:"Offrir. Partager. Épargner.", hero_t2:"Entre Chaînes.", hero_sub:"Infrastructure de cadeaux USDC multi-chaînes construite sur Arc.",
-        hero_cta1:"Envoyer un Cadeau 🎁", hero_cta2:"Partager une Note 💸", hero_cta3:"Entreprises 🏢",
-        stat_chains:"Chaînes Supportées", stat_finality:"Finalité Arc",
-        hiw_tag:"Simple par Design", hiw_title:"Comment ça Marche", hiw_sub:"De la connexion du portefeuille à la livraison — quatre étapes.",
-        gift_tag:"Cadeaux", gift_title:"Des Cadeaux qui Comptent", gift_sub:"Cinq types de coffre pour chaque moment.",
+        nav_gift:"Coffre-Cadeau", nav_split:"Partager", nav_arc:"À propos d'Arc", connect:"Connecter",
+        hero_tag:"En direct sur Arc Testnet", hero_t1:"Cadeaux Programmables", hero_t2:"pour les Grands Moments.", hero_sub:"Créez des coffres USDC qui s'ouvrent exactement quand vous le choisissez.",
+        hero_cta1:"Créer un Coffre", hero_cta2:"Voir Comment ça Marche",
+        stat_chains:"Chaînes Supportées", stat_finality:"Finalité sur Arc",
+        hiw_tag:"Simple par Design", hiw_title:"Comment ça Marche", hiw_sub:"Quatre étapes. Secondes sur Arc.",
+        gift_tag:"Coffres Cadeaux", gift_title:"Cinq types pour chaque occasion.", gift_sub:"Bloquez USDC avec un message personnel.",
         create_gift:"Créer Cadeau →",
-        split_tag:"ChainSplit", split_title:"Partager N'importe quelle Note.", split_sub:"Dîner, loyer, voyages — réglez en USDC en secondes.",
-        biz_tag:"Entreprises", biz_title:"Infrastructure Cadeau Entreprise", biz_sub:"Cadeaux en masse, campagnes de marque, récompenses.",
-        testnet_msg:"Sur Arc Testnet maintenant — fonctionnalités supplémentaires bientôt",
-        faq_tag:"FAQ", faq_title:"Questions Fréquentes", sup_tag:"Support", sup_title:"Nous Sommes Là pour Vous", sup_sub:"Contactez-nous sur n'importe quel canal."
+        split_tag:"ChainSplit", split_title:"Divisez n'importe quelle note en USDC.", split_sub:"Dîner, loyer, voyages. Réglez en secondes sur Arc.",
       },
       hi: {
-        nav_gift:"🎁 गिफ्ट वॉल्ट", nav_split:"बिल विभाजन", nav_biz:"व्यापार", nav_shop:"दुकान", nav_travel:"यात्रा", nav_arc:"Arc के बारे में", nav_support:"सहायता", connect:"वॉलेट कनेक्ट",
-        hero_tag:"Arc Testnet पर लाइव · USDC-नेटिव · 6 चेन", hero_t1:"गिफ्ट। बांटें। बचाएं।", hero_t2:"चेन के पार।", hero_sub:"Arc पर निर्मित क्रॉस-चेन USDC गिफ्टिंग इन्फ्रास्ट्रक्चर।",
-        hero_cta1:"गिफ्ट भेजें 🎁", hero_cta2:"बिल बांटें 💸", hero_cta3:"व्यापार 🏢",
-        stat_chains:"चेन समर्थित", stat_finality:"Arc अंतिमता",
-        hiw_tag:"सरल डिज़ाइन", hiw_title:"यह कैसे काम करता है", hiw_sub:"वॉलेट कनेक्शन से गिफ्ट डिलीवरी तक — चार कदम।",
-        gift_tag:"उपभोक्ता गिफ्टिंग", gift_title:"मायने रखने वाले गिफ्ट", gift_sub:"हर मील के पत्थर के लिए पांच वॉल्ट प्रकार।",
+        nav_gift:"गिफ्ट वॉल्ट", nav_split:"बिल विभाजन", nav_arc:"Arc के बारे में", connect:"वॉलेट कनेक्ट",
+        hero_tag:"Arc Testnet पर लाइव", hero_t1:"प्रोग्रामेबल गिफ्ट", hero_t2:"जीवन के बड़े पलों के लिए।", hero_sub:"टाइम-लॉक USDC वॉल्ट बनाएं। जन्मदिन, स्नातक, शादी।",
+        hero_cta1:"गिफ्ट वॉल्ट बनाएं", hero_cta2:"कैसे काम करता है देखें",
+        stat_chains:"चेन समर्थित", stat_finality:"Arc पर फाइनैलिटी",
+        hiw_tag:"सरल डिज़ाइन", hiw_title:"यह कैसे काम करता है", hiw_sub:"चार कदम। Arc पर सेकंडों में।",
+        gift_tag:"गिफ्ट वॉल्ट", gift_title:"हर अवसर के लिए पांच प्रकार।", gift_sub:"व्यक्तिगत संदेश के साथ USDC लॉक करें।",
         create_gift:"गिफ्ट बनाएं →",
-        faq_tag:"FAQ", faq_title:"अक्सर पूछे जाने वाले प्रश्न", sup_tag:"सहायता", sup_title:"हम मदद के लिए यहां हैं", sup_sub:"किसी भी चैनल पर संपर्क करें।"
       },
       ar: {
-        nav_gift:"🎁 خزنة الهدايا", nav_split:"تقسيم", nav_biz:"للأعمال", nav_shop:"متجر", nav_travel:"سفر", nav_arc:"عن Arc", nav_support:"الدعم", connect:"ربط المحفظة",
-        hero_tag:"مباشر على Arc Testnet · USDC أصلي · 6 سلاسل", hero_t1:"أهدِ. اقسم. وفّر.", hero_t2:"عبر السلاسل.", hero_sub:"بنية تحتية للإهداء بـ USDC عبر السلاسل مبنية على Arc.",
-        hero_cta1:"أرسل هدية 🎁", hero_cta2:"اقسم فاتورة 💸", hero_cta3:"للأعمال 🏢",
+        nav_gift:"خزنة الهدايا", nav_split:"تقسيم", nav_arc:"عن Arc", connect:"ربط المحفظة",
+        hero_tag:"مباشر على Arc Testnet", hero_t1:"هدايا قابلة للبرمجة", hero_t2:"لأهم لحظات الحياة.", hero_sub:"أنشئ خزنات USDC تُفتح في الوقت الذي تختاره.",
+        hero_cta1:"إنشاء خزنة هدية", hero_cta2:"كيف يعمل",
         stat_chains:"سلاسل مدعومة", stat_finality:"نهائية Arc",
-        hiw_tag:"بسيط بالتصميم", hiw_title:"كيف يعمل", hiw_sub:"من ربط المحفظة إلى تسليم الهدية — أربع خطوات.",
-        gift_tag:"الإهداء", gift_title:"هدايا ذات معنى", gift_sub:"خمسة أنواع خزنة لكل مناسبة.",
+        hiw_tag:"بسيط بالتصميم", hiw_title:"كيف يعمل", hiw_sub:"أربع خطوات. ثوانٍ على Arc.",
+        gift_tag:"خزنات الهدايا", gift_title:"خمسة أنواع لكل مناسبة.", gift_sub:"أغلق USDC مع رسالة شخصية.",
         create_gift:"إنشاء هدية →",
-        faq_tag:"الأسئلة الشائعة", faq_title:"الأسئلة الشائعة", sup_tag:"الدعم", sup_title:"نحن هنا للمساعدة", sup_sub:"تواصل معنا عبر أي قناة."
       },
       pt: {
-        nav_gift:"🎁 Cofre de Presentes", nav_split:"Dividir", nav_biz:"Empresas", nav_shop:"Loja", nav_travel:"Viagem", nav_arc:"Sobre Arc", nav_support:"Suporte", connect:"Conectar Carteira",
-        hero_tag:"Ao vivo na Arc Testnet · USDC-Nativo · 6 Cadeias", hero_t1:"Presente. Divida. Economize.", hero_t2:"Entre Cadeias.", hero_sub:"Infraestrutura de presentes USDC cross-chain construída na Arc.",
-        hero_cta1:"Enviar Presente 🎁", hero_cta2:"Dividir Conta 💸", hero_cta3:"Empresas 🏢",
-        stat_chains:"Cadeias Suportadas", stat_finality:"Finalidade Arc",
-        hiw_tag:"Simples por Design", hiw_title:"Como Funciona", hiw_sub:"Da conexão da carteira à entrega — quatro passos.",
-        gift_tag:"Presentes", gift_title:"Presentes com Significado", gift_sub:"Cinco tipos de cofre para cada momento.",
+        nav_gift:"Cofre de Presentes", nav_split:"Dividir", nav_arc:"Sobre Arc", connect:"Conectar Carteira",
+        hero_tag:"Ao vivo na Arc Testnet", hero_t1:"Presentes Programáveis", hero_t2:"para os Grandes Momentos.", hero_sub:"Crie cofres USDC com data de desbloqueio. Aniversários, formaturas, casamentos.",
+        hero_cta1:"Criar um Cofre", hero_cta2:"Ver Como Funciona",
+        stat_chains:"Cadeias Suportadas", stat_finality:"Finalidade na Arc",
+        gift_tag:"Cofres de Presente", gift_title:"Cinco tipos para cada ocasião.", gift_sub:"Bloqueie USDC com uma mensagem pessoal.",
         create_gift:"Criar Presente →",
-        faq_tag:"FAQ", faq_title:"Perguntas Frequentes", sup_tag:"Suporte", sup_title:"Estamos Aqui para Ajudar", sup_sub:"Entre em contato por qualquer canal."
       },
       zh: {
-        nav_gift:"🎁 礼物金库", nav_split:"分账", nav_biz:"企业", nav_shop:"商店", nav_travel:"旅行", nav_arc:"关于Arc", nav_support:"支持", connect:"连接钱包",
-        hero_tag:"Arc测试网运行中 · USDC原生 · 6条链", hero_t1:"送礼。分账。储蓄。", hero_t2:"跨链进行。", hero_sub:"基于Arc构建的跨链USDC赠礼基础设施。",
-        hero_cta1:"发送礼物 🎁", hero_cta2:"分账 💸", hero_cta3:"企业方案 🏢",
+        nav_gift:"礼物金库", nav_split:"分账", nav_arc:"关于Arc", connect:"连接钱包",
+        hero_tag:"Arc测试网运行中", hero_t1:"可编程礼物", hero_t2:"献给人生重要时刻。", hero_sub:"创建定时解锁的USDC金库。生日、毕业、婚礼。",
+        hero_cta1:"创建礼物金库", hero_cta2:"了解运作方式",
         stat_chains:"支持的链", stat_finality:"Arc确定性",
-        hiw_tag:"简约设计", hiw_title:"如何运作", hiw_sub:"从钱包连接到礼物送达——四步完成。",
-        gift_tag:"消费者赠礼", gift_title:"有意义的礼物", gift_sub:"五种金库类型，适用于每个里程碑。",
+        gift_tag:"礼物金库", gift_title:"五种类型满足每个场合。", gift_sub:"用个人消息锁定USDC。",
         create_gift:"创建礼物 →",
-        faq_tag:"常见问题", faq_title:"常见问题", sup_tag:"支持", sup_title:"我们随时为您提供帮助", sup_sub:"通过任何渠道联系我们。"
       }
     };
 
@@ -1295,7 +1441,6 @@
       if (lang === 'ar') { document.documentElement.dir = 'rtl'; } else { document.documentElement.dir = 'ltr'; }
       document.querySelectorAll('.lang-option').forEach(o => o.classList.toggle('active', o.dataset.lang === lang));
       if (lang === 'en') {
-        // Reset to original English content (stored in data-original)
         document.querySelectorAll('[data-i18n]').forEach(el => {
           if (el.dataset.original) el.textContent = el.dataset.original;
         });
@@ -1310,7 +1455,6 @@
       });
     }
 
-    // Language panel
     document.getElementById('langToggleBtn').addEventListener('click', (e) => {
       e.stopPropagation();
       document.getElementById('langPanel').classList.toggle('open');
@@ -1323,8 +1467,6 @@
         document.getElementById('langPanel').classList.remove('open');
       });
     });
-
-    // Restore saved language
     if (currentLang !== 'en') setLanguage(currentLang);
 
     // ══════════════════════════════════════════
@@ -1358,7 +1500,7 @@
       const sel = document.getElementById('greetingTemplate');
       sel.innerHTML = '<option value="">— Choose a template —</option>';
       d.greetings.forEach(g => { const o = document.createElement('option'); o.value = g; o.textContent = g; sel.appendChild(o); });
-      sel.innerHTML += '<option value="__custom__">✏️ Custom greeting...</option>';
+      sel.innerHTML += '<option value="__custom__">Custom greeting...</option>';
     }
 
     document.querySelectorAll('.vault-tab').forEach(tab => {
@@ -1377,7 +1519,7 @@
       } else { document.getElementById('ecardGreeting').textContent = val; }
     });
     document.getElementById('ecardBodyText').addEventListener('input', function() {
-      document.getElementById('ecardBody').textContent = this.value || 'Grandad left you a gift ❤️';
+      document.getElementById('ecardBody').textContent = this.value || 'Grandad left you a gift';
     });
     document.getElementById('ecardSignature').addEventListener('input', function() {
       document.getElementById('ecardSig').textContent = this.value || '— With love';
@@ -1407,7 +1549,7 @@
       if (file.type.startsWith('image/')) preview.innerHTML = '<img src="'+url+'" style="max-width:100%;border-radius:8px;margin-top:4px;" />';
       else if (file.type.startsWith('video/')) preview.innerHTML = '<video src="'+url+'" controls style="max-width:100%;border-radius:8px;margin-top:4px;"></video>';
       else if (file.type.startsWith('audio/')) preview.innerHTML = '<audio src="'+url+'" controls style="width:100%;margin-top:4px;"></audio>';
-      else preview.innerHTML = '<div style="padding:8px;background:var(--glass-bg);border-radius:6px;font-size:12px;">📎 '+file.name+'</div>';
+      else preview.innerHTML = '<div style="padding:6px;background:var(--bg-secondary);border-radius:4px;font-size:12px;">'+file.name+'</div>';
       preview.style.display = 'block';
     });
 
@@ -1417,13 +1559,13 @@
     document.getElementById('mobileGiftVaultLink').addEventListener('click', (e) => { e.preventDefault(); openGiftVault('birthday'); document.getElementById('mobileMenu').classList.remove('open'); });
 
     function shareVia(platform) {
-      if (platform === 'whatsapp') { showNotification('💬 WhatsApp sharing — Coming Soon!', 'info'); return; }
-      const msg = encodeURIComponent('🎁 I sent you a GrandPay Vault gift! Check it out at https://marvellgregory.github.io/grandpay-vault/');
-      if (platform === 'telegram') window.open('https://t.me/share/url?url=https://marvellgregory.github.io/grandpay-vault/&text='+encodeURIComponent('🎁 I sent you a GrandPay Vault gift!'), '_blank');
+      if (platform === 'whatsapp') { showNotification('WhatsApp sharing coming soon', 'info'); return; }
+      const msg = encodeURIComponent('I sent you a GrandPay Vault gift! Check it out at https://marvellgregory.github.io/grandpay-vault/');
+      if (platform === 'telegram') window.open('https://t.me/share/url?url=https://marvellgregory.github.io/grandpay-vault/&text='+encodeURIComponent('I sent you a GrandPay Vault gift!'), '_blank');
       else if (platform === 'email') window.open('mailto:?subject=You%20have%20a%20GrandPay%20Gift!&body='+msg);
       else if (platform === 'sms') window.open('sms:?body='+msg);
     }
-    function downloadCard(type) { showNotification('Download feature coming soon on Arc Mainnet', 'info'); }
+    function downloadCard(type) { showNotification('Download feature coming with Arc Mainnet', 'info'); }
 
     // ══════════════════════════════════════════
     // THEME SYSTEM
@@ -1478,7 +1620,7 @@
     });
 
     // ══════════════════════════════════════════
-    // NOTIFICATIONS & MODAL
+    // NOTIFICATIONS & MODAL (used by app.js)
     // ══════════════════════════════════════════
     function showNotification(msg, type) {
       const el = document.getElementById('notification');
@@ -1490,11 +1632,88 @@
     document.getElementById('successModal').addEventListener('click', (e) => { if (e.target.id === 'successModal') e.target.style.display = 'none'; });
 
     switchVaultType('birthday');
+
+    // ══════════════════════════════════════════
+    // GRANDGUIDE AI — FAQ KNOWLEDGE BASE
+    // ══════════════════════════════════════════
+    const GG_KB = {
+      what: "GrandPay Vault lets you create time-locked USDC vaults as programmable gifts. Lock USDC with a personal message, set an unlock date, and share the gift card. The recipient claims the funds after the unlock date. It is built on Arc, Circle's Layer-1 blockchain.",
+      arc: "Arc is Circle's open Layer-1 blockchain designed for programmable money. It offers sub-second finality and uses USDC as the gas token. GrandPay Vault is deployed on Arc Testnet. See arc.io for full documentation.",
+      safe: "GrandPay Vault is non-custodial. Your USDC is locked in a smart contract onchain. Only the designated recipient can withdraw after the unlock date. The platform never takes custody of your funds. Note: the contracts are on testnet and have not been formally audited.",
+      wallets: "MetaMask is the primary supported wallet. Any Web3 wallet that supports custom EVM chains can be used. When you connect, Arc Testnet will be added to your wallet automatically if it is not already configured.",
+      fees: "GrandPay Vault does not charge platform fees during the testnet phase. You pay standard Arc Testnet gas fees in USDC when creating vaults or splitting bills. Get testnet USDC from the Arc faucet.",
+      testnet: "GrandPay Vault is currently deployed on Arc Testnet. This is not a production application. Do not use real funds. A mainnet deployment is planned when Arc mainnet launches.",
+      cancel: "Once a vault is created onchain, it cannot be cancelled or modified. The USDC is locked until the unlock date. Double-check the recipient address and amount before confirming.",
+      chains: "Arc Testnet is the primary chain. Ethereum, Base, Polygon, Arbitrum, and Optimism are also supported in the interface. Smart contracts are currently deployed only on Arc Testnet.",
+      business: "GrandPay Vault offers corporate gifting features including bulk upload via CSV, custom branding, campaign scheduling, budget controls, and approval workflows. Contact via email or Telegram to discuss enterprise onboarding.",
+      chainsplit: "ChainSplit lets you split any bill in USDC across multiple wallets. Enter the total amount, add wallet addresses, choose equal or custom split, and settle in one transaction. Arc processes it in under a second.",
+      opensource: "Yes, GrandPay Vault is open source. The smart contract code and frontend are publicly available on GitHub. You can review, fork, and verify the implementation at github.com/marvellgregory."
+    };
+
+    const GG_KEYWORDS = {
+      what: ['what','grandpay','vault','about','explain','overview','product'],
+      arc: ['arc','circle','blockchain','layer','chain','why arc','network'],
+      safe: ['safe','security','secure','trust','custody','custodial','funds','money','risk'],
+      wallets: ['wallet','metamask','connect','web3','supported'],
+      fees: ['fee','cost','price','gas','charge','pay'],
+      testnet: ['testnet','live','production','mainnet','demo','real'],
+      cancel: ['cancel','refund','undo','reverse','modify','change'],
+      chains: ['chains','network','ethereum','base','polygon','arbitrum','optimism','supported'],
+      business: ['business','corporate','enterprise','bulk','company','b2b'],
+      chainsplit: ['split','bill','chainsplit','divide','dinner','rent'],
+      opensource: ['open source','opensource','github','code','repo','audit']
+    };
+
+    function ggSearch(query) {
+      const q = query.toLowerCase().trim();
+      if (!q) return null;
+      let bestKey = null, bestScore = 0;
+      for (const [key, words] of Object.entries(GG_KEYWORDS)) {
+        let score = 0;
+        for (const w of words) {
+          if (q.includes(w)) score += w.length;
+        }
+        if (score > bestScore) { bestScore = score; bestKey = key; }
+      }
+      return bestKey && bestScore >= 3 ? GG_KB[bestKey] : null;
+    }
+
+    function ggShowAnswer(text) {
+      const el = document.getElementById('ggAnswer');
+      el.textContent = text;
+      el.classList.add('visible');
+      el.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    }
+
+    document.querySelectorAll('.gg-topic').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.topic;
+        if (GG_KB[key]) ggShowAnswer(GG_KB[key]);
+      });
+    });
+
+    document.getElementById('ggSend').addEventListener('click', () => {
+      const input = document.getElementById('ggInput');
+      const q = input.value.trim();
+      if (!q) return;
+      const answer = ggSearch(q);
+      if (answer) { ggShowAnswer(answer); }
+      else { ggShowAnswer("I don't have a specific answer for that yet. Try tapping one of the suggested topics above, or check the FAQ section on this page for more details."); }
+      input.value = '';
+    });
+    document.getElementById('ggInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('ggSend').click();
+    });
+
+    document.getElementById('ggFab').addEventListener('click', () => {
+      document.getElementById('ggPanel').classList.toggle('open');
+    });
+    document.getElementById('ggClose').addEventListener('click', () => {
+      document.getElementById('ggPanel').classList.remove('open');
+    });
   </script>
 
-  <!-- Hidden legacy elements: app.js references these IDs for the old vault form.
-       They are kept invisible so safeOn(), clearFields(), setMinDate(), and
-       disconnectWallet() can find them without errors. -->
+  <!-- Hidden legacy elements for app.js compatibility -->
   <div style="display:none" aria-hidden="true">
     <input id="vaultRecipient" />
     <input id="vaultAmount" type="number" />
